@@ -1,0 +1,29 @@
+# Qdrant 向量数据库服务（Docker Compose）
+#
+# 用法（项目根目录）：
+#   docker compose up -d           # 后台启动
+#   docker compose down            # 停止并移除容器（数据卷保留）
+#   docker compose down -v         # 停止并删除数据卷（清空所有数据，慎用）
+#
+# 启动后 REST 端口 6333 已映射到本机 127.0.0.1:6333（与 config.yaml qdrant 段一致）。
+# 建表（collection + 三命名向量 schema）由 init_collection.py 或
+# index_documents.py（首次入库自动建）完成，本文件只负责拉起数据库服务。
+
+services:
+  qdrant:
+    # 1.19.1 与 qdrant-client 1.19.0 匹配；Modifier.IDF 需 ≥1.10
+    image: qdrant/qdrant:v1.19.1
+    container_name: qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"      # REST（qdrant-client 走此端口）
+      - "6334:6334"      # gRPC（本项目暂未使用，预留）
+    volumes:
+      - qdrant_data:/qdrant/storage   # 数据持久化（命名卷，容器重建不丢数据）
+    # 如需启用 API key 鉴权，取消下面注释并在 config.yaml 的 qdrant.api_key 填入
+    # 相同值（默认不鉴权，仅本机访问，key 留空即可）
+    # environment:
+    #   - QDRANT__SERVICE__API_KEY=change_me
+
+volumes:
+  qdrant_data:

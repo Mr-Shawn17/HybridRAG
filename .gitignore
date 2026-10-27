@@ -1,0 +1,38 @@
+# ── 运行时产物 / 大文件（不入库）──────────────────────────
+# 模型权重（BGE-M3，4.3G，用户自行下载放置到 model/BGE-M3）
+model/
+
+# 数据：只入库 chunks（切块产物，56M）；其余均可再生，忽略
+data/raw/
+data/parsed/
+data/embeddings/
+data/qdrant_storage/
+data/bm25_stats/
+
+# 日志
+log/
+*.log
+
+# 密钥（复制 config/.env.example 为 .env 后填入）
+config/.env
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# IDE / 编辑器
+.vscode/
+.idea/
+.claude/
+*.swp
+.DS_Store
+
+# WorkBuddy 项目数据（含本地 memory，不入库）
+.workbuddy/

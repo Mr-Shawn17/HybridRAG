@@ -1,0 +1,92 @@
+# 混合检索 RAG 配置（architecture.md §6 定版数值）
+# 约定：所有路径均为项目相对路径（项目将开源，勿写本机绝对路径）
+
+paths:
+  raw: data/raw                    # 年报 PDF 原件
+  parsed: data/parsed              # 解析中间产物（JSON）
+  chunks: data/chunks              # 切块产物（JSON）
+  embeddings: data/embeddings      # 编码缓存（dense + learned sparse，npz）
+  # v1.6：bm25_stats 路径已移除——idf 改由 Qdrant 服务端 Modifier.IDF 维护，
+  # data/bm25_stats/bm25_stats.json 停用为历史产物（avgdl_frozen 的出处）
+
+# Qdrant 服务端（Docker 容器，v1.4 起取代本地模式）
+qdrant:
+  host: 127.0.0.1                  # 容器端口已映射到本机
+  port: 6333                       # REST 端口（gRPC 6334 暂不使用）
+  api_key: ""                      # 容器未设 QDRANT__SERVICE__API_KEY 则留空
+
+# MCP 服务（src/mcp_server.py，v1.9：检索侧对外 Agent 暴露）
+mcp:
+  host: 127.0.0.1                  # 监听地址（仅本机；局域网改 0.0.0.0 自担风险）
+  port: 8000                       # 客户端接入 url = http://{host}:{port}/mcp
+
+embedding:
+  provider: local                  # local | siliconflow（GPU 不可用时一键切换）
+  model: model/BGE-M3              # 本地模型目录（相对项目根，开源时用户自行下载权重放置）
+  hf_model_id: BAAI/bge-m3         # 备用 HF id（本地目录缺失时经 HF_ENDPOINT 镜像下载）
+  batch_size: 16                   # OOM 则调小（GTX 1650 4G 显存偏紧）
+  device: cuda                     # cuda | cpu（M0 实测 GTX 1650 可用）
+  use_fp16: false                  # 实测 GTX 1650（TU117 无 Tensor Core）fp16 反而慢
+                                   # 4.7 倍（编码 8.4min vs fp32 2.6min），固定用 fp32
+
+sparse:
+  method: bm25                     # bm25 | bge_m3_sparse（E4 后定版）
+  tokenizer: jieba_search          # G2 定版：search 模式对财务长词（应收账款周转率/
+  k1: 1.5                          # 归属于上市公司股东的净利润）额外产出子词与全词
+  b: 0.75                          # 双份索引，部分匹配召回更稳；exact 模式长词一次
+                                   # 命中失败即全失败。检索查询同样用 for_search。
+  avgdl_frozen: 248.54             # v1.6：BM25 的 idf 改由 Qdrant 服务端 Modifier.IDF
+                                   # 维护（随点增删自动更新，新增文档零全局重算），
+                                   # 客户端入库只算 tf 饱和+长度归一，avgdl 冻结为常量。
+                                   # 取值=2026-09-20 实测全库 n_docs=40609 时的
+                                   # avgdl 248.5376（源 data/bm25_stats/bm25_stats.json）。
+                                   # 语料规模/长度分布大变时重算此值并 --recreate 重建
+                                   # （npz 缓存，不动 GPU），非日常步骤。
+
+retrieval:
+  top_k_per_route: 50              # 两路各召回
+  rrf_k: 60                        # 不调（<200 标注查询）
+  rerank_top_n: 25                 # 送重排数量
+  final_top_n: 5                   # 进 Prompt 数量
+
+rerank:
+  provider: siliconflow
+  model: BAAI/bge-reranker-v2-m3
+  base_url: https://api.siliconflow.cn/v1 # OpenAI 兼容协议根地址（与 llm 段同风格），rerank 端点=POST {base_url}/rerank
+  api_key_env: SILICONFLOW_API_KEY # 读取重排 API key 的环境变量名（key 本身勿写入配置）
+
+llm:
+  provider: zhipu                 # OpenAI 兼容层，可切 bailian/deepseek 等
+  model: glm-5.3-flash            # 智谱 GLM（coding plan 个人版）
+  base_url: https://open.bigmodel.cn/api/coding/paas/v4 # 智谱 OpenAI 兼容协议根地址
+  api_key_env: GLM_API_KEY        # 读取智谱 API key 的环境变量名（key 本身勿写入配置）
+  temperature: 0.2
+
+judge:                            # M4 评测裁判（DeepSeek 官网，与生成侧 GLM 异家族）
+  provider: deepseek
+  model: deepseek-flash
+  base_url: https://api.deepseek.com/v1
+  api_key_env: DEEPSEEK_API_KEY   # 读取 DeepSeek API key 的环境变量名
+  temperature: 0.0
+
+eval:                             # M4 评测参数（architecture.md §7，v1.8：自写 5 检索指标）
+  n_questions: 50                 # 出题总数
+  qtype_quota:                    # 题型配额（锁死，防偏置）
+    term: 18                      # 术语精确（用原文措辞提问）
+    paraphrase: 18                # 语义改写（明令换措辞，防 BM25 白捡）
+    numeric: 14                   # 数字提取（优先表格块）
+  seed: 42                        # 抽样随机种子（可复现）
+  chunk_len_min: 80               # 出题源块长度下限（字符，太短出不了题）
+  chunk_len_max: 900              # 送出题 prompt 的正文截断上限
+  max_per_report: 2               # 每份年报最多出题数（公司×年份多样性）
+
+chunking:
+  # 切块参数：与 data/chunks/ 实际产物的生成参数一致（v1.3 定版）
+  # 注：实测产物中 text chunk 长度 p50=61 / max=340 字符，chunk_size=768
+  #     从未触发——因为 chunk_documents.py 把每个 parsed text block 单独
+  #     包成 Document 送 splitter，而 parsed 侧 text block 本身多在 100 字
+  #     符内，splitter 无内容可切（等价于 1:1 直通）。此处忠实记录生成参数，
+  #     粒度问题的处置见 architecture.md §9 风险清单。
+  chunk_size: 768                  # SentenceSplitter token 数
+  chunk_overlap: 80
+  table_max_chars: 800             # 表格按字符截断（非 token），每段带表头

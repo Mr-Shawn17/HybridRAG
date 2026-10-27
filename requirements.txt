@@ -1,0 +1,54 @@
+# 混合检索 RAG 项目依赖（py_rag 环境，Python 3.12）
+# 安装：pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+# torch 不在此清单——需按 GPU 单独装 CUDA 版（见文件末尾注释）
+
+# ── 解析 ────────────────────────────────────────────────
+pymupdf>=1.24
+
+# ── 切块与编排 ──────────────────────────────────────────
+llama-index-core>=0.12
+
+# ── 向量库 ──────────────────────────────────────────────
+qdrant-client>=1.12
+
+# ── 稀疏检索 ────────────────────────────────────────────
+jieba>=0.42
+
+# ── 本地 embedding（BGE-M3）─────────────────────────────
+FlagEmbedding==1.4.2
+transformers>=4.44.2,<5.0     # 5.9.0 在本机实测 import 即段错误（2026-10-25），
+                              # 必须锁 4.x——建议先单独装锁死，再装 FlagEmbedding
+numpy>=2.0                    # pyarrow 26（datasets 依赖）要求 numpy 2.x；
+                              # torch 2.14 已原生支持 numpy 2.x，旧「锁 1.26」
+                              # 是 2024 年旧 torch 的经验，已过时
+sentence-transformers>=3.0
+
+# ── 配置 / 通用 ─────────────────────────────────────────
+pyyaml>=6.0
+python-dotenv>=1.0
+concurrent-log-handler        # utils.Log 并发滚动日志
+
+# ── LLM / 重排 / UI ─────────────────────────────────────
+gradio>=5.0
+openai>=1.40                  # 百炼/智谱/硅基流动 OpenAI 兼容层
+requests>=2.31
+
+# ── MCP 服务（v1.9 新增：检索侧对外 Agent 暴露）─────────
+mcp>=2.0
+
+# ── torch 单独安装（CUDA 版，按驱动选）──────────────────
+# 本机驱动 CUDA UMD 13.3 → 装 cu130（官方最新、与驱动匹配）：
+#   pip install torch torchvision torchaudio --index-url https://mirrors.nju.edu.cn/pytorch/whl/cu130
+# torchvision/torchaudio 与 torch 同装：三者的 CUDA 版本必须一致（都走 cu130 源）。
+# CUDA 向下兼容：驱动 13.3 也可跑 cu121/cu124；实测 torch 2.10.0+cu130
+# 在本机 import 正常（cuda=True），故直接 cu130，不必退回 cu121。
+# 本机 GTX 1650（TU117 无 Tensor Core）fp16 反而慢 4.7 倍，配置固定 fp32。
+# GPU 不可用装 CPU 版：pip install torch torchvision torchaudio --index-url https://mirrors.nju.edu.cn/pytorch/whl/cpu
+#
+# ── py_rag 环境完整安装步骤（Anaconda Prompt 逐条执行）────
+#   conda create -n py_rag python=3.12 -y
+#   conda activate py_rag
+#   pip install torch torchvision torchaudio --index-url https://mirrors.nju.edu.cn/pytorch/whl/cu130
+#   pip install "transformers>=4.44.2,<5.0" -i https://pypi.tuna.tsinghua.edu.cn/simple
+#   pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+# 注意第 3 步：transformers 必须先单独锁 <5.0 再装其余，避免 pip 解析到损坏的 5.9.0。
