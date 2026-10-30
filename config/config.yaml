@@ -20,6 +20,11 @@ mcp:
   host: 127.0.0.1                  # 监听地址（仅本机；局域网改 0.0.0.0 自担风险）
   port: 8100                       # 客户端接入 url = http://{host}:{port}/mcp
 
+# Gradio 检索 UI（scripts/start_ui.py，v1.11：端口改由配置驱动）
+ui:
+  host: 127.0.0.1                  # 监听地址（仅本机；局域网改 0.0.0.0 自担风险）
+  port: 7860                       # 端口优先级：--port 命令行 > 此项 > 代码默认 7860
+
 embedding:
   provider: local                  # local | siliconflow（GPU 不可用时一键切换）
   model: model/BGE-M3              # 本地模型目录（相对项目根，开源时用户自行下载权重放置）
