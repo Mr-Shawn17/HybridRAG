@@ -78,12 +78,20 @@ _fmt = logging.Formatter(
 _log_dir = _log_path.parent
 _log_dir.mkdir(parents=True, exist_ok=True)
 
+# 日志轮转：按天轮转，backupCount=7 保留近 7 天（v1.12）。
+# 用 TimedRotatingFileHandler 取代 FileHandler——单文件无限增长不便于排查，
+# 轮转后缀形如 mcp_server.log.2026-10-31（当日文件仍为 mcp_server.log）。
+from logging.handlers import TimedRotatingFileHandler  # noqa: E402
+
 # MCP 自身业务日志：独立命名 logger，文件 handler 写到 _log_path。
 logger = logging.getLogger("mcp_server")
 logger.setLevel(logging.INFO)
 logger.propagate = False  # 不向 root logger 传播，避免写入 index_documents.log
 if not any(getattr(h, "_mcp_file", False) for h in logger.handlers):
-    _fh = logging.FileHandler(str(_log_path), encoding="utf-8")
+    _fh = TimedRotatingFileHandler(
+        str(_log_path), when="midnight", interval=1, backupCount=7,
+        encoding="utf-8",
+    )
     _fh._mcp_file = True
     _fh.setFormatter(_fmt)
     _fh.setLevel(logging.INFO)
@@ -94,16 +102,41 @@ if not any(getattr(h, "_mcp_file", False) for h in logger.handlers):
     logger.addHandler(_sh)
 
 
-def _route_to_mcp_log(name: str) -> None:
+class _AsyncioNoiseFilter(logging.Filter):
+    """压制 asyncio 事件循环里客户端断连的噪音异常。
+
+    Windows 下 MCP 客户端调用完 search 主动断开 TCP 时，Proactor 事件循环
+    会在 `_call_connection_lost` 抛 ConnectionResetError(WinError 10054)，
+    属正常行为、非服务端缺陷。这类报错不落盘、不刷屏；其余 asyncio 异常
+    （如 task 未取回、真正的连接错误）仍正常记录。
+    """
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        msg = record.getMessage()
+        if "_call_connection_lost" in msg and (
+            "ConnectionResetError" in msg or "WinError 10054" in msg
+        ):
+            return False
+        return True
+
+
+def _route_to_mcp_log(
+    name: str, level: int = logging.INFO, filter_: logging.Filter | None = None
+) -> None:
     """把某个 logger 命名空间的日志路由到 mcp_server.log（同时仍输出控制台）。
 
     用于 mcp.server.*（SDK 内部）与 uvicorn 的日志：它们默认 propagate 到
     root logger（→ index_documents.log），这里显式挂同一个文件 handler 并
     阻断传播，使 MCP 服务相关日志全部归到 mcp_server.log。
+
+    level：可选覆盖该命名空间的记录阈值。asyncio 传 WARNING。
+    filter_：可选挂过滤器（asyncio 传 _AsyncioNoiseFilter 压掉断连噪音）。
     """
     lg = logging.getLogger(name)
-    lg.setLevel(logging.INFO)
+    lg.setLevel(level)
     lg.propagate = False
+    if filter_ is not None:
+        lg.addFilter(filter_)
     if not any(getattr(h, "_mcp_file", False) for h in lg.handlers):
         lg.addHandler(_fh)
         if not any(isinstance(h, logging.StreamHandler) for h in lg.handlers):
@@ -115,6 +148,9 @@ _route_to_mcp_log("mcp.server")
 _route_to_mcp_log("uvicorn")
 _route_to_mcp_log("uvicorn.access")
 _route_to_mcp_log("uvicorn.error")
+# asyncio 事件循环日志：降为 WARNING + 挂噪音过滤器，压掉客户端断开的
+# ConnectionResetError（WinError 10054），真正的 asyncio 异常仍记录。
+_route_to_mcp_log("asyncio", logging.WARNING, _AsyncioNoiseFilter())
 
 # ── 单例状态（惰性初始化，全局锁串行化）──────────────────────────
 
@@ -243,6 +279,13 @@ async def search(
         )
     if not query or not query.strip():
         raise ToolError("query 不能为空")
+
+    # 记录对方传入的问题（v1.12：便于按 query 排查，含检索口径/过滤条件）
+    logger.info(
+        "收到检索请求 query=%r exp=%s codes=%s year=[%s,%s] rerank=%s",
+        query, exp, codes, year_from, year_to, rerank,
+    )
+
     r = await _get_retriever()
     flt = retrieve.build_filter(
         codes=codes, year_from=year_from, year_to=year_to
@@ -254,11 +297,19 @@ async def search(
                 r.retrieve, query.strip(), exp, flt, rerank
             )
         except (RuntimeError, ValueError) as exc:
-            # 可预期失败：重排 API 挂、Qdrant 断连、参数非法——透传给调用方
+            # 可预期失败：重排 API 挂、Qdrant 断连、参数非法——透传给调用方，
+            # 并落 error 日志记录报错详情（含问题本身，便于定位是哪次查询挂）
+            logger.error(
+                "检索失败 query=%r exp=%s：%s", query, exp, exc,
+            )
             raise ToolError(str(exc)) from exc
     elapsed_ms = (time.perf_counter() - t0) * 1000
     _search_count += 1
     _search_total_ms += elapsed_ms
+    logger.info(
+        "检索成功 query=%r exp=%s n_hits=%d elapsed=%.1fms",
+        query, exp, len(hits), elapsed_ms,
+    )
     return {
         "query": query.strip(),
         "exp": exp,
