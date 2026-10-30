@@ -79,7 +79,7 @@ cp config/.env.example config/.env
 | Key | 用途 | 是否必需 |
 |---|---|---|
 | `SILICONFLOW_API_KEY` | 云端重排（E3 实验组） | 用 E3 重排才需要 |
-| `GLM_API_KEY` | LLM 生成（ui.py 问答） | 用问答总结才需要 |
+| `GLM_API_KEY` | LLM 生成（start_ui.py 问答） | 用问答总结才需要 |
 | `DEEPSEEK_API_KEY` | 评测裁判 | 跑评测才需要 |
 
 > **纯检索链路（无重排、无生成）完全本地运行，无需任何 key**。检索 + BM25 + RRF 融合 + BGE-M3 编码都不依赖外部 API。
@@ -168,7 +168,24 @@ python src/index_documents.py --codes <code> --limit 1
 
 ## 5. 检索与问答
 
-### 5.1 Python API
+> **日常交互测试推荐用 Gradio UI（5.1）**：启动后在前端界面直接输入问题即可，无需写代码。需要编程集成时再用 Python API（5.2）。
+
+### 5.1 Gradio UI
+
+```bash
+python scripts/start_ui.py
+# 浏览器打开 http://127.0.0.1:7860
+```
+
+启动即预热（加载 BGE-M3 + 连接 Qdrant），首问不卡。界面支持：
+
+- **提问**：输入自然语言问题，点「检索并回答」或回车提交
+- **实验组切换**：E0~E4 五组路由（E3 为完整链路，含云端重排）
+- **元数据过滤**：按股票代码 / 年份区间限定召回范围
+- **引用溯源**：每个命中块带公司 / 代码 / 年度 / 章节 / 页码
+- **进度反馈**：查询期间显示 spinner + 扫动进度条 + 实时计时，完成显示「检索 x.xs + 生成 x.xs」
+
+### 5.2 Python API
 
 ```python
 import sys
@@ -198,24 +215,15 @@ hits = r.retrieve("...", exp="E3", flt=flt)
 | E3 | dense + bm25 混合 | ✅（默认） |
 | E4 | dense + bge_sparse | 否 |
 
-### 5.2 Gradio UI
-
-```bash
-python src/ui.py
-# 浏览器打开 http://127.0.0.1:7860
-```
-
-UI 支持：提问 / 实验组切换 / 元数据过滤 / 引用溯源面板 / 阶段计时。
-
 ## 6. MCP 服务
 
-将检索侧封装为 MCP 服务，供其他 Agent 调用。详见 [docs/mcp.md](docs/mcp.md)。
+将检索侧封装为 MCP 服务，**供其他 Agent（Claude Desktop / Cursor 等）调用**。日常人工交互测试请直接用上面的 `scripts/start_ui.py`（5.1），无需启动本服务。接入详见 [docs/mcp.md](docs/mcp.md)。
 
 ```bash
 # 启动（按需）
-python serve_mcp.py                    # 默认 127.0.0.1:8000
-python serve_mcp.py --port 8100        # 换端口
-python serve_mcp.py --log-path D:/logs/mcp.log   # 自定义日志路径
+python scripts/serve_mcp.py                    # host/port 读 config（默认 127.0.0.1:8100）
+python scripts/serve_mcp.py --port 9000        # 换端口（覆盖 config）
+python scripts/serve_mcp.py --log-path D:/logs/mcp.log   # 自定义日志路径
 
 # 测试客户端（纯标准库，零依赖）
 python test_mcp_client.py --list

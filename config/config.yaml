@@ -18,7 +18,7 @@ qdrant:
 # MCP 服务（src/mcp_server.py，v1.9：检索侧对外 Agent 暴露）
 mcp:
   host: 127.0.0.1                  # 监听地址（仅本机；局域网改 0.0.0.0 自担风险）
-  port: 8000                       # 客户端接入 url = http://{host}:{port}/mcp
+  port: 8100                       # 客户端接入 url = http://{host}:{port}/mcp
 
 embedding:
   provider: local                  # local | siliconflow（GPU 不可用时一键切换）

@@ -39,7 +39,7 @@
       r.n_points                               # collection 点数
 
 .env 兜底：config/.env 的 key 经 _load_dotenv() 注入（系统环境变量优先，
-setdefault 语义）；本文件 main() 与 ui.py / llm_client.py 启动时均已调用。
+setdefault 语义）；本文件 main() 与 scripts/start_ui.py / llm_client.py 启动时均已调用。
 
 导入顺序硬约束：本模块最先导入 index_documents（其内部保证 FlagEmbedding 先
 于 hashlib/numpy/jieba 加载，否则 Windows segfault，2026-09-15 实测）。
