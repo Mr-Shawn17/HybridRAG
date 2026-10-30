@@ -175,7 +175,15 @@ python src/index_documents.py --codes <code> --limit 1
 ```bash
 python scripts/start_ui.py
 # 浏览器打开 http://127.0.0.1:7860
+# host/port 读 config.yaml 的 ui 段；临时覆盖：--host / --port
+python scripts/start_ui.py --port 9000
 ```
+
+> **启动前环境检查（v1.11）**：启动时会先逐项检查必需环境并打印结果（✓ 通过 / ! 警告 / ✗ 失败）：
+> - 硬阻塞项（失败即中止启动）：Qdrant 服务在线且 `annual_reports` collection 存在、BGE-M3 权重 `model/BGE-M3` 就位。
+> - 软提示项（仅警告不阻塞）：`SILICONFLOW_API_KEY`（E3 重排）、`GLM_API_KEY`（问答生成）。
+>
+> 排查时可直接跑 `python src/env_check.py` 单独看检查结果。
 
 启动即预热（加载 BGE-M3 + 连接 Qdrant），首问不卡。界面支持：
 
@@ -224,7 +232,11 @@ hits = r.retrieve("...", exp="E3", flt=flt)
 python scripts/serve_mcp.py                    # host/port 读 config（默认 127.0.0.1:8100）
 python scripts/serve_mcp.py --port 9000        # 换端口（覆盖 config）
 python scripts/serve_mcp.py --log-path D:/logs/mcp.log   # 自定义日志路径
+```
 
+> **启动前环境检查（v1.11）**：与 `start_ui.py` 相同，会先检查 Qdrant / 模型权重（硬项）与重排 key（软项）；MCP 服务不查 LLM key。
+
+```bash
 # 测试客户端（纯标准库，零依赖）
 python test_mcp_client.py --list
 python test_mcp_client.py health

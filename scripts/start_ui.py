@@ -20,7 +20,8 @@ yield 一次状态条，前端据此刷出「spinner + 扫动进度条 + 实时�
 其余模块（mcp_server 等）仍由各自的 scripts/ 启动器以相同方式导入，互不影响。
 
 用法（项目根目录，py_rag 环境；需先完成 M2b 入库并安装 gradio）：
-  python scripts/start_ui.py                 # http://127.0.0.1:7860
+  python scripts/start_ui.py                 # host/port 读 config ui 段（默认 http://127.0.0.1:7860）
+  python scripts/start_ui.py --port 9000     # 换端口（优先级：--port > config > 7860）
   python scripts/start_ui.py --share         # 临时外网链接（gradio tunnel，可选）
 """
 
@@ -319,7 +320,17 @@ def build_ui() -> gr.Blocks:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="年报混合检索 Gradio UI")
-    ap.add_argument("--port", type=int, default=7860)
+    ap.add_argument(
+        "--port",
+        type=int,
+        default=None,
+        help="监听端口（默认读 config ui.port，再退 7860）",
+    )
+    ap.add_argument(
+        "--host",
+        default=None,
+        help="监听地址（默认读 config ui.host，再退 127.0.0.1）",
+    )
     ap.add_argument("--share", action="store_true", help="gradio 临时外网链接")
     args = ap.parse_args()
     logging.basicConfig(
@@ -332,9 +343,24 @@ def main() -> None:
     jieba.setLogLevel(logging.WARNING)
 
     R._load_dotenv()  # config/.env 兜底（setdefault，系统环境变量优先）
+
+    # 启动前环境检查（v1.11：硬项未就绪则中止，软项仅提示）
+    import env_check  # noqa: E402
+
+    if not env_check.run_checks("ui"):
+        print()
+        print("[错误] 环境检查未通过，UI 未启动。请按上方 ✗ 项提示修复后重试。")
+        sys.exit(1)
+
     get_retriever()  # 启动即预热（加载模型+开库），首问不卡
+
+    # host/port 解析（优先级：命令行 > config ui 段 > 默认值）
+    cfg = idx.load_config().get("ui") or {}
+    host = args.host or str(cfg.get("host", "127.0.0.1"))
+    port = args.port if args.port is not None else int(cfg.get("port", 7860))
+
     demo = build_ui()
-    demo.launch(server_name="127.0.0.1", server_port=args.port, share=args.share)
+    demo.launch(server_name=host, server_port=port, share=args.share)
 
 
 if __name__ == "__main__":

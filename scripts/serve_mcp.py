@@ -118,6 +118,20 @@ def main() -> int:
         print(f"[复用] 端口 {port} 已有 MCP 服务在跑，直接使用：{url}")
         return 0
 
+    # 1.5 启动前环境检查（v1.11：硬项未就绪则中止，软项仅提示）
+    #      key 检查前先加载 config/.env + Machine 注册表兜底，保证与运行时
+    #      真实可见的环境变量一致（retrieve._load_dotenv 为幂等 setdefault）。
+    #      sys.path 已含 src/（见下方 import），此处延迟导入避免重复加载模型。
+    sys.path.insert(0, str(ROOT / "src"))
+    import retrieve as _R  # noqa: E402  触发 _load_dotenv 兜底
+    import env_check  # noqa: E402
+
+    _R._load_dotenv()
+    if not env_check.run_checks("mcp"):
+        print()
+        print("[错误] 环境检查未通过，MCP 服务未启动。请按上方 ✗ 项提示修复后重试。")
+        return 1
+
     # 2. 拉起服务（前台运行，Ctrl+C 停止）
     print(f"[启动] 正在拉起 MCP 服务：{url}")
     print(f"       解释器：{PYTHON}")
