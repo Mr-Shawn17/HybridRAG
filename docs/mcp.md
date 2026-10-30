@@ -2,11 +2,13 @@
 
 把「混合检索 RAG」的检索侧封装成 MCP（Model Context Protocol）服务，供其他 Agent（Claude Desktop / Cursor / WorkBuddy 自定义 MCP / 任何 MCP 客户端）调用。
 
+> **定位**：本服务用于**其他 Agent 集成**。日常人工交互测试请直接用 `scripts/start_ui.py`（前端提问），无需启动本服务。
+
 ## 1. 概述
 
-- **代码**：`src/mcp_server.py`
+- **代码**：`src/mcp_server.py`（服务逻辑）+ `scripts/serve_mcp.py`（按需启动器：拉起 + 探活）
 - **传输**：streamable-http（常驻服务，多客户端共享同一 BGE-M3 模型实例）
-- **默认地址**：`http://127.0.0.1:8000/mcp`（host/port 见 `config/config.yaml` 的 `mcp` 段，或命令行 `--host`/`--port` 覆盖）
+- **默认地址**：`http://127.0.0.1:8100/mcp`（host/port 见 `config/config.yaml` 的 `mcp` 段，或命令行 `--host`/`--port` 覆盖）
 - **运行环境**：`py_rag`（Python 3.12，见 `requirements.txt`）
 
 ## 2. 启动
@@ -14,10 +16,12 @@
 ```bash
 conda activate py_rag
 cd D:\VSCodeProject\混合检索RAG
-python src/mcp_server.py                # 默认 127.0.0.1:8000
-python src/mcp_server.py --port 8100    # 换端口
-python src/mcp_server.py --host 0.0.0.0 # 局域网（自担风险，无鉴权）
+python scripts/serve_mcp.py                # host/port 读 config（默认 127.0.0.1:8100）
+python scripts/serve_mcp.py --port 9000    # 换端口（覆盖 config）
+python scripts/serve_mcp.py --host 0.0.0.0 # 局域网（自担风险，无鉴权）
 ```
+
+> 也可直接跑底层实现 `python src/mcp_server.py`（等价，但无探活/复用逻辑，不推荐）。`scripts/serve_mcp.py` 会先探活复用、再拉起并轮询就绪。
 
 **前置依赖**：
 - Qdrant 容器在跑（`docker start qdrant`），collection `annual_reports` 已入库（40,192 点）
@@ -60,7 +64,7 @@ python src/mcp_server.py --host 0.0.0.0 # 局域网（自担风险，无鉴权�
   "mcpServers": {
     "annual-report-rag": {
       "type": "http",
-      "url": "http://127.0.0.1:8000/mcp"
+      "url": "http://127.0.0.1:8100/mcp"
     }
   }
 }
@@ -68,11 +72,11 @@ python src/mcp_server.py --host 0.0.0.0 # 局域网（自担风险，无鉴权�
 
 ### 4.2 Cursor
 
-Cursor Settings → MCP → Add new MCP server → 选 HTTP，填 `http://127.0.0.1:8000/mcp`。
+Cursor Settings → MCP → Add new MCP server → 选 HTTP，填 `http://127.0.0.1:8100/mcp`。
 
 ### 4.3 WorkBuddy 自定义 MCP
 
-连接器管理 → 添加自定义 MCP → 选 streamable-http 类型，URL 填 `http://127.0.0.1:8000/mcp`。
+连接器管理 → 添加自定义 MCP → 选 streamable-http 类型，URL 填 `http://127.0.0.1:8100/mcp`。
 
 ### 4.4 程序化调用（官方 SDK）
 
@@ -81,7 +85,7 @@ import asyncio
 from mcp import Client
 
 async def main():
-    async with Client("http://127.0.0.1:8000/mcp") as client:
+    async with Client("http://127.0.0.1:8100/mcp") as client:
         r = await client.call_tool("search", {"query": "平安银行不良贷款率"})
         print(r.structured_content)
 

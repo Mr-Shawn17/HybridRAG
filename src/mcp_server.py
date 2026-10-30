@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """MCP 服务（Model Context Protocol）：把检索侧暴露给其他 Agent 调用。
 
-架构 v1.9 新增：streamable-http 传输（默认 127.0.0.1:8000/mcp），
+架构 v1.9 新增：streamable-http 传输（默认 127.0.0.1:8100/mcp），
 四个工具——
 
   search            混合检索（BGE-M3 dense + BM25 双路召回 → RRF 融合
@@ -31,8 +31,8 @@ import 阶段即 segfault，2026-09-15 实测）。mcp SDK（pydantic/httpx 等�
 全部排在其后。
 
 用法（项目根目录，py312 环境；需 Qdrant 容器在跑）：
-  python src/mcp_server.py                       # 127.0.0.1:8000
-  python src/mcp_server.py --port 8100           # 换端口
+  python src/mcp_server.py                       # 127.0.0.1:8100
+  python src/mcp_server.py --port 9000           # 换端口
   python src/mcp_server.py --host 0.0.0.0        # 监听全部网卡（局域网）
 
 客户端接入（Claude Desktop / Cursor / WorkBuddy 自定义 MCP 等）：
@@ -426,13 +426,13 @@ def main() -> None:
         description="年报混合检索 MCP 服务（streamable-http）"
     )
     ap.add_argument("--host", default=None, help="监听地址（默认读 config mcp 段，再退 127.0.0.1）")
-    ap.add_argument("--port", type=int, default=None, help="监听端口（默认读 config mcp 段，再退 8000）")
+    ap.add_argument("--port", type=int, default=None, help="监听端口（默认读 config mcp 段，再退 8100）")
     args = ap.parse_args()
 
     cfg = idx.load_config()
     mcp_cfg = cfg.get("mcp") or {}
     host = args.host or mcp_cfg.get("host", "127.0.0.1")
-    port = int(args.port or mcp_cfg.get("port", 8000))
+    port = int(args.port or mcp_cfg.get("port", 8100))
 
     retrieve._load_dotenv()  # .env/注册表兜底（rerank key 等）
 

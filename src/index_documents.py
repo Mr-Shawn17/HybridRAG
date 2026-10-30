@@ -164,7 +164,7 @@ def load_config() -> dict:
 def get_qdrant_client(cfg: dict) -> QdrantClient:
     """构造 Qdrant 服务端客户端（v1.4：Docker 容器，取代本地模式 path=）。
 
-    全项目唯一入口——retrieve.py / ui.py 一律经此建连，连接参数只从
+    全项目唯一入口——retrieve.py / scripts/start_ui.py 一律经此建连，连接参数只从
     config.yaml 的 qdrant 段读取。服务端模式无本地锁问题，close() 保留
     （关 HTTP 连接池，无害）。容器未启动时构造不报错、首个请求才失败，
     故调用方紧跟 collection_exists/count 探活即可。

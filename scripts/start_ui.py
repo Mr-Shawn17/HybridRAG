@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gradio 检索界面（M3，架构 v1.3 §5：提问、结果列表、引用面板）。
+"""Gradio 检索界面启动器（v1.10 起迁入 scripts/，逻辑原 ui.py 全量搬入）。
 
 与 retrieve.py 共享一个 Retriever 单例（Qdrant 已是服务端模式，无本地锁，
 但仍复用单例省掉重复加载 BGE-M3 模型；gradio 同进程回调，天然满足）。
@@ -15,20 +15,32 @@ yield 一次状态条，前端据此刷出「spinner + 扫动进度条 + 实时�
 内部的 encode/召回/重排只在跑完后才通过 last_timings_ms 一次性给出；要更细
 的粒度需给 retrieve.py 加 progress 回调，当前版本不做。
 
-用法（项目根目录，py312 环境；需先完成 M2b 入库并安装 gradio）：
-  python src/ui.py                 # http://127.0.0.1:7860
-  python src/ui.py --share         # 临时外网链接（gradio tunnel，可选）
+依赖路径（v1.10）：本脚本在 scripts/，而 index_documents/llm_client/retrieve
+仍在 src/，故顶部先 sys.path.insert 把 src/ 挂进模块搜索路径，再做裸 import。
+其余模块（mcp_server 等）仍由各自的 scripts/ 启动器以相同方式导入，互不影响。
+
+用法（项目根目录，py_rag 环境；需先完成 M2b 入库并安装 gradio）：
+  python scripts/start_ui.py                 # http://127.0.0.1:7860
+  python scripts/start_ui.py --share         # 临时外网链接（gradio tunnel，可选）
 """
 
 from __future__ import annotations
 
 import argparse
 import logging
+import sys
 import threading
 import time
+from pathlib import Path
 
+# 先把 src/ 挂进 sys.path：index_documents/llm_client/retrieve 都在 src/ 下，
+# 而本脚本位于 scripts/（sys.path[0] 是 scripts/，不是 src/）。
 # 导入顺序硬约束同 retrieve.py：index_documents 最先（内部保证 FlagEmbedding
-# 先于 hashlib/numpy/jieba），gradio/retrieve 均在其后加载即安全
+# 先于 hashlib/numpy/jieba），gradio/retrieve 均在其后加载即安全。
+_SRC = Path(__file__).resolve().parents[1] / "src"
+if str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
+
 import index_documents as idx  # noqa: E402  isort: skip  # 必须最先！
 
 import gradio as gr  # noqa: E402

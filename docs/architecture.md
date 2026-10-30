@@ -33,7 +33,7 @@
 ### 2.1 系统架构（分层）
 
 ```
-┌─ 交互层 ── ui.py（Gradio 7860：提问 / 实验组切换 / 元数据过滤 / 引用溯源面板）
+┌─ 交互层 ── scripts/start_ui.py（Gradio 7860：提问 / 实验组切换 / 元数据过滤 / 引用溯源面板）
 ├─ 检索层 ── retrieve.py（Retriever：E0~E4 实验组路由 / 客户端 RRF / 云端重排，失败硬抛）
 │            llm_client.py（Prompt 组装 + GLM 生成，降级不断链）
 ├─ 索引层 ── download_pdf.py（巨潮接口下载）→ parse_pdf.py（PyMuPDF block 三分类解析）
@@ -70,12 +70,12 @@
 **② 在线检索链路**（每次提问；E3 主线，含重排）：
 
 ```
-ui.py 提问 -> retrieve._encode（BGE-M3 编码 dense + jieba 分词 bm25 查询向量，命中词 1.0）
+start_ui.py 提问 -> retrieve._encode（BGE-M3 编码 dense + jieba 分词 bm25 查询向量，命中词 1.0）
            -> Qdrant 双路召回（各 top50；payload filter 可同时下推两路，ED7）
            -> 客户端 RRF 融合（Σ 1/(60+rank)，保留分路排名明细）
            -> 前 25 条送硅基流动 /v1/rerank（bge-reranker-v2-m3；失败硬抛不降级）
            -> top5 -> llm_client 组装 Prompt（chunk 正文 + 编号引用元数据）
-           -> 智谱 GLM 生成（约束引用出处）-> ui.py 展示（答案 / 命中列表各路分数 / 阶段计时）
+           -> 智谱 GLM 生成（约束引用出处）-> start_ui.py 展示（答案 / 命中列表各路分数 / 阶段计时）
 ```
 
 **③ 评测支线**（M4，独立于主线；详见 §7）：
@@ -178,8 +178,9 @@ v1.3 对齐 chunk 产物实际字段（`data/chunks/*.json` 的 `metadata` + `ch
 │   ├── evaluate.py            # ✅已落地 M4 评测：gen/run/score 三子命令、分层抽样出题、
 │   │                          #   E3 断点续跑跑批、自写五检索指标+DeepSeek 裁判参考分、
 │   │                          #   分题型分层报告+最差 10 题归因（小样本验证过，待 50 题正式跑批）
-│   ├── ui.py                  # ✅已落地 M3 Gradio 界面：提问、实验组切换、过滤、引用面板
 │   └── check_env.py           # ✅已落地 环境自检（M0 验收项）
+├── scripts/
+│   └── start_ui.py            # ✅已落地 M3 Gradio 界面：提问、实验组切换、过滤、引用面板
 ├── data/
 │   ├── raw/                   # 年报 PDF 原件（60 份，含 manifest.json）
 │   ├── parsed/                # ✅解析产物：<code>_<year>_<公司>.json
@@ -330,7 +331,7 @@ chunking:
 | M1 下载+解析（2 天） | 接口实测 → 批量下载 → PyMuPDF 解析 → 人工抽查 | `data/raw`（60 份 + manifest.json）+ `data/parsed` + `src/parse_pdf.py` | **G1**：表格解析质量（v1.5 由 M4 质量闸补一轮抽查，见 §7.2②） | ✅ 完成（block 三分类 + section_path 标题栈 + raw_table 保留） |
 | M2a 切块（1 天） | 块类型分治切块 + 元数据注入 | `data/chunks`（60 份 / **4.06 万 chunk**，v1.3 修复后：连续同 section text 聚合再切 + title 并入前缀，粒度问题已解决）+ `src/chunk_documents.py` | **G2**：jieba search/exact 定版 → **已定版 search** | ✅ 完成（768/80，实测 p50=525/max=1522 字符，chunk_size 生效） |
 | M2b 入库（1~2 天） | BGE-M3 三命名向量编码 + BM25 值入库 + Qdrant 直连入库（**先 5 份小样本跑通再全量**；v1.6 起 BM25 环节 = 客户端 tf 饱和 + 服务端 Modifier.IDF，原全库两遍统计废止） | Qdrant collection `annual_reports`（**40,609 点**，3 命名向量 + payload 11 字段可过滤）+ `src/index_documents.py` + 入库质检报告 | — | ✅ 完成（历史统计留档：全库 16.76 万词/avgdl 248.5/idf 4.7MB——248.5 即 avgdl_frozen 出处；QC 三路冒烟全中。v1.3 曾在本地模式超 2 万点软告警；v1.4 已迁服务端容器重建 collection；v1.6 迁移用 `--recreate --skip-encode` 一次性重建） |
-| M3 检索链路（1~2 天） | hybrid + RRF + rerank + GLM + Gradio（**主线只要求 E3 可用**） | 可演示 UI，答案带出处（`src/retrieve.py`、`src/ui.py`） | — | ✅ 完成（2026-10-17 联调收尾。E0~E4 五组 + payload 过滤实测通过；**RRF 定为客户端实现**——偏离原 §2 服务端 FusionQuery 方案，为分路归因与将来恢复对照，公式等价；重排默认仅 E3 走、失败硬抛不降级（定版）；rerank 实调 200 OK；gradio 6.30 UI 启动探活 200。2026-10-25 LLM 切智谱 glm-5.3-flash 后生成链路联调通过，403 遗留解除） |
+| M3 检索链路（1~2 天） | hybrid + RRF + rerank + GLM + Gradio（**主线只要求 E3 可用**） | 可演示 UI，答案带出处（`src/retrieve.py`、`scripts/start_ui.py`） | — | ✅ 完成（2026-10-17 联调收尾。E0~E4 五组 + payload 过滤实测通过；**RRF 定为客户端实现**——偏离原 §2 服务端 FusionQuery 方案，为分路归因与将来恢复对照，公式等价；重排默认仅 E3 走、失败硬抛不降级（定版）；rerank 实调 200 OK；gradio 6.30 UI 启动探活 200。2026-10-25 LLM 切智谱 glm-5.3-flash 后生成链路联调通过，403 遗留解除；2026-10-30 UI 逻辑迁至 scripts/start_ui.py） |
 | M4 系统评测（2 天） | 50 合成题（自写生成器）→ 质量闸人工核 10 题 → E3 单列跑批 → **自写五检索指标（Recall@5/Precision@5/HitRate@5/MRR/NDCG@5，v1.8 用户定版，弃 RAGAS）+ DeepSeek 裁判答案侧参考分** → 分层报告 + 最差 10 题归因 | `data/eval/eval_set.json` + `data/eval/run_results.json` + `data/eval/report.md` + `src/evaluate.py` | 质量闸：表格题错误集中 → 剔除数字提取型并声明 | 🔶 **正式跑批完成（2026-10-25）**：50 题（18/18/14 精确配额，弃块 2），Recall@5=0.58 / MRR=0.433 / NDCG@5=0.470，裁判 3.72；**分题型差分**：numeric 0.857 > term 0.722 ≫ **paraphrase 0.222**（改写题召回塌方——对措辞变化鲁棒性是当前最大短板，恰好是恢复 E0~E4 对照的最强理由，见 §10）；**待做**：质量闸人工抽核 10 题（含 5 表格题） |
 
 ## 9. 风险清单（v1.5 清理）

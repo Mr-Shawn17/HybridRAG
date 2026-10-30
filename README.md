@@ -48,11 +48,13 @@
 │   ├── index_documents.py   # BGE-M3 编码 + 三命名向量入库
 │   ├── retrieve.py          # 检索（双路召回 + RRF + 重排）
 │   ├── llm_client.py        # Prompt 组装 + LLM 生成
-│   ├── ui.py                # Gradio 交互界面
 │   ├── evaluate.py          # 评测（出题/跑批/打分）
 │   ├── mcp_server.py        # MCP 服务（检索侧对外暴露）
 │   ├── utils.py             # 日志等工具
 │   └── check_env.py         # 环境自检
+├── scripts/                 # 服务启动脚本
+│   ├── start_ui.py          # Gradio 交互界面启动器（逻辑自原 src/ui.py 迁入）
+│   └── serve_mcp.py         # MCP 服务按需启动器
 ├── config/
 │   ├── config.yaml          # 主配置（qdrant/embedding/retrieval/llm 等八段）
 │   ├── companies.json       # 语料公司清单
@@ -64,7 +66,6 @@
 ├── docs/                    # 架构 / MCP / 使用文档
 ├── init_collection.py       # 独立建表脚本（三命名向量 schema）
 ├── docker-compose.yml       # Qdrant 容器一键启动
-├── serve_mcp.py             # MCP 服务按需启动器
 ├── test_mcp_client.py       # MCP 客户端测试脚本
 └── requirements.txt         # 依赖清单（含安装步骤）
 ```
@@ -84,10 +85,12 @@ docker compose up -d
 # 3. 建表 + 入库（chunks 已入库，可直接跳过；重建用 index_documents.py）
 python init_collection.py
 
-# 4. 启动 MCP 服务
-python serve_mcp.py
-# 接入地址：http://127.0.0.1:8000/mcp
+# 4. 启动交互界面，前端直接提问测试
+python scripts/start_ui.py
+# 浏览器打开 http://127.0.0.1:7860，输入问题即可检索问答
 ```
+
+> **其他 Agent 接入**：如需将检索能力暴露给 Claude Desktop / Cursor 等 Agent，可另启 MCP 服务（`python scripts/serve_mcp.py`，接入地址 `http://127.0.0.1:8100/mcp`），详见 [docs/mcp.md](docs/mcp.md)。日常交互测试推荐用上面的 `start_ui.py`。
 
 ## 📚 文档
 

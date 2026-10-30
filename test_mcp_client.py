@@ -80,7 +80,7 @@ class Client:
             ) from exc
         except urllib.error.URLError as exc:
             raise MCPError(
-                f"连接失败：{exc.reason}（确认服务已启动：python serve_mcp.py）"
+                f"连接失败：{exc.reason}（确认服务已启动：python scripts/serve_mcp.py）"
             ) from exc
 
         # 解析响应：可能是纯 JSON，也可能是 SSE（text/event-stream）。
