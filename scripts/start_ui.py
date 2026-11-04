@@ -46,6 +46,7 @@ import index_documents as idx  # noqa: E402  isort: skip  # 必须最先！
 
 import gradio as gr  # noqa: E402
 import llm_client  # noqa: E402
+import query_intent as QI  # noqa: E402
 import retrieve as R  # noqa: E402
 
 logger = logging.getLogger(__name__)
@@ -119,6 +120,20 @@ def get_retriever() -> R.Retriever:
     return _STATE["retriever"]
 
 
+def _get_qi_index() -> QI._CompanyIndex:
+    """公司词典索引单例（读 companies.json，进程内复用）。"""
+    if "qi_index" not in _STATE:
+        _STATE["qi_index"] = QI._CompanyIndex()
+    return _STATE["qi_index"]
+
+
+def _get_transformer(cfg: dict) -> QI.Transformer:
+    """LLM 改写器单例（OpenAI 客户端惰性创建，进程内复用）。"""
+    if "transformer" not in _STATE:
+        _STATE["transformer"] = QI.Transformer(cfg["llm"])
+    return _STATE["transformer"]
+
+
 def _fmt_citation(i: int, c: dict) -> str:
     p = c["payload"]
     lines = [
@@ -147,11 +162,16 @@ def on_ask(
     code: str,
     year_from: str,
     year_to: str,
+    enhance: bool = True,
 ):
     """生成器：流水线丢到后台线程跑，主线程每 0.2s yield 一帧状态条。
 
     yield 顺序固定 (answer, citations, meta, status)。首帧先清空上一轮结果再
     亮出状态条，之后各帧用 gr.skip() 只更新状态条，出结果时一并落最终状态。
+
+    enhance（v1.13 查询增强）：开启后走 query_intent.pipeline_query 两级级联
+    ——规则实体抽取（自动过滤公司/年份，与手动条件合并：手动填的优先）
+    + LLM 术语归一改写（原句/改写双路 RRF 融合，失败自动回退原句）。
     """
     if not query.strip():
         yield ("请输入问题", "", "—", _status_html("请输入问题后再检索", None, "err"))
@@ -179,7 +199,8 @@ def on_ask(
     t0 = time.time()
     will_rerank = (not no_rerank) and exp == "E3"  # v1.7 口径：E3 默认开重排
     stage = {
-        "text": "正在混合检索：encode → 双路召回 → RRF"
+        "text": ("查询增强：实体抽取 + 术语改写 → " if enhance else "")
+        + "正在混合检索：encode → 双路召回 → RRF"
         + (" → rerank" if will_rerank else "")
     }
     box: dict = {}
@@ -189,9 +210,31 @@ def on_ask(
         try:
             r = get_retriever()
             box["retriever"] = r
-            box["chunks"] = r.retrieve(
-                query.strip(), exp=exp, flt=flt, rerank=False if no_rerank else None
-            )
+            if enhance:
+                # 查询增强：规则抽实体 + LLM 改写，过滤条件与手动输入合并
+                # （手动优先：填了代码/年份用填的，没填用规则抽的）
+                ent = QI.extract(query.strip(), _get_qi_index())
+                ent_args = ent.to_filter_args()
+                merged = R.build_filter(
+                    codes=codes or ent_args.get("codes"),
+                    year_from=(
+                        int(year_from) if year_from.strip()
+                        else ent_args.get("year_from")
+                    ),
+                    year_to=(
+                        int(year_to) if year_to.strip()
+                        else ent_args.get("year_to")
+                    ),
+                )
+                box["chunks"], box["qdbg"] = QI.pipeline_query(
+                    query.strip(), r, _get_transformer(r.cfg), _get_qi_index(),
+                    exp=exp, rerank=False if no_rerank else None,
+                    flt_override=merged,
+                )
+            else:
+                box["chunks"] = r.retrieve(
+                    query.strip(), exp=exp, flt=flt, rerank=False if no_rerank else None
+                )
             box["retrieve_s"] = time.time() - t0
             if no_llm:
                 stage["text"] = "检索完成（已关闭生成），正在整理引用"
@@ -261,6 +304,20 @@ def on_ask(
         + f" · 本次查询 {elapsed:.1f}s"
         + (" · 生成降级: " + "、".join(degraded) if degraded else "")
     )
+    qdbg = box.get("qdbg")
+    if qdbg:
+        # 查询增强调试段：抽取到的实体 + 改写状态与查询数
+        ent_s = []
+        if qdbg.get("codes"):
+            ent_s.append("代码 " + ",".join(qdbg["codes"]))
+        if qdbg.get("years"):
+            ent_s.append("年度 " + ",".join(str(y) for y in qdbg["years"]))
+        rw_s = (
+            f"改写 ✓（{len(qdbg.get('queries', []))} 路）"
+            if qdbg.get("rewrite_ok")
+            else "改写回退原句"
+        )
+        meta += f" · 查询增强: {'；'.join(ent_s) if ent_s else '无实体'} · {rw_s}"
 
     done_stage = f"完成 · 检索 {box.get('retrieve_s', elapsed):.1f}s"
     if llm_ms is not None:
@@ -295,6 +352,10 @@ def build_ui() -> gr.Blocks:
                 )
                 no_rerank = gr.Checkbox(False, label="强制跳过重排（E3 对照）")
                 no_llm = gr.Checkbox(False, label="只检索不生成")
+                enhance = gr.Checkbox(
+                    True,
+                    label="查询增强（实体自动过滤 + 术语归一改写）",
+                )
                 code = gr.Textbox(
                     label="限定股票代码（逗号分隔，可空）",
                     placeholder="如 000001,600519",
@@ -307,12 +368,12 @@ def build_ui() -> gr.Blocks:
         citations = gr.Markdown()
         ask.click(
             on_ask,
-            [query, exp, no_rerank, no_llm, code, y_from, y_to],
+            [query, exp, no_rerank, no_llm, code, y_from, y_to, enhance],
             [answer, citations, meta, status],
         )
         query.submit(
             on_ask,
-            [query, exp, no_rerank, no_llm, code, y_from, y_to],
+            [query, exp, no_rerank, no_llm, code, y_from, y_to, enhance],
             [answer, citations, meta, status],
         )
     return demo

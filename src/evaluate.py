@@ -23,11 +23,14 @@
 诚实声明（写进报告）：合成题天然贴近源 chunk，指标度量"找回出题素材的能力"
 而非"找回全部真证据的能力"；本评测在无元数据过滤的裸查询下测量。
 
-用法（项目根目录，py312 环境；Qdrant 容器在跑）：
+用法（项目根目录，py_rag 环境；Qdrant 容器在跑）：
   python src/evaluate.py gen
   python src/evaluate.py run
   python src/evaluate.py score
   python src/evaluate.py gen --n 3    # 小样本调试
+  python src/evaluate.py regen --tag v2  # 校准口径：仅重出 paraphrase 题面
+                                         # （同源块注入公司+年份），产物加 _v2 后缀
+  python src/evaluate.py run --tag v2 / score --tag v2  # 用 v2 题集跑批/打分
 
 依赖：无 ragas/langchain——指标全部自写；LLM 走 OpenAI SDK（llm/judge 段）。
 金标准口径（2026-10-25 用户定版）：源 chunk 作唯一金标，邻块/同章节不算命中。
@@ -71,7 +74,7 @@ QTYPES = ("term", "paraphrase", "numeric")  # 与 config.eval.qtype_quota 键对
 # ── 通用：OpenAI 客户端（llm/judge 段同款管理，key 不落盘）────────
 
 
-def _client_for(seg: dict):
+def _client_for(seg: dict, timeout: float = 120.0):
     """按配置段（llm/judge）建 OpenAI 客户端，缺 key 抛 RuntimeError。"""
     from openai import OpenAI
 
@@ -79,7 +82,7 @@ def _client_for(seg: dict):
     key = os.environ.get(env, "").strip()
     if not key:
         raise RuntimeError(f"环境变量 {env} 未设置（config 段 {seg.get('provider')}）")
-    return OpenAI(base_url=seg["base_url"], api_key=key, timeout=120.0, max_retries=1)
+    return OpenAI(base_url=seg["base_url"], api_key=key, timeout=timeout, max_retries=1)
 
 
 def _chat(client, model: str, system: str, user: str, temperature: float = 0.2) -> str:
@@ -104,14 +107,21 @@ GEN_TPL = {
     "term": (
         "【题型】术语精确——问题必须使用片段中的原文措辞（如财务科目名、指标名），"
         "像用户直接查询行业术语。\n"
+        "【主体要求】提问者知道自己在查哪家公司哪一年的年报，题面开头自然带出"
+        "公司简称与年份（例：'贵州茅台2024年的年报里，…'）。\n"
     ),
     "paraphrase": (
         "【题型】语义改写——问题必须换一种问法，禁止照抄片段措辞，像不懂财务术语"
         "的普通人在问（例：原文'不良贷款率'可问'银行放出去的钱有多少收不回来'）。\n"
+        "【主体要求】提问者知道自己在查哪家公司哪一年的年报，题面开头自然带出"
+        "公司简称与年份（例：'贵州茅台2024年的年报里，这家公司…'），"
+        "不要出现股票代码。\n"
     ),
     "numeric": (
         "【题型】数字提取——问题答案必须是片段中的具体数字/金额/比率（保留单位），"
         "优先出表格类数据。\n"
+        "【主体要求】提问者知道自己在查哪家公司哪一年的年报，题面开头自然带出"
+        "公司简称与年份。\n"
     ),
 }
 
@@ -121,6 +131,7 @@ GEN_FMT = (
     "要求：问题独立可答（不出现'该片段/上文'字样）；参考答案精确且只依据片段内容；"
     "若片段实在无法出该题型（无术语/无数字/内容空洞），输出 "
     '{{"question": "", "reference_answer": ""}}。\n\n'
+    "【年报出处】{company}（{year} 年年度报告）\n"
     "【年报片段】\n{text}\n"
 )
 
@@ -225,7 +236,9 @@ def cmd_gen(cfg: dict, n_overrides: int | None = None) -> None:
             i += 1
             if c["chunk_id"] in used_chunks:
                 continue
-            prompt = GEN_TPL[qtype] + GEN_FMT.format(text=c["content"])
+            prompt = GEN_TPL[qtype] + GEN_FMT.format(
+                text=c["content"], company=c["company_name"], year=c["fiscal_year"]
+            )
             try:
                 raw = _chat(client, model, GEN_SYS, prompt, 0.4)
             except Exception as e:
@@ -268,11 +281,125 @@ def cmd_gen(cfg: dict, n_overrides: int | None = None) -> None:
                 len(eval_set), dict(dist), fails, time.time() - t0, EVAL_SET)
 
 
+# ── regen：校准口径，仅重出 paraphrase 题面（2026-11-03 排查结论）────
+#
+# 排查证据：18 道 paraphrase 题里仅 2 道带公司名，其余为"这家公司/这家酒企"
+# 式无主语提问；最差 10 题中 9/10 的 top1 命中错误公司/错误年度。无主语查询
+# 在 20 家×3 年语料上本就无解，按金标准（唯一源块命中）记 0 分，低估真实
+# 场景表现。校准方式：同一批源块重出题面，注入公司简称+年份（贴近真实
+# 用户问法），term/numeric 原样保留——单变量 A/B，题面措辞是唯一差异。
+
+PARAPHRASE_V2_TPL = (
+    "【题型】语义改写——问题必须换一种问法，禁止照抄片段措辞，像不懂财务术语"
+    "的普通人在问（例：原文'不良贷款率'可问'银行放出去的钱有多少收不回来'）。\n"
+    "【本次要求】提问者知道自己在查哪家公司哪一年的年报，题面开头必须自然带出"
+    "公司简称与年份（例：'贵州茅台2024年的年报里，这家公司…'），"
+    "不要出现股票代码。\n"
+)
+
+REGEN_FMT = (
+    "\n严格只输出一个 JSON 对象（无 markdown 代码块、无多余文字）：\n"
+    '{{"question": "..."}}\n'
+    "要求：问题独立可答（不出现'该片段/上文'字样）；只依据片段内容提问。\n\n"
+    "【年报片段】\n{text}\n"
+)
+
+
+def _load_chunk_by_id(cfg: dict, chunk_id: str) -> str | None:
+    """按 chunk_id（前缀=股票代码_年份）回捞源块全文。"""
+    prefix = "_".join(chunk_id.split("_")[:2])
+    chunks_dir = ROOT / cfg["paths"]["chunks"]
+    for f in chunks_dir.glob(f"{prefix}_*_chunk.json"):
+        for c in json.loads(f.read_text(encoding="utf-8")):
+            if c["chunk_id"] == chunk_id:
+                return c["content"]
+    return None
+
+
+def cmd_regen(cfg: dict, tag: str, use_judge: bool = False) -> None:
+    """读原始 eval_set.json，仅重出 paraphrase 题面 → eval_set_{tag}.json。
+
+    reference_answer 保留原值（源块未变，答案仍成立）——校准变量锁死为
+    题面是否带主体信息一项。三次校验失败（题面缺公司/年份）则兜底为
+    旧题面前缀注入"{公司}{年份}年年报中，"，保证 18 题一个不少。
+
+    use_judge=True 时用 judge 段（DeepSeek）出题：2026-11-03 GLM 晚间
+    严重限速（429 + 单题延迟 5 分钟），改写题跨模型差异小，临时切换。
+    """
+    src_path = EVAL_DIR / "eval_set.json"
+    out_path = EVAL_DIR / f"eval_set_{tag}.json"
+    if not src_path.exists():
+        raise FileNotFoundError(f"原始题集不存在：{src_path}")
+    if out_path.exists():
+        raise FileExistsError(f"{out_path} 已存在，拒绝覆盖（换 --tag 或手动处理）")
+    base = json.loads(src_path.read_text(encoding="utf-8"))
+
+    # 只生成 question（答案保留原值）→ 输出量减半；晚间高峰实测单次生成
+    # 可超 120s，超时放宽到 300s（2026-11-03）
+    gen_seg = cfg["judge"] if use_judge else cfg["llm"]
+    client = _client_for(gen_seg, timeout=300.0)
+    model = gen_seg["model"]
+    hi = int(cfg["eval"].get("chunk_len_max", 900))
+
+    out: list[dict] = []
+    n_p = n_regen = n_fallback = 0
+    t0 = time.time()
+    for q in base:
+        if q["qtype"] != "paraphrase":
+            out.append(q)
+            continue
+        n_p += 1
+        content = _load_chunk_by_id(cfg, q["source_chunk_id"])
+        if not content:
+            logger.warning("%s 源块回捞失败，原样保留旧题面", q["qid"])
+            out.append(q)
+            continue
+        meta = q["source_meta"]
+        year = str(meta["fiscal_year"])
+        prompt = PARAPHRASE_V2_TPL + REGEN_FMT.format(text=content[:hi])
+        new_q = ""
+        for _attempt in range(3):
+            try:
+                raw = _chat(client, model, GEN_SYS, prompt, 0.4)
+            except Exception as e:
+                # 429 限速：指数退避后重试（GLM 账户级速率限制，连发易触发）
+                msg = str(e)[:160]
+                logger.warning("%s 出题调用失败（重试）：%s", q["qid"], msg)
+                time.sleep(2.0 * (_attempt + 1))
+                continue
+            obj = _parse_json_obj(raw) or {}
+            cq = (obj.get("question") or "").strip()
+            if (cq and meta["company_name"] in cq and year in cq
+                    and "该片段" not in cq):
+                new_q = cq
+                break
+            time.sleep(1.0)  # 校验不过也留间隔，避免连发
+        time.sleep(1.5)  # 题间固定间隔，压低并发触发 429 概率
+        if new_q:
+            n_regen += 1
+            out.append({**q, "question": new_q})  # 答案保留原值，锁死变量
+            logger.info("(%s) %.70s", q["qid"], new_q)
+        else:
+            n_fallback += 1
+            out.append({**q,
+                        "question": f"{meta['company_name']}{year}年年报中，{q['question']}"})
+            logger.warning("%s 三次校验失败，兜底前缀注入主体", q["qid"])
+    out_path.write_text(json.dumps(out, ensure_ascii=False, indent=2),
+                        encoding="utf-8")
+    logger.info("regen 完成：paraphrase %d 题（重出 %d / 兜底 %d），用时 %.0fs → %s",
+                n_p, n_regen, n_fallback, time.time() - t0, out_path)
+
+
 # ── run：E3 跑批 ────────────────────────────────────────────────
 
 
-def cmd_run(cfg: dict) -> None:
-    """逐题 E3 检索（+重排）+ GLM 生成，存跑批结果。断点续跑。"""
+def cmd_run(cfg: dict, rewrite: bool = False) -> None:
+    """逐题 E3 检索（+重排）+ GLM 生成，存跑批结果。断点续跑。
+
+    rewrite=True（v1.10 查询侧增强）：检索走 query_intent.pipeline_query
+    两级级联——规则抽实体过滤 + LLM 术语归一改写 + 原句/改写双路 RRF
+    融合；改写失败自动回退原句（回退题在结果里记 rewrite_ok=false）。
+    """
     if not EVAL_SET.exists():
         raise FileNotFoundError(f"先跑 gen：{EVAL_SET} 不存在")
     eval_set = json.loads(EVAL_SET.read_text(encoding="utf-8"))
@@ -284,6 +411,10 @@ def cmd_run(cfg: dict) -> None:
         logger.info("断点续跑：已完成 %d/%d", len(done_q), len(eval_set))
 
     import llm_client
+    import query_intent as QI
+
+    transformer = QI.Transformer(cfg["llm"]) if rewrite else None
+    comp_index = QI._CompanyIndex() if rewrite else None
 
     t0 = time.time()
     with R.Retriever(cfg) as r:
@@ -293,7 +424,12 @@ def cmd_run(cfg: dict) -> None:
             t1 = time.time()
             # rerank=None：E3 默认含重排；重排失败硬抛（定版），中断整批——
             # 语义即"不许带病入表"（architecture.md §9）
-            hits = r.retrieve(q["question"], exp="E3")
+            rewrite_dbg: dict = {}
+            if rewrite:
+                hits, rewrite_dbg = QI.pipeline_query(
+                    q["question"], r, transformer, comp_index, exp="E3")
+            else:
+                hits = r.retrieve(q["question"], exp="E3")
             retrieve_ms = round((time.time() - t1) * 1000, 1)
             contexts = [
                 {
@@ -317,14 +453,17 @@ def cmd_run(cfg: dict) -> None:
                 "contexts": contexts,
                 "answer": answer,
                 "answer_degraded": reason,
+                "rewrite": rewrite_dbg,  # 查询侧增强调试信息（无则空）
                 "retrieve_ms": retrieve_ms,
                 "timings_ms": dict(r.last_timings_ms),
             })
             RUN_RESULTS.write_text(
                 json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
             hit = q["source_chunk_id"] in {c["chunk_id"] for c in contexts}
-            logger.info("(%d/%d) %s hit@5=%s %sms +llm%s",
+            logger.info("(%d/%d) %s hit@5=%s %sms%s%s",
                         i, len(eval_set), q["qid"], hit, retrieve_ms,
+                        f" rw={int(rewrite_dbg.get('rewrite_ok', False))}"
+                        if rewrite else "",
                         "" if answer else "(降级)")
     logger.info("跑批完成：%d 题，用时 %.0fs → %s",
                 len(results), time.time() - t0, RUN_RESULTS)
@@ -496,12 +635,21 @@ def cmd_score(cfg: dict, skip_judge: bool = False) -> None:
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="M4 评测：gen 出题 / run 跑批 / score 打分")
-    ap.add_argument("cmd", choices=["gen", "run", "score"],
-                    help="gen=分层抽样出题；run=E3 跑批；score=五指标+报告")
+    ap = argparse.ArgumentParser(
+        description="M4 评测：gen 出题 / regen 校准重出改写题 / run 跑批 / score 打分")
+    ap.add_argument("cmd", choices=["gen", "regen", "run", "score"],
+                    help="gen=分层抽样出题；regen=同源块重出 paraphrase 题面（需 --tag）；"
+                         "run=E3 跑批；score=五指标+报告")
     ap.add_argument("--n", type=int, default=None, help="gen 小样本调试题数")
+    ap.add_argument("--tag", default=None,
+                    help="产物后缀（如 v2 → eval_set_v2.json / run_results_v2.json /"
+                         " report_v2.md，不覆盖原始产物）")
+    ap.add_argument("--judge", action="store_true",
+                    help="regen 用 judge 段（DeepSeek）出改写题，替代 GLM（限速时用）")
     ap.add_argument("--skip-judge", action="store_true",
                     help="score 跳过裁判评分（只算检索五指标）")
+    ap.add_argument("--rewrite", action="store_true",
+                    help="run 启用查询侧增强（规则实体过滤 + LLM 改写双路融合）")
     args = ap.parse_args()
 
     logging.basicConfig(level=logging.INFO,
@@ -513,10 +661,19 @@ def main() -> None:
     R._load_dotenv()  # .env + Machine 注册表兜底（GLM/DeepSeek/硅基流动 key）
     cfg = idx.load_config()
 
-    if args.cmd == "gen":
+    global EVAL_SET, RUN_RESULTS, REPORT
+    if args.tag:
+        EVAL_SET = EVAL_DIR / f"eval_set_{args.tag}.json"
+        RUN_RESULTS = EVAL_DIR / f"run_results_{args.tag}.json"
+        REPORT = EVAL_DIR / f"report_{args.tag}.md"
+    if args.cmd == "regen":
+        if not args.tag:
+            ap.error("regen 必须 --tag（避免覆盖原始评测集）")
+        cmd_regen(cfg, args.tag, use_judge=args.judge)
+    elif args.cmd == "gen":
         cmd_gen(cfg, n_overrides=args.n)
     elif args.cmd == "run":
-        cmd_run(cfg)
+        cmd_run(cfg, rewrite=args.rewrite)
     else:
         cmd_score(cfg, skip_judge=args.skip_judge)
 

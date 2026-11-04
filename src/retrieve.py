@@ -194,33 +194,40 @@ class Retriever:
 
     # ── 查询编码：dense + bm25 + bge_sparse 三个查询向量 ────────
 
-    def _encode(self, query: str) -> dict:
-        """BGE-M3 一次 encode 出 dense + learned sparse；jieba 出 bm25。
+    def _encode(self, query: str | list[str]) -> list[dict]:
+        """BGE-M3 批量 encode 出 dense + learned sparse；jieba 出 bm25。
+
+        入参单个 query 或多查询列表（查询侧增强 v1.10：原句+改写句批量
+        编码，一次前向）。返回与入参等长的向量组列表。
 
         bm25 查询向量命中词权重一律 1.0（idf 服务端乘）；bge_sparse 查询
         向量取模型 lexical_weights 的正值项（E4 用）。
         """
+        queries = [query] if isinstance(query, str) else list(query)
         out = self.model.encode(
-            [query], return_dense=True, return_sparse=True, return_colbert_vecs=False
+            queries, return_dense=True, return_sparse=True, return_colbert_vecs=False
         )
-        dense = out["dense_vecs"][0].astype(float).tolist()  # type: ignore
-        toks = set(idx.tokenize(query))
-        bm25 = m.SparseVector(
-            indices=[idx.term_dim(t) for t in toks], values=[1.0] * len(toks)
-        )
-        lw = out["lexical_weights"][0]
-        items = sorted(
-            (t, float(w)) for t, w in lw.items() if float(w) > 0.0
-        )  # type: ignore
-        bge_sp = m.SparseVector(
-            indices=[idx.term_dim(t) for t, _ in items],
-            values=[w for _, w in items],
-        )
-        return {
-            idx.VECTOR_DENSE: dense,
-            idx.VECTOR_BM25: bm25,
-            idx.VECTOR_BGE_SPARSE: bge_sp,
-        }
+        vec_list: list[dict] = []
+        for i, q in enumerate(queries):
+            dense = out["dense_vecs"][i].astype(float).tolist()  # type: ignore
+            toks = set(idx.tokenize(q))
+            bm25 = m.SparseVector(
+                indices=[idx.term_dim(t) for t in toks], values=[1.0] * len(toks)
+            )
+            lw = out["lexical_weights"][i]
+            items = sorted(
+                (t, float(w)) for t, w in lw.items() if float(w) > 0.0
+            )  # type: ignore
+            bge_sp = m.SparseVector(
+                indices=[idx.term_dim(t) for t, _ in items],
+                values=[w for _, w in items],
+            )
+            vec_list.append({
+                idx.VECTOR_DENSE: dense,
+                idx.VECTOR_BM25: bm25,
+                idx.VECTOR_BGE_SPARSE: bge_sp,
+            })
+        return vec_list
 
     # ── 单路召回（filter 与该路下推，ED7）───────────────────────
 
@@ -296,7 +303,7 @@ class Retriever:
 
     def retrieve(
         self,
-        query: str,
+        query: str | list[str],
         exp: str = "E3",
         flt: m.Filter | None = None,
         rerank: bool | None = None,
@@ -304,7 +311,9 @@ class Retriever:
         """混合检索一步到位，返回 final_top_n 个命中。
 
         参数：
-          query  ：查询语句
+          query  ：查询语句；或查询列表（查询侧增强 v1.10：原句+改写句
+                   多查询融合——各查询各路独立召回，同一 RRF 池累加，
+                   共识块得分翻倍；列表首元素视为基准句，重排以它打分）
           exp    ：实验组 E0/E1/E2/E3/E4（见 EXP_ROUTES；E3=E2+重排，其余组默认不重排）
           flt    ：payload 过滤（build_filter() 产物，None=不过滤）
           rerank ：None=按实验组默认（E3 开、其余关，且要求 config.rerank.enabled）；
@@ -319,6 +328,9 @@ class Retriever:
         t_total = time.perf_counter()
         if exp not in EXP_ROUTES:
             raise ValueError(f"未知实验组 {exp}，可选：{'/'.join(EXP_ROUTES)}")
+        queries = [query] if isinstance(query, str) else [q for q in query if q and q.strip()]
+        if not queries:
+            raise ValueError("query 不能为空")
         routes = EXP_ROUTES[exp]
         # 重排默认按实验组定（架构 §7/§10 口径）：仅 E3 完整链路走重排，
         # E0/E1/E2/E4 是对照组、默认不重排；rerank 参数可显式覆盖
@@ -330,47 +342,51 @@ class Retriever:
             do_rerank = False  # 单路对照组不重排（变量是召回路本身）
 
         t0 = time.perf_counter()
-        qvs = self._encode(query)
+        qv_list = self._encode(queries)
         t_encode = (time.perf_counter() - t0) * 1000
 
         t0 = time.perf_counter()
         merged: dict[str, dict] = {}
-        # 逐路独立计分：同一 chunk 多路命中时，各自的 rank 各贡献一次 RRF 分
-        for name in routes:
-            for rank, (pid, score, payload) in enumerate(
-                self._route(name, qvs[name], flt), 1
-            ):
-                cur = merged.get(pid)
-                if cur is None:
-                    cur = merged[pid] = {
-                        "point_id": pid,
-                        "payload": payload,
-                        "text": payload.get("text", ""),
-                        "source": {k: payload.get(k) for k in _SOURCE_KEYS},
-                        "rrf_score": 0.0,
-                        "score_dense": None,
-                        "score_sparse": None,
-                        "rank_dense": None,
-                        "rank_sparse": None,
-                    }
-                if name == idx.VECTOR_DENSE:
-                    cur["score_dense"], cur["rank_dense"] = score, rank
-                else:  # bm25 / bge_sparse 都记入稀疏通用位（对照见 EXP_ROUTES）
-                    cur["score_sparse"], cur["rank_sparse"] = score, rank
-                cur["rrf_score"] += 1.0 / (self.rrf_k + rank)
+        # 逐查询 × 逐路独立计分：同一 chunk 被多查询/多路命中时，
+        # 各自的 rank 各贡献一次 RRF 分（共识块天然累加放大）
+        for qvs in qv_list:
+            for name in routes:
+                for rank, (pid, score, payload) in enumerate(
+                    self._route(name, qvs[name], flt), 1
+                ):
+                    cur = merged.get(pid)
+                    if cur is None:
+                        cur = merged[pid] = {
+                            "point_id": pid,
+                            "payload": payload,
+                            "text": payload.get("text", ""),
+                            "source": {k: payload.get(k) for k in _SOURCE_KEYS},
+                            "rrf_score": 0.0,
+                            "score_dense": None,
+                            "score_sparse": None,
+                            "rank_dense": None,
+                            "rank_sparse": None,
+                        }
+                    if name == idx.VECTOR_DENSE:
+                        cur["score_dense"], cur["rank_dense"] = score, rank
+                    else:  # bm25 / bge_sparse 都记入稀疏通用位（对照见 EXP_ROUTES）
+                        cur["score_sparse"], cur["rank_sparse"] = score, rank
+                    cur["rrf_score"] += 1.0 / (self.rrf_k + rank)
         ranked = sorted(merged.values(), key=lambda c: -c["rrf_score"])
         t_recall = (time.perf_counter() - t0) * 1000
 
         if not do_rerank:
             self.last_timings_ms = {
                 "encode": round(t_encode, 1),
-                "recall": round(t_recall, 1),  # 含两路召回 + RRF 融合排序
+                "recall": round(t_recall, 1),  # 含多查询×多路召回 + RRF 融合排序
                 "rerank": "off",
             }
             return ranked[: self.final_top_n]
 
         t0 = time.perf_counter()
-        reranked = self._rerank(query, ranked[: self.rerank_top_n])
+        # 重排以基准句（首查询）打分：检索为用户原句服务，改写句只是
+        # 召回扩展，reranker 用原句与文档的相关性最贴近真实意图
+        reranked = self._rerank(queries[0], ranked[: self.rerank_top_n])
         for rank, c in enumerate(reranked, 1):
             c["rerank_rank"] = rank
         t_rerank = (time.perf_counter() - t0) * 1000

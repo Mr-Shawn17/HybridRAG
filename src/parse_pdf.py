@@ -46,6 +46,8 @@ title/adjunct_url/announcement_id），缺失时从文件名
 
 from __future__ import annotations
 import argparse
+import subprocess
+import sys
 import time
 import json
 import re
@@ -140,8 +142,29 @@ def _is_bold(line: dict) -> bool:
 
 
 def _clean_cell(text: str) -> str:
-    """表格单元格清洗：合并换行、去首尾空白。"""
-    return re.sub(r"\s*\n\s*", "", text or "").strip()
+    """表格单元格清洗：合并换行、去首尾空白 + 修复数字内断空。
+
+    年报 PDF 的金额用逐字符排版（"4 6 0 0 3 7 1 0 6 6 6 6 ,"式空格
+    断裂），且负数括号/小数点常与数字分离。规则：
+      1. 合并换行、去首尾空白（原逻辑）；
+      2. 对"数字片段密集"的单元格（去空白后 >60% 是数字/千分位/小数点/
+         负号/括号），去掉全部内部空白还原连续数字（"4 6 0 0 , 6 6"
+         → "4600,66"）；含字母/汉字的单元格不动（"2023 年 12 月"保留）。
+    """
+    t = re.sub(r"\s*\n\s*", " ", text or "").strip()
+    if not t:
+        return t
+    no_ws = re.sub(r"\s+", "", t)
+    # 数字字符占比（含千分位逗号、小数点、括号负数、百分号、正负号）
+    digitish = re.sub(r"[\d,.\-()（）%+]", "", no_ws)
+    if no_ws and len(digitish) / len(no_ws) <= 0.4:
+        # 数字型单元格：去内部空白。PDF 里千分位逗号/小数点常被排成
+        # 独立 span 落在数字后（"46003710666, , ."），位置信息已丢失
+        # 无法还原 "4,600,371,066.66"；把纯标点尾巴剥掉，保留连续数字串
+        # （数字序列正确，检索/rerank 可用；展示侧需格式化属可接受损失）
+        return re.sub(r"[,.\s]+$", "", no_ws).strip(",. ")
+    return t
+    return t
 
 
 def _row_joined(row: list[str]) -> tuple[str, int]:
@@ -269,20 +292,30 @@ def _is_header_footer(line: dict, body_size: float, page_height: float) -> bool:
 
 
 def _page_tables(page: pymupdf.Page) -> tuple[list[list[list[str]]], list]:
-    """提取本页表格（text 策略）并清洗：去空行/空列 + 剥离页眉页脚行。
+    """提取本页表格并清洗：去空行/空列 + 剥离页眉页脚行。
+
+    v2.1（2026-11-03 表格解析升级）：strategy 从 text 改为 **lines 优先、
+    text 兜底**——lines 按 PDF 画出的表格线提取，单元格切分真实（实测
+    长城汽车未办妥产权证书表：lines 表头一行成型，text 碎成竖条三截且
+    混入"人民币元"残留；合并单元格多级表头 lines 也正确拆解）。无线表格
+    （部分董事会决议表）lines 识别不到时回落 text，保持旧行为。
 
     返回 (清洗后的 rows 列表, 原始 Table 对象列表)——两者**严格一一对应**
     （后者仅用于取 bbox 作排序键）。
-    text 策略会把行距当分隔线，产出大量全空行；年报表格常有空白隔离行，
-    逐行/逐列去掉全空项即可，无需识别哪些空行是"真分隔"。
     """
     clean: list[list[list[str]]] = []
     raws: list = []
     try:
-        found = page.find_tables(strategy="text")
+        found = page.find_tables(strategy="lines")
     except Exception as exc:  # 个别损坏页不阻塞整体
-        logger.debug("find_tables 失败 p%s: %s", page.number, exc)
-        return clean, raws
+        logger.debug("find_tables(lines) 失败 p%s: %s", page.number, exc)
+        found = None
+    if found is None or not found.tables:  # 无线表格回落 text 策略
+        try:
+            found = page.find_tables(strategy="text")
+        except Exception as exc:  # noqa: BLE001
+            logger.debug("find_tables(text) 失败 p%s: %s", page.number, exc)
+            return clean, raws
 
     page_height = page.rect.height
     for tab in found.tables:
@@ -627,6 +660,11 @@ def parse_pdf_single(pdf_path: str, meta_info: dict):
 def parse_pdf_all(codes: list[str] | None = None, limit: int | None = None):
     """批量解析：从 manifest.json 取 meta，逐份解析输出到 data/parsed/。
 
+    v2.1：个别 PDF 的个别页在 find_tables(lines) 下触发 PyMuPDF C 层段
+    错误（实测五粮液2024 p48，2026-11-03），进程内无法捕获。批量入口
+    改为**子进程逐份隔离**：单份崩溃自动降级为**逐页子进程**重跑该份
+    （崩掉的页跳过表格提取、保留正文，记 warning），其余份不受影响。
+
     :param codes: 只解析指定股票代码（None=全部）
     :param limit: 只解析前N份（小样本验证用）
     """
@@ -646,34 +684,132 @@ def parse_pdf_all(codes: list[str] | None = None, limit: int | None = None):
         logger.error("过滤后清单为空，请检查 --codes / --limit")
         return
 
-    logger.info("目标 %d 份年报", len(items))
+    logger.info("目标 %d 份年报（子进程隔离模式）", len(items))
     t_start = time.time()
     n_ok = 0
     for i, item in enumerate(items, 1):
-        pdf_path = ROOT_PATH / item["file_path"]
-        if not pdf_path.exists():
-            logger.error("没有找到 pdf，路径：%s", pdf_path)
-            continue
-        t0 = time.time()
-        parsed_result = parse_pdf(pdf_path, meta_info=item)
-        m = parsed_result["meta"]
-        out_path = (
-            PARSED_DIR / f"{m['stock_code']}_{m['year']}_{m['company_name']}.json"
-        )
-        save_parsed(parsed_result, out_path)
-        n_ok += 1
-        logger.info(
-            "(%d/%d) %s%s 年度报告解析成功 → %s，用时 %.1fs",
-            i,
-            len(items),
-            item["name"],
-            item["year"],
-            out_path.name,
-            time.time() - t0,
-        )
+        pdf_rel = to_rel_path(ROOT_PATH / item["file_path"])
+        r = _run_parse_subprocess(pdf_rel)
+        if r.returncode == 0:
+            n_ok += 1
+            logger.info("(%d/%d) %s%s 解析成功（子进程）", i, len(items),
+                        item["name"], item["year"])
+        else:
+            logger.error("(%d/%d) %s%s 子进程退出码 %s，逐页兜底重跑",
+                         i, len(items), item["name"], item["year"], r.returncode)
+            _parse_pdf_pagewise_fallback(pdf_rel, item)
+            n_ok += 1
     logger.info(
         "解析完成：%d/%d 份，总用时 %.1fs", n_ok, len(items), time.time() - t_start
     )
+
+
+def _run_parse_subprocess(pdf_rel: str) -> subprocess.CompletedProcess:
+    """子进程跑单份完整解析（v2.1 段错误隔离）。"""
+    code = (
+        "import sys; sys.path.insert(0, 'src'); "
+        "import parse_pdf as P; "
+        f"P.parse_pdf_single('{pdf_rel}', None)"
+    )
+    return subprocess.run(
+        [sys.executable, "-c", code],
+        capture_output=True, text=True, timeout=1800,
+        cwd=str(ROOT_PATH),
+    )
+
+
+def _parse_pdf_pagewise_fallback(pdf_rel: str, item: dict) -> None:
+    """逐页子进程兜底：崩掉的页跳过表格提取保留正文。
+
+    每页一个子进程（开销 ~1s/页，仅崩溃份触发），页级结果 JSON 拼回
+    完整 parsed 结构后落盘。崩页记入 warnings。
+    """
+    import pymupdf
+
+    pdf_path = ROOT_PATH / pdf_rel
+    doc = pymupdf.open(pdf_path)
+    n_pages = doc.page_count
+    doc.close()
+
+    page_results: list[dict | None] = [None] * n_pages
+    for pno in range(n_pages):
+        code = (
+            "import sys, json; sys.path.insert(0, 'src'); "
+            "import parse_pdf as P; "
+            f"doc = P.pymupdf.open('{pdf_rel}'); "
+            f"page = doc[{pno}]; "
+            "items, warns = P._parse_page_v2(page, P._body_font_size(doc)); "
+            "print(json.dumps({'items': items, 'warns': warns}, "
+            "ensure_ascii=False, default=str))"
+        )
+        r = subprocess.run(
+            [sys.executable, "-c", code], capture_output=True, text=True,
+            timeout=120, cwd=str(ROOT_PATH),
+        )
+        if r.returncode == 0 and r.stdout.strip().startswith("{"):
+            try:
+                page_results[pno] = json.loads(r.stdout.strip().splitlines()[-1])
+            except json.JSONDecodeError:
+                page_results[pno] = None
+        # 崩页保持 None
+
+    # 拼回完整结构：重放标题栈（与 parse_pdf 主流程同构），保证
+    # section_path 语义一致。body_size 逐页子进程已算过（probe 已带
+    # size），标题栈重放只需一致性近似值——用全文统一探测值。
+    import pymupdf as _pm
+
+    body_size_hint = _body_font_size(_pm.open(pdf_path))
+    stack: list[tuple[int, str]] = []
+    has_root = False
+    last_was_title = False
+    last_title_level = 0
+
+    blocks: list[dict] = []
+    warnings: list[str] = []
+    for pno, pr in enumerate(page_results, 1):
+        if pr is None:
+            warnings.append(f"p{pno}: 表格提取崩溃（lines 策略 C 层段错误），"
+                            f"该页跳过表格提取")
+            continue
+        warnings.extend(pr.get("warns") or [])
+        items = pr["items"]
+        items.sort(key=lambda it: it.get("_y", 0))
+        for it in items:
+            it.pop("_y", None)
+            probe = it.pop("_probe", None)
+            if it["block_type"] == "title":
+                level = _title_level(
+                    it["content"], probe[0], body_size_hint,
+                    has_root, last_was_title, last_title_level,
+                )
+                if level == 0:
+                    stack.clear()
+                else:
+                    while stack and stack[-1][0] >= level:
+                        stack.pop()
+                stack.append((level, it["content"]))
+                has_root = True
+                last_was_title, last_title_level = True, level
+                it["section_path"] = [t for _, t in stack]
+            else:
+                last_was_title = False
+                it["section_path"] = [t for _, t in stack] if stack else ["unknown"]
+            it["page_num"] = pno
+            it["is_ocr"] = False
+            blocks.append(it)
+
+    result = {
+        "meta": _derive_meta(ROOT_PATH / pdf_rel, None),
+        "source": pdf_rel,
+        "blocks": blocks,
+        "warnings": warnings,
+    }
+    m = result["meta"]
+    out_path = PARSED_DIR / f"{m['stock_code']}_{m['year']}_{m['company_name']}.json"
+    save_parsed(result, out_path)
+    n_crash = sum(1 for x in page_results if x is None)
+    logger.warning("逐页兜底完成：%s（崩溃跳过 %d/%d 页）→ %s",
+                   out_path.name, n_crash, n_pages, out_path.name)
 
 
 def main():

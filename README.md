@@ -1,37 +1,41 @@
 # 混合检索 RAG —— 上市公司年报中文知识库
 
-面向 A 股上市公司年报的中文混合检索 RAG 系统：**dense + sparse 双路召回 → RRF 融合 → 云端重排 → LLM 生成**的端到端可检索问答链路，并将检索能力封装为 MCP 服务供其他 Agent 调用。
+面向 A 股上市公司年报的中文混合检索 RAG 系统：**查询侧增强（实体过滤 + 术语归一改写）→ dense + sparse 双路召回 → RRF 融合 → 云端重排 → LLM 生成**的端到端可检索问答链路，并将检索能力封装为 MCP 服务供其他 Agent 调用。
 
-> **为什么是「混合检索」**：纯向量检索（dense）对财务术语、精确代码、数字提取这类硬匹配容易漏召回，纯关键词检索（sparse）又不懂语义改写。本项目用 BGE-M3 同时产出稠密向量与学习型稀疏向量，再叠加 jieba + BM25 的词法路，三条路经 RRF 融合互补，实测改写类查询召回显著优于单路。
+> **为什么是「混合检索」**：纯向量检索（dense）对财务术语、精确代码、数字提取这类硬匹配容易漏召回，纯关键词检索（sparse）又不懂语义改写。本项目用 BGE-M3 同时产出稠密向量与学习型稀疏向量，再叠加 jieba + BM25 的词法路，三条路经 RRF 融合互补；查询侧再加规则实体过滤（公司/年份直达）与 LLM 术语归一（口语 → 报告措辞），实测术语类查询 Recall@5 从 0.50 提到 0.94。
 
 ## ✨ 特性
 
 - **三命名向量**：`dense`（BGE-M3，1024 维）+ `bm25`（jieba + BM25，服务端 IDF）+ `bge_sparse`（learned sparse，白给）
 - **双路召回 + RRF 融合**：dense / sparse 各召回 top50，RRF 按名次融合，保留分路排名明细
+- **查询侧增强（两级级联）**：规则实体抽取（公司词典 + 年份正则 → 元数据过滤）+ LLM 术语归一改写（口语 → 年报措辞，原句/改写双路 RRF 同池融合），LLM 失败自动回退原句
+- **表格结构化解析**：PyMuPDF `lines` 策略优先（按表格线提取，行式 Markdown 序列化）+ 数字断裂修复，C 层崩溃页自动子进程隔离兜底
 - **云端重排**：前 25 条送硅基流动 `bge-reranker-v2-m3` 重排取 top5
 - **增量入库**：服务端 IDF 口径下新增/替换报告零全局重算，`--codes` 指定公司增量
 - **可溯源引用**：每个命中块带公司/代码/年度/章节/页码/块类型 11 字段元数据，答案可溯源
 - **MCP 服务**：检索侧封装为 streamable-http MCP，供 Claude Desktop / Cursor / 任意 Agent 调用（`search` / `list_companies` / `get_chunk_detail` / `health`）
-- **离线评测**：自写五检索指标（Recall@5 / Precision@5 / HitRate@5 / MRR / NDCG@5）+ LLM 裁判
+- **离线评测**：自写五检索指标（Recall@5 / Precision@5 / HitRate@5 / MRR / NDCG@5）+ LLM 裁判，控制变量对照实验链（v4 裸检索基线 / v5 出题主体注入 / v6 查询增强）
 
-## 📊 评测结果（M4，50 题）
+## 📊 评测结果（M4e，50 题，v6 查询增强链路）
 
-| 指标 | 得分 |
-|---|---|
-| Recall@5 | **0.58** |
-| MRR | **0.433** |
-| NDCG@5 | **0.470** |
-| 裁判均分（5 分制） | **3.72** |
+| 指标 | 裸检索（v5） | 查询增强（v6） |
+|---|---|---|
+| Recall@5 | 0.500 | **0.640** |
+| MRR | 0.403 | **0.519** |
+| NDCG@5 | 0.427 | **0.548** |
+| 裁判均分（5 分制） | 3.30 | **3.70** |
 
-分题型召回：数字提取 0.857 > 术语精确 0.722 ≫ 语义改写 0.222（改写题是当前最大短板，见架构文档 §9 归因）。
+分题型（查询增强链路）：术语精确 **0.944** > 数字提取 0.714 > 语义改写 0.333。查询增强对术语/实体类查询提升显著（+44pp）；语义改写的残余短板是同科目多表竞争与同章节近邻，见架构文档 M4e 归因。
 
 ## 🏗️ 技术栈
 
 | 层 | 技术 |
 |---|---|
+| 解析 | PyMuPDF（lines 策略表格提取 + 数字断裂修复 + 崩溃页子进程兜底） |
 | 嵌入 | BGE-M3（本地权重，FlagEmbedding 1.4.2） |
 | 向量库 | Qdrant（Docker 容器，三命名向量 + 服务端 IDF） |
-| 切块 | LlamaIndex `SentenceSplitter`（768/80） |
+| 切块 | LlamaIndex `SentenceSplitter`（768/80，表格 800 字符带表头切分） |
+| 查询增强 | 规则实体抽取（词典+正则）+ GLM 术语归一改写（双路 RRF 融合） |
 | 分词 | jieba（`lcut_for_search`） |
 | 重排 | 硅基流动 `bge-reranker-v2-m3` |
 | 生成 | 智谱 GLM `glm-5.3-flash` |
@@ -43,10 +47,11 @@
 ```
 ├── src/                     # 核心代码（每模块单文件）
 │   ├── download_pdf.py      # 年报 PDF 下载（巨潮接口）
-│   ├── parse_pdf.py         # PyMuPDF 解析（title/text/table 三分类）
-│   ├── chunk_documents.py   # 切块（768/80 + 元数据注入）
+│   ├── parse_pdf.py         # PyMuPDF 解析（lines 策略表格 + 三分类 + 崩溃页兜底）
+│   ├── chunk_documents.py   # 切块（768/80 + 表格带表头 + 元数据注入）
 │   ├── index_documents.py   # BGE-M3 编码 + 三命名向量入库
-│   ├── retrieve.py          # 检索（双路召回 + RRF + 重排）
+│   ├── query_intent.py      # 查询侧增强（规则实体抽取 + LLM 改写编排）
+│   ├── retrieve.py          # 检索（双路召回 + 多查询 RRF + 重排）
 │   ├── llm_client.py        # Prompt 组装 + LLM 生成
 │   ├── evaluate.py          # 评测（出题/跑批/打分）
 │   ├── mcp_server.py        # MCP 服务（检索侧对外暴露）
@@ -108,4 +113,4 @@ python scripts/start_ui.py
 
 ## 📄 License
 
-待定（开源前请补充）。
+[MIT](LICENSE)

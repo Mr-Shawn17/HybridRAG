@@ -2,8 +2,10 @@
 # 模型权重（BGE-M3，4.3G，用户自行下载放置到 model/BGE-M3）
 model/
 
-# 数据：只入库 chunks（切块产物，56M）；其余均可再生，忽略
-data/raw/
+# 数据：只入库 chunks（切块产物，62M）与语料清单 manifest；其余均可再生，忽略
+# 注意：raw 用 /* 忽略内容而非目录本身，否则 manifest 的 ! 例外不生效（git 规则）
+data/raw/*
+!data/raw/manifest.json
 data/parsed/
 data/embeddings/
 data/qdrant_storage/
@@ -12,6 +14,16 @@ data/bm25_stats/
 # 日志
 log/
 *.log
+
+# 本地备份目录（历史版本产物，仅本机留档，2026-11-04 已清理）
+_backup_*/
+
+# 本地操作截图（文档未引用）
+data/screenshot/
+
+# Gradio / 临时文件
+.gradio/
+*.tmp.npz
 
 # 密钥（复制 config/.env.example 为 .env 后填入）
 config/.env

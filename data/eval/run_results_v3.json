@@ -1,0 +1,4360 @@
+[
+  {
+    "qid": "term-001",
+    "qtype": "term",
+    "question": "珠海格力电器股份有限公司2025年年度报告中，重要会计政策变更的情况是什么？",
+    "reference_answer": "无。",
+    "source_chunk_id": "000651_2025_00429",
+    "source_meta": {
+      "company_name": "格力电器",
+      "fiscal_year": 2025,
+      "chunk_type": "text",
+      "stock_code": "000651"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000651_2025_00354",
+        "rank": 1,
+        "company_name": "格力电器",
+        "fiscal_year": 2025,
+        "page_num": 98,
+        "chunk_type": "text",
+        "rrf_score": 0.05817244863946838,
+        "rerank_score": 0.9979374408721924
+      },
+      {
+        "chunk_id": "000651_2025_00429",
+        "rank": 2,
+        "company_name": "格力电器",
+        "fiscal_year": 2025,
+        "page_num": 126,
+        "chunk_type": "text",
+        "rrf_score": 0.06557377049180328,
+        "rerank_score": 0.997849702835083
+      },
+      {
+        "chunk_id": "000651_2025_00235",
+        "rank": 3,
+        "company_name": "格力电器",
+        "fiscal_year": 2025,
+        "page_num": 61,
+        "chunk_type": "text",
+        "rrf_score": 0.05980014137908875,
+        "rerank_score": 0.990331768989563
+      },
+      {
+        "chunk_id": "000651_2025_00246",
+        "rank": 4,
+        "company_name": "格力电器",
+        "fiscal_year": 2025,
+        "page_num": 65,
+        "chunk_type": "text",
+        "rrf_score": 0.03200204813108039,
+        "rerank_score": 0.9886875152587891
+      },
+      {
+        "chunk_id": "000651_2025_00270",
+        "rank": 5,
+        "company_name": "格力电器",
+        "fiscal_year": 2025,
+        "page_num": 77,
+        "chunk_type": "text",
+        "rrf_score": 0.05303477768208907,
+        "rerank_score": 0.9685386419296265
+      }
+    ],
+    "answer": "根据参考资料，珠海格力电器2025年年度报告中，**报告期内无重要会计政策变更**：\n\n- 财务报告附注“42、重要会计政策和会计估计变更”中明确列示：“（1）重要会计政策变更：无” [2]。\n- “第五节重要事项”中也说明：公司报告期无会计政策、会计估计变更或重大会计差错更正的情况 [3]。\n\n即公司2025年度不存在重要会计政策变更事项。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "000651"
+      ],
+      "years": [
+        2025
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "珠海格力电器股份有限公司2025年年度报告中，重要会计政策变更的情况是什么？",
+        "珠海格力电器股份有限公司2025年年度报告 重要会计政策变更情况"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 8427.5,
+    "timings_ms": {
+      "encode": 3385.2,
+      "recall": 188.8,
+      "rerank": 451.5,
+      "total": 4025.5
+    }
+  },
+  {
+    "qid": "term-002",
+    "qtype": "term",
+    "question": "本集团基于《商业银行金融资产风险分类办法》，在监管五级分类的基础上实行什么分类管理？具体包括哪些级别？",
+    "reference_answer": "本集团在监管五级分类的基础上实行十级分类管理，具体包括：正常一至五级、关注一级、关注二级、次级、可疑及损失。",
+    "source_chunk_id": "600036_2024_00665",
+    "source_meta": {
+      "company_name": "招商银行",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "600036"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600036_2024_00665",
+        "rank": 1,
+        "company_name": "招商银行",
+        "fiscal_year": 2024,
+        "page_num": 269,
+        "chunk_type": "text",
+        "rrf_score": 0.06454091750396616,
+        "rerank_score": 0.9982364177703857
+      },
+      {
+        "chunk_id": "600036_2025_00658",
+        "rank": 2,
+        "company_name": "招商银行",
+        "fiscal_year": 2025,
+        "page_num": 260,
+        "chunk_type": "text",
+        "rrf_score": 0.06452452301209573,
+        "rerank_score": 0.9982364177703857
+      },
+      {
+        "chunk_id": "600036_2023_00642",
+        "rank": 3,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 269,
+        "chunk_type": "text",
+        "rrf_score": 0.030309988518943745,
+        "rerank_score": 0.9546120166778564
+      },
+      {
+        "chunk_id": "600036_2023_00643",
+        "rank": 4,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 270,
+        "chunk_type": "text",
+        "rrf_score": 0.03848388152511864,
+        "rerank_score": 0.8633044958114624
+      },
+      {
+        "chunk_id": "600036_2024_00666",
+        "rank": 5,
+        "company_name": "招商银行",
+        "fiscal_year": 2024,
+        "page_num": 270,
+        "chunk_type": "text",
+        "rrf_score": 0.03730694670304935,
+        "rerank_score": 0.808621883392334
+      }
+    ],
+    "answer": "根据资料，本集团基于《商业银行金融资产风险分类办法》，结合实际情况完善分类制度、细化分类方法，在监管五级分类的基础上实行**十级分类管理** [1][2]。\n\n具体级别包括：**正常一至五级、关注一级、关注二级、次级、可疑及损失** [1][2][3]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "本集团基于《商业银行金融资产风险分类办法》，在监管五级分类的基础上实行什么分类管理？具体包括哪些级别？",
+        "本集团基于《商业银行金融资产风险分类办法》在监管五级分类基础上实行的风险分类管理方式及具体分类级别"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 7281.1,
+    "timings_ms": {
+      "encode": 333.4,
+      "recall": 213.1,
+      "rerank": 589.5,
+      "total": 1136.0
+    }
+  },
+  {
+    "qid": "term-003",
+    "qtype": "term",
+    "question": "以摊余成本计量的金融资产采用什么方法进行后续计量？其摊销或减值产生的利得或损失计入哪里？",
+    "reference_answer": "对于以摊余成本计量的金融资产，采用实际利率法，按照摊余成本进行后续计量，其摊销或减值产生的利得或损失，均计入当期损益。",
+    "source_chunk_id": "000858_2025_00198",
+    "source_meta": {
+      "company_name": "五粮液",
+      "fiscal_year": 2025,
+      "chunk_type": "text",
+      "stock_code": "000858"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600036_2025_00440",
+        "rank": 1,
+        "company_name": "招商银行",
+        "fiscal_year": 2025,
+        "page_num": 146,
+        "chunk_type": "text",
+        "rrf_score": 0.08828485326465857,
+        "rerank_score": 0.9996381998062134
+      },
+      {
+        "chunk_id": "600036_2024_00446",
+        "rank": 2,
+        "company_name": "招商银行",
+        "fiscal_year": 2024,
+        "page_num": 153,
+        "chunk_type": "text",
+        "rrf_score": 0.08801090214133693,
+        "rerank_score": 0.9996381998062134
+      },
+      {
+        "chunk_id": "600036_2023_00415",
+        "rank": 3,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 151,
+        "chunk_type": "text",
+        "rrf_score": 0.08684412744538621,
+        "rerank_score": 0.9996381998062134
+      },
+      {
+        "chunk_id": "601633_2023_00501",
+        "rank": 4,
+        "company_name": "长城汽车",
+        "fiscal_year": 2023,
+        "page_num": 195,
+        "chunk_type": "text",
+        "rrf_score": 0.08167718336523447,
+        "rerank_score": 0.9993977546691895
+      },
+      {
+        "chunk_id": "000002_2025_00433",
+        "rank": 5,
+        "company_name": "万科A",
+        "fiscal_year": 2025,
+        "page_num": 175,
+        "chunk_type": "text",
+        "rrf_score": 0.08238986651571198,
+        "rerank_score": 0.9993740916252136
+      }
+    ],
+    "answer": "以摊余成本计量的金融资产采用**实际利率法**进行后续计量，其摊销或减值产生的利得或损失，均**计入当期损益** [1][2][3]。此外，本集团按金融资产的账面余额乘以实际利率计算利息收入 [1]。\n\n（注：长城汽车与万科A的表述为“发生减值或终止确认产生的利得或损失，计入当期损益”，与招行口径基本一致 [4][5]。）",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "以摊余成本计量的金融资产采用什么方法进行后续计量？其摊销或减值产生的利得或损失计入哪里？",
+        "以摊余成本计量的金融资产后续计量采用的方法",
+        "以摊余成本计量的金融资产摊销或减值产生的利得或损失计入的会计科目"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 8396.3,
+    "timings_ms": {
+      "encode": 372.0,
+      "recall": 254.7,
+      "rerank": 564.9,
+      "total": 1191.6
+    }
+  },
+  {
+    "qid": "term-004",
+    "qtype": "term",
+    "question": "福建福清核电有限公司2021年公开发行绿色公司债券(第一期)(专项用于碳中和)的募集资金总额和未使用金额分别是多少？",
+    "reference_answer": "募集资金总额为100,000.00万元，未使用金额为0（即已使用金额100,000.00万元）；该债券募集资金专项账户运作情况正常，无违规使用情形，且与募集说明书承诺的用途、使用计划及其他约定一致。",
+    "source_chunk_id": "601985_2023_00242",
+    "source_meta": {
+      "company_name": "中国核电",
+      "fiscal_year": 2023,
+      "chunk_type": "table",
+      "stock_code": "601985"
+    },
+    "contexts": [
+      {
+        "chunk_id": "601985_2023_00242",
+        "rank": 1,
+        "company_name": "中国核电",
+        "fiscal_year": 2023,
+        "page_num": 90,
+        "chunk_type": "table",
+        "rrf_score": 0.09631897551153237,
+        "rerank_score": 0.9875818490982056
+      },
+      {
+        "chunk_id": "600900_2024_00169",
+        "rank": 2,
+        "company_name": "长江电力",
+        "fiscal_year": 2024,
+        "page_num": 70,
+        "chunk_type": "table",
+        "rrf_score": 0.054316858313748696,
+        "rerank_score": 0.9839771389961243
+      },
+      {
+        "chunk_id": "601985_2025_00247",
+        "rank": 3,
+        "company_name": "中国核电",
+        "fiscal_year": 2025,
+        "page_num": 104,
+        "chunk_type": "table",
+        "rrf_score": 0.08683251942402613,
+        "rerank_score": 0.9687586426734924
+      },
+      {
+        "chunk_id": "601985_2023_00240",
+        "rank": 4,
+        "company_name": "中国核电",
+        "fiscal_year": 2023,
+        "page_num": 89,
+        "chunk_type": "table",
+        "rrf_score": 0.09504502177856224,
+        "rerank_score": 0.9676970839500427
+      },
+      {
+        "chunk_id": "601985_2023_00238",
+        "rank": 5,
+        "company_name": "中国核电",
+        "fiscal_year": 2023,
+        "page_num": 88,
+        "chunk_type": "table",
+        "rrf_score": 0.08855263870398233,
+        "rerank_score": 0.9399884343147278
+      }
+    ],
+    "answer": "根据中国核电2023年报（p.90）披露的募集资金使用情况表 [1]：\n\n- **募集资金总额：100,000.00 万元**（该数字与 p.88 债券列表中的发行规模 100,000.00 万元一致 [5]）\n- **未使用金额：0**（已使用金额 100,000.00 万元，募集资金已全部使用）\n\n此外，该债券募集资金专项账户运作正常、无违规使用情况，用途与募集说明书承诺一致 [1]；2023 年付息工作已于 2023 年 5 月 12 日实施完毕 [4]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "福建福清核电有限公司2021年公开发行绿色公司债券(第一期)(专项用于碳中和)的募集资金总额和未使用金额分别是多少？",
+        "福建福清核电有限公司2021年公开发行绿色公司债券(第一期)(专项用于碳中和)的募集资金总额",
+        "福建福清核电有限公司2021年公开发行绿色公司债券(第一期)(专项用于碳中和)的募集资金未使用金额"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 9587.8,
+    "timings_ms": {
+      "encode": 322.8,
+      "recall": 304.5,
+      "rerank": 567.3,
+      "total": 1194.6
+    }
+  },
+  {
+    "qid": "term-005",
+    "qtype": "term",
+    "question": "华能河南濮阳清洁能源有限责任公司（简称“濮阳清洁能源”）的注册资本是多少元？其业务范围是什么？",
+    "reference_answer": "注册资本为1,491,567,000元，业务范围为电力的生产和供应；电力项目的投资、建设、运营、管理。",
+    "source_chunk_id": "600011_2023_00641",
+    "source_meta": {
+      "company_name": "华能国际",
+      "fiscal_year": 2023,
+      "chunk_type": "table",
+      "stock_code": "600011"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600011_2023_00641",
+        "rank": 1,
+        "company_name": "华能国际",
+        "fiscal_year": 2023,
+        "page_num": 289,
+        "chunk_type": "table",
+        "rrf_score": 0.09327760053566506,
+        "rerank_score": 0.9566502571105957
+      },
+      {
+        "chunk_id": "600011_2025_00737",
+        "rank": 2,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 292,
+        "chunk_type": "table",
+        "rrf_score": 0.09683140174943455,
+        "rerank_score": 0.953062117099762
+      },
+      {
+        "chunk_id": "600011_2024_00638",
+        "rank": 3,
+        "company_name": "华能国际",
+        "fiscal_year": 2024,
+        "page_num": 294,
+        "chunk_type": "table",
+        "rrf_score": 0.0960225388851116,
+        "rerank_score": 0.9497866630554199
+      },
+      {
+        "chunk_id": "600011_2025_00901",
+        "rank": 4,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 358,
+        "chunk_type": "table",
+        "rrf_score": 0.08899825664531547,
+        "rerank_score": 0.935427188873291
+      },
+      {
+        "chunk_id": "600011_2023_00650",
+        "rank": 5,
+        "company_name": "华能国际",
+        "fiscal_year": 2023,
+        "page_num": 292,
+        "chunk_type": "table",
+        "rrf_score": 0.08926891693061079,
+        "rerank_score": 0.9109001755714417
+      }
+    ],
+    "answer": "**濮阳清洁能源**（华能河南濮阳清洁能源有限责任公司）为华能国际直接控股子公司，持股比例100% [2][3]。\n\n**注册资本**：\n- 2024年报及2025年报披露为 **1,502,777,000 元** [2][3][4]；\n- 2023年报披露为 1,491,567,000 元，其后注册资本有所增加 [1]。\n\n**业务范围**：\n- 2024年报及2025年报披露为 **清洁能源发电** [2][3]；\n- 2023年报披露为“电力的生产和供应；电力项目的投资、建设、运营、管理” [1]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "华能河南濮阳清洁能源有限责任公司（简称“濮阳清洁能源”）的注册资本是多少元？其业务范围是什么？",
+        "华能河南濮阳清洁能源有限责任公司 注册资本",
+        "华能河南濮阳清洁能源有限责任公司 经营范围"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 10723.7,
+    "timings_ms": {
+      "encode": 338.6,
+      "recall": 272.2,
+      "rerank": 574.6,
+      "total": 1185.4
+    }
+  },
+  {
+    "qid": "term-006",
+    "qtype": "term",
+    "question": "2023年末，本行个人贷款不良率是多少？较上年末变化情况如何？",
+    "reference_answer": "2023年末，本行个人贷款不良率为1.37%，较上年末上升0.05个百分点。",
+    "source_chunk_id": "000001_2023_00065",
+    "source_meta": {
+      "company_name": "平安银行",
+      "fiscal_year": 2023,
+      "chunk_type": "text",
+      "stock_code": "000001"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000001_2023_00065",
+        "rank": 1,
+        "company_name": "平安银行",
+        "fiscal_year": 2023,
+        "page_num": 35,
+        "chunk_type": "text",
+        "rrf_score": 0.09539985786447354,
+        "rerank_score": 0.9997465014457703
+      },
+      {
+        "chunk_id": "000001_2023_00062",
+        "rank": 2,
+        "company_name": "平安银行",
+        "fiscal_year": 2023,
+        "page_num": 35,
+        "chunk_type": "text",
+        "rrf_score": 0.08119392081654415,
+        "rerank_score": 0.998651921749115
+      },
+      {
+        "chunk_id": "000001_2023_00064",
+        "rank": 3,
+        "company_name": "平安银行",
+        "fiscal_year": 2023,
+        "page_num": 35,
+        "chunk_type": "text",
+        "rrf_score": 0.08341790628619186,
+        "rerank_score": 0.9984055161476135
+      },
+      {
+        "chunk_id": "600036_2023_00094",
+        "rank": 4,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 35,
+        "chunk_type": "text",
+        "rrf_score": 0.087359314804623,
+        "rerank_score": 0.9966076612472534
+      },
+      {
+        "chunk_id": "000001_2023_00093",
+        "rank": 5,
+        "company_name": "平安银行",
+        "fiscal_year": 2023,
+        "page_num": 51,
+        "chunk_type": "text",
+        "rrf_score": 0.0753464665351984,
+        "rerank_score": 0.9933245778083801
+      }
+    ],
+    "answer": "根据参考资料，2023年末平安银行**个人贷款不良率为1.37%**，较上年末（1.32%）**上升0.05个百分点**[1][3]。\n\n背景说明：\n- 上升原因：2023年国内经济整体回稳但呈现结构性差异，部分个人客户的还款能力仍处在恢复过程中[1]。\n- 分产品看不良率均有所上升：住房按揭贷款1.30%（上升0.02个百分点）、信用卡应收账款2.77%（上升0.09个百分点）、消费性贷款1.23%（上升0.15个百分点）、经营性贷款0.83%（上升0.09个百分点）[3]。\n- 应对措施：提高贷前政策检视频率、严格客户准入、拓宽催清收渠道、加大不良处置力度，同时推进个人贷款结构调整，提高抵押类贷款占比，并运用科技和风控模型实施差异化风险管理[1]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "2023年末，本行个人贷款不良率是多少？较上年末变化情况如何？",
+        "2023年末本行个人贷款不良率",
+        "个人贷款不良率较上年末变化情况"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 5404.9,
+    "timings_ms": {
+      "encode": 217.0,
+      "recall": 271.5,
+      "rerank": 643.1,
+      "total": 1131.5
+    }
+  },
+  {
+    "qid": "term-007",
+    "qtype": "term",
+    "question": "2023年12月31日，披露表中与本公司的关系为“合营企业”的单位中，金额最大的是哪家单位？该金额是多少？",
+    "reference_answer": "徐州宁盛置业有限公司，2023年12月31日的金额为464,198,339.90元。",
+    "source_chunk_id": "000002_2023_00830",
+    "source_meta": {
+      "company_name": "万科A",
+      "fiscal_year": 2023,
+      "chunk_type": "table",
+      "stock_code": "000002"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000002_2023_00830",
+        "rank": 1,
+        "company_name": "万科A",
+        "fiscal_year": 2023,
+        "page_num": 302,
+        "chunk_type": "table",
+        "rrf_score": 0.05973476651226012,
+        "rerank_score": 0.9955034852027893
+      },
+      {
+        "chunk_id": "000002_2023_00829",
+        "rank": 2,
+        "company_name": "万科A",
+        "fiscal_year": 2023,
+        "page_num": 302,
+        "chunk_type": "table",
+        "rrf_score": 0.044861585291814596,
+        "rerank_score": 0.9953633546829224
+      },
+      {
+        "chunk_id": "000002_2023_00840",
+        "rank": 3,
+        "company_name": "万科A",
+        "fiscal_year": 2023,
+        "page_num": 305,
+        "chunk_type": "table",
+        "rrf_score": 0.04524278270564299,
+        "rerank_score": 0.9951381087303162
+      },
+      {
+        "chunk_id": "000002_2023_00841",
+        "rank": 4,
+        "company_name": "万科A",
+        "fiscal_year": 2023,
+        "page_num": 305,
+        "chunk_type": "table",
+        "rrf_score": 0.05131969849611029,
+        "rerank_score": 0.9948211908340454
+      },
+      {
+        "chunk_id": "000002_2023_00801",
+        "rank": 5,
+        "company_name": "万科A",
+        "fiscal_year": 2023,
+        "page_num": 294,
+        "chunk_type": "table",
+        "rrf_score": 0.03631289865343728,
+        "rerank_score": 0.9940124154090881
+      }
+    ],
+    "answer": "根据披露表，2023年12月31日，关系为“合营企业”的单位中金额最大的是**上海万九绿合置业有限公司**，金额为 **1,235,359,617.87**（2022年12月31日为1,174,474,774.41）[2]。\n\n其次为深圳礼达万圳投资有限公司（1,224,380,159.08）和上海长华万城企业管理合伙企业（有限合伙）（1,201,996,709.84），均低于上海万九绿合置业有限公司 [2]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "2023年12月31日，披露表中与本公司的关系为“合营企业”的单位中，金额最大的是哪家单位？该金额是多少？",
+        "2023年12月31日，披露表中与本公司的关系为“合营企业”的单位中，金额最大的单位名称及其金额"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 13342.5,
+    "timings_ms": {
+      "encode": 389.9,
+      "recall": 185.6,
+      "rerank": 569.2,
+      "total": 1144.7
+    }
+  },
+  {
+    "qid": "term-008",
+    "qtype": "term",
+    "question": "保利为保利财务提供关联担保中，利率按同期贷款基准利率下浮41.06%对应的担保金额及担保期限（起始日、到期日）分别是多少？",
+    "reference_answer": "担保金额为600,000,000.00元，担保起始日为2023-7-14，到期日为2028-7-14。",
+    "source_chunk_id": "600048_2023_00858",
+    "source_meta": {
+      "company_name": "保利发展",
+      "fiscal_year": 2023,
+      "chunk_type": "table",
+      "stock_code": "600048"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600048_2023_00861",
+        "rank": 1,
+        "company_name": "保利发展",
+        "fiscal_year": 2023,
+        "page_num": 257,
+        "chunk_type": "table",
+        "rrf_score": 0.0625,
+        "rerank_score": 0.9829461574554443
+      },
+      {
+        "chunk_id": "600048_2023_00857",
+        "rank": 2,
+        "company_name": "保利发展",
+        "fiscal_year": 2023,
+        "page_num": 256,
+        "chunk_type": "table",
+        "rrf_score": 0.06355611601513242,
+        "rerank_score": 0.9824434518814087
+      },
+      {
+        "chunk_id": "600048_2023_00860",
+        "rank": 3,
+        "company_name": "保利发展",
+        "fiscal_year": 2023,
+        "page_num": 257,
+        "chunk_type": "table",
+        "rrf_score": 0.06400409626216078,
+        "rerank_score": 0.9807692766189575
+      },
+      {
+        "chunk_id": "600048_2023_00858",
+        "rank": 4,
+        "company_name": "保利发展",
+        "fiscal_year": 2023,
+        "page_num": 256,
+        "chunk_type": "table",
+        "rrf_score": 0.06400409626216078,
+        "rerank_score": 0.9804564714431763
+      },
+      {
+        "chunk_id": "600048_2023_00859",
+        "rank": 5,
+        "company_name": "保利发展",
+        "fiscal_year": 2023,
+        "page_num": 256,
+        "chunk_type": "table",
+        "rrf_score": 0.06355611601513242,
+        "rerank_score": 0.9666162729263306
+      }
+    ],
+    "answer": "根据现有资料，利率按同期贷款基准利率下浮41.06%的关联交易条目为：\n\n- **金额**：600,000,000.00 元（6亿元）\n- **起始日**：2023-7-14\n- **到期日**：2028-7-14（期限5年）\n- 交易对手为保利财务 [4]\n\n需要说明的是，该条目在年报附注中列示于“关联担保情况”章节下的“**4.关联方资金拆借**”部分 [2]，性质为与保利财务的**资金拆借**（而非严格意义上的担保披露），资料中未单独列示“保利为保利财务提供担保”的明细。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "保利为保利财务提供关联担保中，利率按同期贷款基准利率下浮41.06%对应的担保金额及担保期限（起始日、到期日）分别是多少？",
+        "保利为保利财务提供关联担保，利率按同期贷款基准利率下浮41.06%对应的担保金额、担保起始日及担保到期日"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 9505.8,
+    "timings_ms": {
+      "encode": 376.9,
+      "recall": 212.0,
+      "rerank": 561.5,
+      "total": 1150.4
+    }
+  },
+  {
+    "qid": "term-009",
+    "qtype": "term",
+    "question": "2025年\"公允价值变动损益\"是多少百万元？比上年同期增减幅度是多少，主要原因是什么？",
+    "reference_answer": "2025年公允价值变动损益为(630)百万元（人民币），2024年为18百万元，比上年同期减少3600.00%，主要原因是交易性金融资产公允价值减少。",
+    "source_chunk_id": "002142_2025_00076",
+    "source_meta": {
+      "company_name": "宁波银行",
+      "fiscal_year": 2025,
+      "chunk_type": "table",
+      "stock_code": "002142"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600036_2024_00535",
+        "rank": 1,
+        "company_name": "招商银行",
+        "fiscal_year": 2024,
+        "page_num": 201,
+        "chunk_type": "text",
+        "rrf_score": 0.052780969918496574,
+        "rerank_score": 0.9479758739471436
+      },
+      {
+        "chunk_id": "300760_2025_00566",
+        "rank": 2,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2025,
+        "page_num": 293,
+        "chunk_type": "table",
+        "rrf_score": 0.04918032786885246,
+        "rerank_score": 0.9476051330566406
+      },
+      {
+        "chunk_id": "002142_2024_00094",
+        "rank": 3,
+        "company_name": "宁波银行",
+        "fiscal_year": 2024,
+        "page_num": 34,
+        "chunk_type": "table",
+        "rrf_score": 0.0429147465437788,
+        "rerank_score": 0.9236072897911072
+      },
+      {
+        "chunk_id": "600036_2025_00528",
+        "rank": 4,
+        "company_name": "招商银行",
+        "fiscal_year": 2025,
+        "page_num": 193,
+        "chunk_type": "text",
+        "rrf_score": 0.06790198579816066,
+        "rerank_score": 0.918954610824585
+      },
+      {
+        "chunk_id": "600036_2023_00506",
+        "rank": 5,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 199,
+        "chunk_type": "text",
+        "rrf_score": 0.05408039672745556,
+        "rerank_score": 0.9042285680770874
+      }
+    ],
+    "answer": "**根据现有资料，无法完整回答“2025年公允价值变动损益（百万元）及同比增减幅度、原因”这一问题**，资料中的相关信息如下：\n\n**1. 涉及2025年数据的仅有迈瑞医疗** [2]\n- 2025年公允价值变动收益合计为485,746元（约合0.49百万元），2024年为126,027,776元（约合126.03百万元），据此计算同比减少约99.61% [2]。\n- 但资料未披露变动的主要原因，仅说明“报告期内，公允价值变动损益的金额全部为非经常性损益” [2]。\n\n**2. 与问题格式对应的披露来自宁波银行，但仅为2024年数据** [3]\n宁波银行2024年报“变动幅度在30%以上的主要报表项目和财务指标及其主要原因”中披露：公允价值变动损益2024年为18百万元（2023年为1,161百万元），比上年同期减少98.45%，主要原因是**衍生金融工具公允价值变动减少** [3]。\n- 资料中未包含宁波银行2025年的相应数据，故无法提供其2025年金额、增减幅度及原因。\n\n**结论**：若问题指向宁波银行，根据现有资料无法回答2025年数据（仅有2024年：18百万元，同比-98.45%，因衍生金融工具公允价值变动减少 [3]）；若指向迈瑞医疗，其2025年公允价值变动收益为485,746元（约0.49百万元），同比减少约99.61%，资料未说明原因 [2]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "2025年\"公允价值变动损益\"是多少百万元？比上年同期增减幅度是多少，主要原因是什么？",
+        "2025年公允价值变动损益是多少百万元",
+        "2025年公允价值变动损益比上年同期增减幅度",
+        "公允价值变动损益较上年同期变动的主要原因"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 8290.6,
+    "timings_ms": {
+      "encode": 296.2,
+      "recall": 395.0,
+      "rerank": 550.8,
+      "total": 1242.0
+    }
+  },
+  {
+    "qid": "term-010",
+    "qtype": "term",
+    "question": "根据收入确认和计量所采用的会计政策，\"履约义务\"是指什么？",
+    "reference_answer": "履约义务，是指合同中本公司向客户转让可明确区分商品或服务的承诺。",
+    "source_chunk_id": "600887_2025_00301",
+    "source_meta": {
+      "company_name": "伊利股份",
+      "fiscal_year": 2025,
+      "chunk_type": "text",
+      "stock_code": "600887"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600887_2025_00301",
+        "rank": 1,
+        "company_name": "伊利股份",
+        "fiscal_year": 2025,
+        "page_num": 134,
+        "chunk_type": "text",
+        "rrf_score": 0.05996786674536035,
+        "rerank_score": 0.9962167143821716
+      },
+      {
+        "chunk_id": "600887_2024_00319",
+        "rank": 2,
+        "company_name": "伊利股份",
+        "fiscal_year": 2024,
+        "page_num": 140,
+        "chunk_type": "text",
+        "rrf_score": 0.059081498211932995,
+        "rerank_score": 0.9961429238319397
+      },
+      {
+        "chunk_id": "600900_2024_00319",
+        "rank": 3,
+        "company_name": "长江电力",
+        "fiscal_year": 2024,
+        "page_num": 135,
+        "chunk_type": "text",
+        "rrf_score": 0.06403688524590165,
+        "rerank_score": 0.996057391166687
+      },
+      {
+        "chunk_id": "600900_2025_00310",
+        "rank": 4,
+        "company_name": "长江电力",
+        "fiscal_year": 2025,
+        "page_num": 124,
+        "chunk_type": "text",
+        "rrf_score": 0.06374807987711213,
+        "rerank_score": 0.9958855509757996
+      },
+      {
+        "chunk_id": "600887_2023_00329",
+        "rank": 5,
+        "company_name": "伊利股份",
+        "fiscal_year": 2023,
+        "page_num": 136,
+        "chunk_type": "text",
+        "rrf_score": 0.06132688828584351,
+        "rerank_score": 0.995710015296936
+      }
+    ],
+    "answer": "根据收入确认和计量所采用的会计政策，**“履约义务”是指合同中本公司向客户转让可明确区分商品或服务的承诺** [1][2][3][4][5]。\n\n此外，与之相关的定义是：“取得相关商品控制权”，是指能够主导该商品的使用并从中获得几乎全部的经济利益 [1][3]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "concept",
+      "queries": [
+        "根据收入确认和计量所采用的会计政策，\"履约义务\"是指什么？",
+        "根据收入确认和计量所采用的会计政策，履约义务的定义是什么？"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 6682.7,
+    "timings_ms": {
+      "encode": 324.4,
+      "recall": 232.5,
+      "rerank": 596.8,
+      "total": 1153.7
+    }
+  },
+  {
+    "qid": "term-011",
+    "qtype": "term",
+    "question": "债券简称“24保利09”对应的债券代码是多少？",
+    "reference_answer": "242088",
+    "source_chunk_id": "600048_2025_00279",
+    "source_meta": {
+      "company_name": "保利发展",
+      "fiscal_year": 2025,
+      "chunk_type": "table",
+      "stock_code": "600048"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600048_2025_00301",
+        "rank": 1,
+        "company_name": "保利发展",
+        "fiscal_year": 2025,
+        "page_num": 92,
+        "chunk_type": "table",
+        "rrf_score": 0.06478893337698204,
+        "rerank_score": 0.9666286110877991
+      },
+      {
+        "chunk_id": "600048_2025_00303",
+        "rank": 2,
+        "company_name": "保利发展",
+        "fiscal_year": 2025,
+        "page_num": 93,
+        "chunk_type": "table",
+        "rrf_score": 0.056018623665682485,
+        "rerank_score": 0.9424064755439758
+      },
+      {
+        "chunk_id": "600048_2025_00304",
+        "rank": 3,
+        "company_name": "保利发展",
+        "fiscal_year": 2025,
+        "page_num": 93,
+        "chunk_type": "table",
+        "rrf_score": 0.05736647336970295,
+        "rerank_score": 0.8023490905761719
+      },
+      {
+        "chunk_id": "600048_2025_00279",
+        "rank": 4,
+        "company_name": "保利发展",
+        "fiscal_year": 2025,
+        "page_num": 84,
+        "chunk_type": "table",
+        "rrf_score": 0.03965578291146711,
+        "rerank_score": 0.8013545274734497
+      },
+      {
+        "chunk_id": "600048_2025_00305",
+        "rank": 5,
+        "company_name": "保利发展",
+        "fiscal_year": 2025,
+        "page_num": 94,
+        "chunk_type": "table",
+        "rrf_score": 0.031009615384615385,
+        "rerank_score": 0.7748716473579407
+      }
+    ],
+    "answer": "债券简称“24保利09”对应的债券代码是 **242088**。[1][4]",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "债券简称“24保利09”对应的债券代码是多少？",
+        "债券简称“24保利09”对应的债券代码"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 5300.8,
+    "timings_ms": {
+      "encode": 306.1,
+      "recall": 182.7,
+      "rerank": 561.2,
+      "total": 1050.0
+    }
+  },
+  {
+    "qid": "term-012",
+    "qtype": "term",
+    "question": "长期股权投资的减值损失一经确认，在以后会计期间能否转回？",
+    "reference_answer": "不能转回。对子公司的长期股权投资，当其可收回金额低于其账面价值时，账面价值减记至可收回金额；长期股权投资的减值损失一经确认，在以后会计期间不予转回。",
+    "source_chunk_id": "000001_2024_00352",
+    "source_meta": {
+      "company_name": "平安银行",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "000001"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000001_2025_00341",
+        "rank": 1,
+        "company_name": "平安银行",
+        "fiscal_year": 2025,
+        "page_num": 146,
+        "chunk_type": "text",
+        "rrf_score": 0.03021353930031804,
+        "rerank_score": 0.9997997879981995
+      },
+      {
+        "chunk_id": "002230_2023_00407",
+        "rank": 2,
+        "company_name": "科大讯飞",
+        "fiscal_year": 2023,
+        "page_num": 182,
+        "chunk_type": "text",
+        "rrf_score": 0.025827404887101765,
+        "rerank_score": 0.9997498393058777
+      },
+      {
+        "chunk_id": "000001_2025_00348",
+        "rank": 3,
+        "company_name": "平安银行",
+        "fiscal_year": 2025,
+        "page_num": 149,
+        "chunk_type": "table",
+        "rrf_score": 0.030158730158730156,
+        "rerank_score": 0.9996724128723145
+      },
+      {
+        "chunk_id": "600276_2023_00406",
+        "rank": 4,
+        "company_name": "恒瑞医药",
+        "fiscal_year": 2023,
+        "page_num": 171,
+        "chunk_type": "text",
+        "rrf_score": 0.03131881575727918,
+        "rerank_score": 0.9996511936187744
+      },
+      {
+        "chunk_id": "600276_2024_00390",
+        "rank": 5,
+        "company_name": "恒瑞医药",
+        "fiscal_year": 2024,
+        "page_num": 172,
+        "chunk_type": "text",
+        "rrf_score": 0.029418126757516764,
+        "rerank_score": 0.9994514584541321
+      }
+    ],
+    "answer": "**不能转回。**\n\n根据参考资料，多家公司的会计政策均明确规定：长期股权投资的减值损失一经确认，在以后会计期间不予转回：\n\n- 平安银行2025年报：对子公司的长期股权投资，当其可收回金额低于账面价值时，账面价值减记至可收回金额，长期股权投资的减值损失一经确认，在以后会计期间**不予转回** [1][3]\n- 科大讯飞2023年报：当长期股权投资可收回金额低于账面价值时计提减值准备，资产减值损失一经确认，在以后会计期间**不再转回** [2]\n- 恒瑞医药2023年报及2024年报：长期股权投资等长期资产减值损失一经确认，在以后会计期间**不予转回** [4][5]\n\n即各家公司政策口径一致：长期股权投资减值损失一经确认，后续会计期间均不得转回。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "concept",
+      "queries": [
+        "长期股权投资的减值损失一经确认，在以后会计期间能否转回？"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 4335.0,
+    "timings_ms": {
+      "encode": 269.6,
+      "recall": 91.4,
+      "rerank": 537.1,
+      "total": 898.1
+    }
+  },
+  {
+    "qid": "term-013",
+    "qtype": "term",
+    "question": "上市公司年报“第十节 财务报告”中，附注“14、固定资产”列示于哪个合并财务报表注释部分之下？",
+    "reference_answer": "列示于“七、合并财务报表主要项目注释”部分之下（原文为“七、合并财务报表主要项目注释（续）”）。",
+    "source_chunk_id": "002594_2024_00630",
+    "source_meta": {
+      "company_name": "比亚迪",
+      "fiscal_year": 2024,
+      "chunk_type": "table",
+      "stock_code": "002594"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600660_2024_00052",
+        "rank": 1,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2024,
+        "page_num": 17,
+        "chunk_type": "text",
+        "rrf_score": 0.03125763125763126,
+        "rerank_score": 0.979387640953064
+      },
+      {
+        "chunk_id": "600660_2023_00051",
+        "rank": 2,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2023,
+        "page_num": 17,
+        "chunk_type": "text",
+        "rrf_score": 0.024806892453951276,
+        "rerank_score": 0.9777230024337769
+      },
+      {
+        "chunk_id": "600660_2024_00096",
+        "rank": 3,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2024,
+        "page_num": 26,
+        "chunk_type": "text",
+        "rrf_score": 0.015384615384615385,
+        "rerank_score": 0.9300199747085571
+      },
+      {
+        "chunk_id": "600660_2025_00050",
+        "rank": 4,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2025,
+        "page_num": 17,
+        "chunk_type": "text",
+        "rrf_score": 0.015625,
+        "rerank_score": 0.8975645899772644
+      },
+      {
+        "chunk_id": "000333_2023_00427",
+        "rank": 5,
+        "company_name": "美的集团",
+        "fiscal_year": 2023,
+        "page_num": 224,
+        "chunk_type": "table",
+        "rrf_score": 0.014925373134328358,
+        "rerank_score": 0.8584935069084167
+      }
+    ],
+    "answer": "根据现有资料无法回答。参考资料中未出现编号为“14、固定资产”的附注。\n\n资料中仅能确认以下固定资产附注的位置：\n- 福耀玻璃：固定资产列于合并财务报表附注“七、合并财务报表项目注释”下的“七.21「固定资产」”[1][3][4]；\n- 美的集团：固定资产列于“四、合并财务报表项目附注”下的\"(17) 固定资产\"[5]。\n\n如需确认“14、固定资产”所属注释部分，需提供相应公司年报中该附注所在页面的资料。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "上市公司年报“第十节 财务报告”中，附注“14、固定资产”列示于哪个合并财务报表注释部分之下？"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 5713.1,
+    "timings_ms": {
+      "encode": 336.1,
+      "recall": 119.4,
+      "rerank": 497.4,
+      "total": 953.0
+    }
+  },
+  {
+    "qid": "term-014",
+    "qtype": "term",
+    "question": "现金流量表中“投资活动产生的现金流量净额”的两期金额分别是多少？",
+    "reference_answer": "两期金额分别为1,480,719,369.01元和-20,238,695.64元。",
+    "source_chunk_id": "600276_2023_00329",
+    "source_meta": {
+      "company_name": "恒瑞医药",
+      "fiscal_year": 2023,
+      "chunk_type": "table",
+      "stock_code": "600276"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600276_2023_00329",
+        "rank": 1,
+        "company_name": "恒瑞医药",
+        "fiscal_year": 2023,
+        "page_num": 151,
+        "chunk_type": "table",
+        "rrf_score": 0.03553921568627451,
+        "rerank_score": 0.9844123721122742
+      },
+      {
+        "chunk_id": "601985_2024_00064",
+        "rank": 2,
+        "company_name": "中国核电",
+        "fiscal_year": 2024,
+        "page_num": 16,
+        "chunk_type": "text",
+        "rrf_score": 0.03252247488101534,
+        "rerank_score": 0.9836822152137756
+      },
+      {
+        "chunk_id": "600519_2023_00188",
+        "rank": 3,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2023,
+        "page_num": 68,
+        "chunk_type": "table",
+        "rrf_score": 0.04018550013475711,
+        "rerank_score": 0.9813612103462219
+      },
+      {
+        "chunk_id": "600519_2023_00027",
+        "rank": 4,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2023,
+        "page_num": 8,
+        "chunk_type": "text",
+        "rrf_score": 0.03416569598136284,
+        "rerank_score": 0.9804932475090027
+      },
+      {
+        "chunk_id": "600887_2023_00062",
+        "rank": 5,
+        "company_name": "伊利股份",
+        "fiscal_year": 2023,
+        "page_num": 23,
+        "chunk_type": "text",
+        "rrf_score": 0.06456494325346784,
+        "rerank_score": 0.977512776851654
+      }
+    ],
+    "answer": "根据现有资料，几家公司年报中“投资活动产生的现金流量净额”的两期金额如下（单位：元）：\n\n| 公司 | 本期 | 上期 | 来源 |\n|---|---|---|---|\n| 恒瑞医药（2023年报） | 1,480,719,369.01 | -20,238,695.64 | [1] |\n| 中国核电（2024年报） | 64,489,630,574.30 | 22,332,069,646.18 | [2] |\n| 贵州茅台（2023年报，第三节主要财务指标） | -9,724,414,015.16 | -5,536,826,334.90 | [4] |\n| 伊利股份（2023年报） | -16,044,497,913.83 | -19,513,712,417.92（变动比例不适用） | [5] |\n\n补充说明：\n- 贵州茅台在资料[3]（第十节 p.68）中另有一处显示\"30,911,983,542.29 / 42,318,287,094.06\"，与[4]主要财务指标披露的数值不一致，可能为报表行次错位或母公司口径，无法据现有资料确认，建议以[4]或原年报完整报表为准。\n- 伊利股份投资活动现金流出的变动原因，年报说明为“上期收购澳优乳业导致上期取得子公司支付的现金净额较大”[5]。\n\n如您想了解某一特定公司的该指标，可进一步告知。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "现金流量表中“投资活动产生的现金流量净额”的两期金额分别是多少？",
+        "现金流量表 投资活动产生的现金流量净额 本期及上期金额"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 5070.5,
+    "timings_ms": {
+      "encode": 197.1,
+      "recall": 201.0,
+      "rerank": 524.0,
+      "total": 922.1
+    }
+  },
+  {
+    "qid": "term-015",
+    "qtype": "term",
+    "question": "年报中“按预期信用损失一般模型计提坏账准备”的各阶段划分依据和坏账准备计提比例是否适用？",
+    "reference_answer": "不适用。",
+    "source_chunk_id": "600887_2024_00368",
+    "source_meta": {
+      "company_name": "伊利股份",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "600887"
+    },
+    "contexts": [
+      {
+        "chunk_id": "601985_2024_00482",
+        "rank": 1,
+        "company_name": "中国核电",
+        "fiscal_year": 2024,
+        "page_num": 165,
+        "chunk_type": "text",
+        "rrf_score": 0.04374628639334521,
+        "rerank_score": 0.9994482398033142
+      },
+      {
+        "chunk_id": "600887_2025_00328",
+        "rank": 2,
+        "company_name": "伊利股份",
+        "fiscal_year": 2025,
+        "page_num": 150,
+        "chunk_type": "text",
+        "rrf_score": 0.03346298647050527,
+        "rerank_score": 0.9992444515228271
+      },
+      {
+        "chunk_id": "601985_2024_00495",
+        "rank": 3,
+        "company_name": "中国核电",
+        "fiscal_year": 2024,
+        "page_num": 177,
+        "chunk_type": "text",
+        "rrf_score": 0.039203926772832444,
+        "rerank_score": 0.9990957975387573
+      },
+      {
+        "chunk_id": "601985_2024_00850",
+        "rank": 4,
+        "company_name": "中国核电",
+        "fiscal_year": 2024,
+        "page_num": 316,
+        "chunk_type": "text",
+        "rrf_score": 0.03682120348787016,
+        "rerank_score": 0.9986950755119324
+      },
+      {
+        "chunk_id": "600887_2024_00344",
+        "rank": 5,
+        "company_name": "伊利股份",
+        "fiscal_year": 2024,
+        "page_num": 154,
+        "chunk_type": "table",
+        "rrf_score": 0.03656093961774062,
+        "rerank_score": 0.9985792636871338
+      }
+    ],
+    "answer": "根据现有资料，**均勾选“不适用”**，具体情况如下：\n\n| 公司/年报 | 报表项目 | 按预期信用损失一般模型计提坏账准备 | 各阶段划分依据和坏账准备计提比例 |\n|---|---|---|---|\n| 中国核电2024年报 | 其他应收款（应收股利） | □适用 √不适用 | 无 [1] |\n| 中国核电2024年报 | 长期应收款 | □适用 √不适用 | 无 [3] |\n| 中国核电2024年报 | 其他应收款（按账龄披露部分） | □适用 √不适用 | 无 [4] |\n| 伊利股份2025年报 | 合同资产 | □适用 √不适用 | 不适用 [2] |\n| 伊利股份2024年报 | （应收账款相关披露） | □适用 √不适用 | 不适用 [5] |\n\n**结论**：上述资料中涉及的所有项目，“按预期信用损失一般模型计提坏账准备”均标注为**不适用**，对应的“各阶段划分依据和坏账准备计提比例”亦为“无”或“不适用” [1][2][3][4][5]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "年报中“按预期信用损失一般模型计提坏账准备”的各阶段划分依据和坏账准备计提比例是否适用？",
+        "预期信用损失一般模型三阶段划分依据",
+        "坏账准备计提比例"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 8460.8,
+    "timings_ms": {
+      "encode": 416.5,
+      "recall": 275.7,
+      "rerank": 613.1,
+      "total": 1305.3
+    }
+  },
+  {
+    "qid": "term-016",
+    "qtype": "term",
+    "question": "合并财务报表中，计提坏账准备的金额及其占比分别是多少？",
+    "reference_answer": "计提坏账准备的金额为2,759,627，占比94.04%；该项目对应的坏账准备为1,715（计提比例0.06%）。",
+    "source_chunk_id": "002594_2023_00548",
+    "source_meta": {
+      "company_name": "比亚迪",
+      "fiscal_year": 2023,
+      "chunk_type": "table",
+      "stock_code": "002594"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000858_2024_00198",
+        "rank": 1,
+        "company_name": "五粮液",
+        "fiscal_year": 2024,
+        "page_num": 76,
+        "chunk_type": "text",
+        "rrf_score": 0.031009615384615385,
+        "rerank_score": 0.9920862317085266
+      },
+      {
+        "chunk_id": "000858_2023_00176",
+        "rank": 2,
+        "company_name": "五粮液",
+        "fiscal_year": 2023,
+        "page_num": 73,
+        "chunk_type": "text",
+        "rrf_score": 0.03278688524590164,
+        "rerank_score": 0.987015962600708
+      },
+      {
+        "chunk_id": "000858_2025_00188",
+        "rank": 3,
+        "company_name": "五粮液",
+        "fiscal_year": 2025,
+        "page_num": 71,
+        "chunk_type": "text",
+        "rrf_score": 0.030536130536130537,
+        "rerank_score": 0.9857337474822998
+      },
+      {
+        "chunk_id": "002594_2024_00584",
+        "rank": 4,
+        "company_name": "比亚迪",
+        "fiscal_year": 2024,
+        "page_num": 193,
+        "chunk_type": "table",
+        "rrf_score": 0.04287161334847169,
+        "rerank_score": 0.9816369414329529
+      },
+      {
+        "chunk_id": "002594_2023_00539",
+        "rank": 5,
+        "company_name": "比亚迪",
+        "fiscal_year": 2023,
+        "page_num": 177,
+        "chunk_type": "table",
+        "rrf_score": 0.03125,
+        "rerank_score": 0.9796282649040222
+      }
+    ],
+    "answer": "根据现有资料，坏账准备的**实际计提金额**仅在比亚迪的财务报表附注中披露（[4][5]）；五粮液三年年报的相关内容仅为坏账准备的重要性标准（如“单项计提金额占各类应收款项坏账准备总额的10%以上且金额大于4,000万元”），未披露具体计提金额 [1][2][3]。\n\n## 一、比亚迪 应收账款（2023年，2023年报披露）[5]\n\n| 项目 | 账面余额 | 占比 | 坏账准备 | 计提比例 |\n|---|---|---|---|---|\n| 单项计提坏账准备 | 1,021,450 | 1.56% | 1,005,380 | 98.43% |\n| 按信用风险特征组合 | 64,428,186 | 98.44% | 2,578,237 | 4.00% |\n| **合计** | **65,449,636** | 100.00% | **3,583,617** | 约5.48%（据合计数推算） |\n\n账面价值合计61,866,019；该应收账款含应收新能源汽车补贴款 [5]。\n\n## 二、比亚迪 其他应收款（2024年报披露）[4]\n\n**2024年：**\n\n| 项目 | 账面余额 | 占比 | 坏账准备 | 计提比例 |\n|---|---|---|---|---|\n| 单项计提坏账准备 | 174,793 | 4.61% | 174,793 | 100.00% |\n| 按信用风险特征组合 | 3,618,183 | 95.39% | 2,153 | 0.06% |\n| **合计** | **3,792,976** | 100.00% | **176,946** | 约4.66%（据合计数推算） |\n\n**2023年：**\n\n| 项目 | 账面余额 | 占比 | 坏账准备 | 计提比例 |\n|---|---|---|---|---|\n| 单项计提坏账准备 | 174,793 | 5.96% | 174,793 | 100.00% |\n| 按信用风险特征组合 | 2,759,627 | 94.04% | 1,715 | 0.06% |\n| **合计** | **2,934,420** | 100.00% | **176,508** | 约6.02%（据合计数推算） |\n\n**说明：**\n- 上述数字按原文引用，资料中未标注货币单位；\n- 合计行的“计提比例”系根据合计坏账准备÷合计账面余额推算，原文合计行未直接给出该比率；\n- 表中“占比”指各类账面余额占总额的比例，“计提比例”指坏账准备占相应账面余额的比例。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "合并财务报表中，计提坏账准备的金额及其占比分别是多少？",
+        "合并财务报表中计提坏账准备的金额及其占比"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 8050.5,
+    "timings_ms": {
+      "encode": 306.6,
+      "recall": 170.8,
+      "rerank": 549.0,
+      "total": 1026.4
+    }
+  },
+  {
+    "qid": "term-017",
+    "qtype": "term",
+    "question": "福耀（香港）有限公司出售联营企业金垦玻璃工业双辽有限公司25%股权后，尚未收讫的股权转让款余下款项是多少元？折现余额是多少元？预计多久收回？",
+    "reference_answer": "余下款项为35,000,000元，折现余额为28,891,321元，将于五年内全部收回。",
+    "source_chunk_id": "600660_2023_00393",
+    "source_meta": {
+      "company_name": "福耀玻璃",
+      "fiscal_year": 2023,
+      "chunk_type": "text",
+      "stock_code": "600660"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600660_2025_00405",
+        "rank": 1,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2025,
+        "page_num": 129,
+        "chunk_type": "text",
+        "rrf_score": 0.10693446980689052,
+        "rerank_score": 0.9994891881942749
+      },
+      {
+        "chunk_id": "600660_2023_00393",
+        "rank": 2,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2023,
+        "page_num": 131,
+        "chunk_type": "text",
+        "rrf_score": 0.12149904248554856,
+        "rerank_score": 0.9992753863334656
+      },
+      {
+        "chunk_id": "600660_2024_00415",
+        "rank": 3,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2024,
+        "page_num": 139,
+        "chunk_type": "text",
+        "rrf_score": 0.11706879920248561,
+        "rerank_score": 0.9990323781967163
+      },
+      {
+        "chunk_id": "600660_2023_00392",
+        "rank": 4,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2023,
+        "page_num": 131,
+        "chunk_type": "text",
+        "rrf_score": 0.0538008587497565,
+        "rerank_score": 0.9772868156433105
+      },
+      {
+        "chunk_id": "600660_2024_00253",
+        "rank": 5,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2024,
+        "page_num": 73,
+        "chunk_type": "table",
+        "rrf_score": 0.12507496816295566,
+        "rerank_score": 0.9743501543998718
+      }
+    ],
+    "answer": "根据2025年年报披露：截至2025年末，福耀香港出售金垦玻璃25%股权后尚未收讫的股权转让款余下款项为 **35,000,000元**，折现余额为 **31,351,699元**，将于**三年内**全部收回 [1]。\n\n补充历年年报数据供参考：\n- 2023年末：余下款项35,000,000元，折现余额28,891,321元，将于五年内全部收回 [2]；\n- 2024年末：余下款项35,000,000元，折现余额30,104,757元 [3]。\n\n可见随着时间推移，该款项折现余额逐年增加（逐期摊销折现差异），剩余回收期限也相应缩短。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "福耀（香港）有限公司出售联营企业金垦玻璃工业双辽有限公司25%股权后，尚未收讫的股权转让款余下款项是多少元？折现余额是多少元？预计多久收回？",
+        "福耀（香港）有限公司出售联营企业金垦玻璃工业双辽有限公司25%股权 尚未收讫的股权转让款余下款项金额",
+        "福耀（香港）有限公司 金垦玻璃工业双辽有限公司25%股权转让款 折现余额",
+        "福耀（香港）有限公司 金垦玻璃工业双辽有限公司股权转让款 预计收回时间"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 16084.4,
+    "timings_ms": {
+      "encode": 445.2,
+      "recall": 347.1,
+      "rerank": 682.3,
+      "total": 1474.6
+    }
+  },
+  {
+    "qid": "term-018",
+    "qtype": "term",
+    "question": "2023年度，对于未通过模型反映的外部环境等情况，本集团管理层计提了什么，从而进一步增强风险抵补能力？",
+    "reference_answer": "本集团管理层计提了损失准备，从而进一步增强风险抵补能力。",
+    "source_chunk_id": "002142_2023_00474",
+    "source_meta": {
+      "company_name": "宁波银行",
+      "fiscal_year": 2023,
+      "chunk_type": "text",
+      "stock_code": "002142"
+    },
+    "contexts": [
+      {
+        "chunk_id": "002142_2023_00474",
+        "rank": 1,
+        "company_name": "宁波银行",
+        "fiscal_year": 2023,
+        "page_num": 215,
+        "chunk_type": "text",
+        "rrf_score": 0.06557377049180328,
+        "rerank_score": 0.9998202919960022
+      },
+      {
+        "chunk_id": "000001_2023_00504",
+        "rank": 2,
+        "company_name": "平安银行",
+        "fiscal_year": 2023,
+        "page_num": 248,
+        "chunk_type": "table",
+        "rrf_score": 0.0599951226309922,
+        "rerank_score": 0.9986891150474548
+      },
+      {
+        "chunk_id": "000001_2024_00551",
+        "rank": 3,
+        "company_name": "平安银行",
+        "fiscal_year": 2024,
+        "page_num": 250,
+        "chunk_type": "table",
+        "rrf_score": 0.0610865036704589,
+        "rerank_score": 0.9985461235046387
+      },
+      {
+        "chunk_id": "002142_2024_00447",
+        "rank": 4,
+        "company_name": "宁波银行",
+        "fiscal_year": 2024,
+        "page_num": 208,
+        "chunk_type": "text",
+        "rrf_score": 0.06400409626216078,
+        "rerank_score": 0.9975226521492004
+      },
+      {
+        "chunk_id": "000001_2025_00535",
+        "rank": 5,
+        "company_name": "平安银行",
+        "fiscal_year": 2025,
+        "page_num": 243,
+        "chunk_type": "table",
+        "rrf_score": 0.05929462694168576,
+        "rerank_score": 0.9920158386230469
+      }
+    ],
+    "answer": "根据参考资料，2023年度，对于未通过模型反映的外部环境等情况，本集团管理层已考虑并因此**计提了损失准备**，从而进一步增强风险抵补能力。[1][2]\n\n该表述在宁波银行2023年报 [1] 和平安银行2023年报 [2] 中均有披露。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "2023年度，对于未通过模型反映的外部环境等情况，本集团管理层计提了什么，从而进一步增强风险抵补能力？",
+        "2023年度 本集团管理层对预期信用损失模型未能反映的外部环境等情况计提的减值准备 进一步增强风险抵补能力"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 18536.1,
+    "timings_ms": {
+      "encode": 367.2,
+      "recall": 213.7,
+      "rerank": 574.7,
+      "total": 1155.7
+    }
+  },
+  {
+    "qid": "paraphrase-001",
+    "qtype": "paraphrase",
+    "question": "宁波银行2025年年报中，为了让自家的资金底子更扎实、更能扛得住风险，这家公司在发债和股票上分别做了哪些操作？各自涉及多少钱？",
+    "reference_answer": "公司发行了89亿元二级资本债和100亿元永续债，同时赎回了2018年发行的100亿元优先股，通过这些操作优化资本结构，提升风险抵御和支持实体经济的能力。",
+    "source_chunk_id": "002142_2025_00111",
+    "source_meta": {
+      "company_name": "宁波银行",
+      "fiscal_year": 2025,
+      "chunk_type": "text",
+      "stock_code": "002142"
+    },
+    "contexts": [
+      {
+        "chunk_id": "002142_2025_00198",
+        "rank": 1,
+        "company_name": "宁波银行",
+        "fiscal_year": 2025,
+        "page_num": 68,
+        "chunk_type": "text",
+        "rrf_score": 0.07309491986652131,
+        "rerank_score": 0.706540584564209
+      },
+      {
+        "chunk_id": "002142_2025_00394",
+        "rank": 2,
+        "company_name": "宁波银行",
+        "fiscal_year": 2025,
+        "page_num": 165,
+        "chunk_type": "table",
+        "rrf_score": 0.09868813238713235,
+        "rerank_score": 0.6867882609367371
+      },
+      {
+        "chunk_id": "002142_2025_00389",
+        "rank": 3,
+        "company_name": "宁波银行",
+        "fiscal_year": 2025,
+        "page_num": 163,
+        "chunk_type": "table",
+        "rrf_score": 0.09348212824672308,
+        "rerank_score": 0.672410786151886
+      },
+      {
+        "chunk_id": "002142_2025_00026",
+        "rank": 4,
+        "company_name": "宁波银行",
+        "fiscal_year": 2025,
+        "page_num": 14,
+        "chunk_type": "text",
+        "rrf_score": 0.10862623515287982,
+        "rerank_score": 0.6460520625114441
+      },
+      {
+        "chunk_id": "002142_2025_00022",
+        "rank": 5,
+        "company_name": "宁波银行",
+        "fiscal_year": 2025,
+        "page_num": 12,
+        "chunk_type": "text",
+        "rrf_score": 0.09830732733405256,
+        "rerank_score": 0.622862696647644
+      }
+    ],
+    "answer": "根据参考资料，宁波银行2025年在“资本补充工具”（永续债+优先股）方面的操作如下：\n\n## 一、发债方面：发行永续债补充其他一级资本\n\n**1. 新发：25宁波银行永续债01，规模100亿元**\n- 经监管机构批准，2025年9月12日在全国银行间债券市场发行总规模**人民币100亿元**的无固定期限资本债券，募集资金于2025年9月16日到账；单位票面金额100元，票面利率**2.30%**，每5年为一个利率调整期 [2][3]\n- 该债券会计分类为**权益工具**，可计入其他一级资本（若因监管规则变化不再计入，公司有权全部赎回）[2][3]\n- 增强“抗风险能力”的条款设计：受偿顺序在存款人、一般债权人及次级债务之后；发生无法生存触发事件时，公司有权无需债券持有人同意将本金部分或全部**减记**；采取非累积利息支付方式，公司可取消派息而不构成违约 [2]\n\n**2. 存量：23宁波银行永续债01，规模100亿元**\n- 2023年7月6日发行、利率3.45%的100亿元永续债仍在存续。截至2025年末，集团发行在外的永续债合计**200亿元** [3]\n\n## 二、股票（优先股）方面：年内发生赎回/减少\n\n- 2025年境内优先股**本年减少4,850万股，账面价值99.85亿元**；由年初的14,850万股（148.10亿元）降至年末的**10,000万股（48.25亿元）** [3]\n- 需要说明的是：资料仅披露了优先股数量和账面价值的减少事实，未说明具体原因；从资本角度看，该操作实际上是其他权益工具的**减少**（148.10亿元−99.85亿元=48.25亿元），而非新增补充资本 [3]\n\n## 小结\n\n| 工具 | 操作 | 金额 |\n|---|---|---|\n| 永续债 | 新发\"25宁波银行永续债01\" | 100亿元（利率2.30%）[2][3] |\n| 永续债 | 存续\"23宁波银行永续债01\" | 100亿元（利率3.45%）[3] |\n| 优先股 | 年内减少4,850万股 | 账面价值99.85亿元 [3] |\n\n即：2025年公司真正“加码”资本的动作是**新发100亿元永续债**（计入其他一级资本、具损失吸收条款）；优先股方面则是**赎回/减少99.85亿元**。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "002142"
+      ],
+      "years": [
+        2025
+      ],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "宁波银行2025年年报中，为了让自家的资金底子更扎实、更能扛得住风险，这家公司在发债和股票上分别做了哪些操作？各自涉及多少钱？",
+        "宁波银行2025年年报 为补充资本发行债券的情况及募集资金金额",
+        "宁波银行2025年年报 发行股票权益融资 补充资本的情况及金额",
+        "宁波银行2025年年报 资本充足率 资本实力 变动情况"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 10304.6,
+    "timings_ms": {
+      "encode": 431.7,
+      "recall": 347.6,
+      "rerank": 545.0,
+      "total": 1324.3
+    }
+  },
+  {
+    "qid": "paraphrase-002",
+    "qtype": "paraphrase",
+    "question": "华能国际2025年年报中，上市公司的合营和联营企业名单里反复出现'同系子公司'这个说法，用大白话讲，它指的是一批什么样的公司？",
+    "reference_answer": "同系子公司指的是华能集团旗下子公司当中，除了这家上市公司本身及其子公司以外的其他公司。也就是说，这些公司同样受华能集团控制，但不属于上市公司体系内部，可以理解为上市公司的'兄弟公司'。",
+    "source_chunk_id": "600011_2025_00832",
+    "source_meta": {
+      "company_name": "华能国际",
+      "fiscal_year": 2025,
+      "chunk_type": "text",
+      "stock_code": "600011"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600011_2025_00832",
+        "rank": 1,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 329,
+        "chunk_type": "text",
+        "rrf_score": 0.09731980223783503,
+        "rerank_score": 0.9662386775016785
+      },
+      {
+        "chunk_id": "600011_2025_00830",
+        "rank": 2,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 328,
+        "chunk_type": "table",
+        "rrf_score": 0.09704699789311107,
+        "rerank_score": 0.8757501840591431
+      },
+      {
+        "chunk_id": "600011_2025_00831",
+        "rank": 3,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 328,
+        "chunk_type": "table",
+        "rrf_score": 0.09204196076985008,
+        "rerank_score": 0.8078140616416931
+      },
+      {
+        "chunk_id": "600011_2025_00836",
+        "rank": 4,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 331,
+        "chunk_type": "text",
+        "rrf_score": 0.08281121806333475,
+        "rerank_score": 0.7026350498199463
+      },
+      {
+        "chunk_id": "600011_2025_00842",
+        "rank": 5,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 335,
+        "chunk_type": "table",
+        "rrf_score": 0.08897191482792888,
+        "rerank_score": 0.6923719048500061
+      }
+    ],
+    "answer": "「同系子公司」用大白话说，就是：**华能集团旗下的“兄弟公司”**——它们和上市公司（华能国际）同属一个大家长（中国华能集团），但不在上市公司自己的合并范围内。\n\n年报里有明确定义：**“同系子公司为华能集团子公司中本公司及其子公司外的其他公司”** [1]。\n\n拆开来讲就是三层意思：\n\n1. **同一个“爹”**：这些公司和中国华能集团一样，最终都归华能集团控制，比如华能招标有限公司、华能核能技术研究院有限公司、中国华能财务有限责任公司等 [1][2]。\n\n2. **但不是“一家人”**：华能国际（上市公司）及其下属子公司是华能集团子公司中的一部分；除这部分之外的其他华能集团子公司，就统称“同系子公司” [1]。\n\n3. **为什么要在年报里专门列出来**：因为大家同属一个集团，上市公司和这些“兄弟公司”之间的买卖、借款、租赁等都属于关联交易，需要披露。年报还特别说明，有些公司既是上市公司的联营公司、又是华能集团的子公司，这类公司的交易额和余额会归到“同系子公司”项下列示 [1]。\n\n简单类比：华能集团像个大家庭，华能国际是“大儿子”带着自己的一群孩子（子公司）过日子；“同系子公司”就是家里其他儿子及其孩子们——血缘相同（同一控制人），但各自独立核算、不并入华能国际的账。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "600011"
+      ],
+      "years": [
+        2025
+      ],
+      "rewrite_ok": true,
+      "intent": "concept",
+      "queries": [
+        "华能国际2025年年报中，上市公司的合营和联营企业名单里反复出现'同系子公司'这个说法，用大白话讲，它指的是一批什么样的公司？",
+        "华能国际2025年年报中合营企业和联营企业名单里“同系子公司”的含义及所指公司范围",
+        "华能国际2025年年度报告 重要合营企业和联营企业情况 同系子公司 指哪些公司"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 33926.4,
+    "timings_ms": {
+      "encode": 468.2,
+      "recall": 308.3,
+      "rerank": 560.1,
+      "total": 1336.6
+    }
+  },
+  {
+    "qid": "paraphrase-003",
+    "qtype": "paraphrase",
+    "question": "长江电力2023年年报中，如果一家公司跟别人搭伙一起干一个项目，各自怎么分账？公司在自己账本上要记进去哪些东西？",
+    "reference_answer": "公司要按相关企业会计准则的规定，在自己账上确认五类内容：（1）自己单独持有的资产，以及按自己的份额分摊的共同持有资产；（2）自己单独承担的欠债，以及按份额应分摊的共同承担欠债；（3）卖掉自己享有的合伙项目产出份额所产生的收入；（4）按自己的份额确认合伙项目因卖出产出所产生的收入；（5）自己单独花的费用，以及按份额应分摊的合伙项目费用。",
+    "source_chunk_id": "600900_2023_00279",
+    "source_meta": {
+      "company_name": "长江电力",
+      "fiscal_year": 2023,
+      "chunk_type": "text",
+      "stock_code": "600900"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600900_2023_00003",
+        "rank": 1,
+        "company_name": "长江电力",
+        "fiscal_year": 2023,
+        "page_num": 2,
+        "chunk_type": "text",
+        "rrf_score": 0.05798239750445633,
+        "rerank_score": 0.8416860103607178
+      },
+      {
+        "chunk_id": "600900_2023_00217",
+        "rank": 2,
+        "company_name": "长江电力",
+        "fiscal_year": 2023,
+        "page_num": 85,
+        "chunk_type": "text",
+        "rrf_score": 0.05452153711744149,
+        "rerank_score": 0.6417025327682495
+      },
+      {
+        "chunk_id": "600900_2023_00214",
+        "rank": 3,
+        "company_name": "长江电力",
+        "fiscal_year": 2023,
+        "page_num": 85,
+        "chunk_type": "text",
+        "rrf_score": 0.08742144009490374,
+        "rerank_score": 0.5657692551612854
+      },
+      {
+        "chunk_id": "600900_2023_00136",
+        "rank": 4,
+        "company_name": "长江电力",
+        "fiscal_year": 2023,
+        "page_num": 50,
+        "chunk_type": "table",
+        "rrf_score": 0.07866039371012663,
+        "rerank_score": 0.40290793776512146
+      },
+      {
+        "chunk_id": "600900_2023_00066",
+        "rank": 5,
+        "company_name": "长江电力",
+        "fiscal_year": 2023,
+        "page_num": 26,
+        "chunk_type": "table",
+        "rrf_score": 0.046077266948692734,
+        "rerank_score": 0.37681886553764343
+      }
+    ],
+    "answer": "根据现有资料无法回答。\n\n您问的是关于“与他人合作共同经营项目时各方如何分账、公司自身账务如何确认”的问题（即合营安排/共同经营的会计处理），但所提供的参考资料中并未涉及这方面的内容：\n\n- [1] 是2023年度利润分配预案（每10股派8.20元现金股利）；\n- [2][3] 涉及营业成本构成及审计意见；\n- [4] 是控股股东关于关联交易、同业竞争、分红承诺等承诺事项；\n- [5] 涉及募集资金置换、减持上海电力股权及主要子公司情况。\n\n以上资料均未提及合营安排、共同经营的分类标准或各方分账及账务确认的具体规则。建议查阅该年报中“重要会计政策及会计估计”（如合营安排、长期股权投资相关章节）或财务报表附注中的相关披露，以获取准确信息。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "600900"
+      ],
+      "years": [
+        2023
+      ],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "长江电力2023年年报中，如果一家公司跟别人搭伙一起干一个项目，各自怎么分账？公司在自己账本上要记进去哪些东西？",
+        "长江电力2023年年报 合营安排的分类及各参与方的会计处理方法（共同经营与合营企业）",
+        "长江电力2023年年报 公司对合营安排的账务处理及确认的会计科目（如长期股权投资、收入与费用份额的确认）"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 14323.4,
+    "timings_ms": {
+      "encode": 271.9,
+      "recall": 247.5,
+      "rerank": 686.0,
+      "total": 1205.4
+    }
+  },
+  {
+    "qid": "paraphrase-004",
+    "qtype": "paraphrase",
+    "question": "云南白药2024年的年报里，天津那家做研发试验的子公司，是不是由公司百分之百持股的？",
+    "reference_answer": "被并进来一起算账的投资盘子有两个：一是中金定向资产管理——GF-CICC启瑞1号，二是上海信托铂金系列港市场投资单一资金信托。公司认定自己能做主的理由是：云南白药对这些投资拥有主导权，能通过参与相关活动分享收益或承担亏损（即可变回报），并且有能力运用这种主导权去影响自己最终能拿到多少回报。说白了就是这些投资怎么运作、赚了赔了都由公司掌控，所以视为由公司控制，合并进公司整体的账目中。",
+    "source_chunk_id": "000538_2024_00513",
+    "source_meta": {
+      "company_name": "云南白药",
+      "fiscal_year": 2024,
+      "chunk_type": "table",
+      "stock_code": "000538"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000538_2024_00513",
+        "rank": 1,
+        "company_name": "云南白药",
+        "fiscal_year": 2024,
+        "page_num": 236,
+        "chunk_type": "table",
+        "rrf_score": 0.06332301578203219,
+        "rerank_score": 0.9711979627609253
+      },
+      {
+        "chunk_id": "000538_2024_00535",
+        "rank": 2,
+        "company_name": "云南白药",
+        "fiscal_year": 2024,
+        "page_num": 245,
+        "chunk_type": "text",
+        "rrf_score": 0.04045485933618517,
+        "rerank_score": 0.9565549492835999
+      },
+      {
+        "chunk_id": "000538_2024_00510",
+        "rank": 3,
+        "company_name": "云南白药",
+        "fiscal_year": 2024,
+        "page_num": 235,
+        "chunk_type": "table",
+        "rrf_score": 0.058837305413968866,
+        "rerank_score": 0.9553074240684509
+      },
+      {
+        "chunk_id": "000538_2024_00401",
+        "rank": 4,
+        "company_name": "云南白药",
+        "fiscal_year": 2024,
+        "page_num": 183,
+        "chunk_type": "text",
+        "rrf_score": 0.031700167113235554,
+        "rerank_score": 0.9526862502098083
+      },
+      {
+        "chunk_id": "000538_2024_00400",
+        "rank": 5,
+        "company_name": "云南白药",
+        "fiscal_year": 2024,
+        "page_num": 182,
+        "chunk_type": "table",
+        "rrf_score": 0.04622937397297935,
+        "rerank_score": 0.9379384517669678
+      }
+    ],
+    "answer": "是的。根据年报附注“其他”部分的子公司信息，**云核医药（天津）有限公司**即位于天津市、从事“研究和试验发展”的子公司，其注册资本为人民币20,000,000.00元，公司持股比例为**100.00%**，少数股东持股比例为0.00%，取得方式为设立或投资 [1]。\n\n补充说明：资料[4]中云核医药（天津）有限公司对应的\"20.00%\"出现在“重大会计判断和估计”部分，为其他性质的比例（如同类多家子公司并列列示），并非持股比例，不影响上述100%持股的结论。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "000538"
+      ],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "云南白药2024年的年报里，天津那家做研发试验的子公司，是不是由公司百分之百持股的？",
+        "云南白药2024年年报 天津 研发 子公司 持股比例 是否100% 全资子公司"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 16257.0,
+    "timings_ms": {
+      "encode": 220.2,
+      "recall": 155.5,
+      "rerank": 570.6,
+      "total": 946.3
+    }
+  },
+  {
+    "qid": "paraphrase-005",
+    "qtype": "paraphrase",
+    "question": "长城汽车2023年年报里，到年底公司账上已经算作资产、但房产证还没办好的房子，加起来值多少钱？",
+    "reference_answer": "截至2023年12月31日，公司尚未取得房产证的房产账面价值为人民币1,282,954,400.03元，相关房产证正在办理中；2022年12月31日这一金额为人民币1,999,887,754.17元，即2023年底比上一年底减少了约7.17亿元。",
+    "source_chunk_id": "601633_2023_00630",
+    "source_meta": {
+      "company_name": "长城汽车",
+      "fiscal_year": 2023,
+      "chunk_type": "table",
+      "stock_code": "601633"
+    },
+    "contexts": [
+      {
+        "chunk_id": "601633_2023_00707",
+        "rank": 1,
+        "company_name": "长城汽车",
+        "fiscal_year": 2023,
+        "page_num": 268,
+        "chunk_type": "table",
+        "rrf_score": 0.031009615384615385,
+        "rerank_score": 0.7532921433448792
+      },
+      {
+        "chunk_id": "601633_2023_00850",
+        "rank": 2,
+        "company_name": "长城汽车",
+        "fiscal_year": 2023,
+        "page_num": 320,
+        "chunk_type": "table",
+        "rrf_score": 0.031754032258064516,
+        "rerank_score": 0.7319890856742859
+      },
+      {
+        "chunk_id": "601633_2023_00678",
+        "rank": 3,
+        "company_name": "长城汽车",
+        "fiscal_year": 2023,
+        "page_num": 258,
+        "chunk_type": "table",
+        "rrf_score": 0.028814262023217248,
+        "rerank_score": 0.7316458821296692
+      },
+      {
+        "chunk_id": "601633_2023_00446",
+        "rank": 4,
+        "company_name": "长城汽车",
+        "fiscal_year": 2023,
+        "page_num": 177,
+        "chunk_type": "table",
+        "rrf_score": 0.032266458495966696,
+        "rerank_score": 0.7078707218170166
+      },
+      {
+        "chunk_id": "601633_2023_00785",
+        "rank": 5,
+        "company_name": "长城汽车",
+        "fiscal_year": 2023,
+        "page_num": 299,
+        "chunk_type": "table",
+        "rrf_score": 0.029236022193768675,
+        "rerank_score": 0.6853625178337097
+      }
+    ],
+    "answer": "根据现有资料无法回答。\n\n问题所指的通常是财务报表附注「固定资产」项目中“未办妥产权证书的房屋建筑物账面价值”这一披露内容，但【参考资料】中并未包含该部分信息：\n\n- [4]（p.177）仅列示了母公司资产负债表中固定资产、投资性房地产等项目的账面价值（如固定资产 13,530,480,218.14 元、投资性房地产 2,700,621,180.62 元），但没有披露其中未取得产权证书的房产金额；\n- [1][2][3][5] 分别为现金流量表补充资料、未分配利润、应收账款账龄等内容，与产权证书无关。\n\n因此，依据现有资料无法确定长城汽车2023年年底账上已确认为资产但尚未办妥房产证的房屋建筑物的金额。如需回答，需查阅年报中固定资产附注（合并报表部分及母公司部分）中关于“未办妥产权证书”的具体披露。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "601633"
+      ],
+      "years": [
+        2023
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "长城汽车2023年年报里，到年底公司账上已经算作资产、但房产证还没办好的房子，加起来值多少钱？",
+        "长城汽车2023年年报 未办妥产权证书的房屋建筑物 账面价值合计"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 5809.0,
+    "timings_ms": {
+      "encode": 265.1,
+      "recall": 178.4,
+      "rerank": 646.4,
+      "total": 1089.8
+    }
+  },
+  {
+    "qid": "paraphrase-006",
+    "qtype": "paraphrase",
+    "question": "长城汽车2025年年报中，现在全球推行了一套新税规，要求跨国经营的企业至少按统一的最低标准交税。公司担心日后因为这套新规可能要多交的税，是提前在账上体现出来，还是等实际交钱的时候才记账？",
+    "reference_answer": "等实际交的时候才记账。该公司适用了新税规相关披露的临时豁免规定，不在账上提前确认这类税（即不确认由此产生的递延所得税资产或负债），待实际发生交税时，才将相关税额计入当年的所得税费用。",
+    "source_chunk_id": "601633_2025_00626",
+    "source_meta": {
+      "company_name": "长城汽车",
+      "fiscal_year": 2025,
+      "chunk_type": "table",
+      "stock_code": "601633"
+    },
+    "contexts": [
+      {
+        "chunk_id": "601633_2025_00504",
+        "rank": 1,
+        "company_name": "长城汽车",
+        "fiscal_year": 2025,
+        "page_num": 192,
+        "chunk_type": "table",
+        "rrf_score": 0.04344971967922788,
+        "rerank_score": 0.4558064937591553
+      },
+      {
+        "chunk_id": "601633_2025_00064",
+        "rank": 2,
+        "company_name": "长城汽车",
+        "fiscal_year": 2025,
+        "page_num": 26,
+        "chunk_type": "text",
+        "rrf_score": 0.031009615384615385,
+        "rerank_score": 0.30692848563194275
+      },
+      {
+        "chunk_id": "601633_2025_00001",
+        "rank": 3,
+        "company_name": "长城汽车",
+        "fiscal_year": 2025,
+        "page_num": 2,
+        "chunk_type": "text",
+        "rrf_score": 0.03200204813108039,
+        "rerank_score": 0.2653025686740875
+      },
+      {
+        "chunk_id": "601633_2025_00267",
+        "rank": 4,
+        "company_name": "长城汽车",
+        "fiscal_year": 2025,
+        "page_num": 84,
+        "chunk_type": "table",
+        "rrf_score": 0.05113184732630105,
+        "rerank_score": 0.1571888029575348
+      },
+      {
+        "chunk_id": "601633_2025_00269",
+        "rank": 5,
+        "company_name": "长城汽车",
+        "fiscal_year": 2025,
+        "page_num": 84,
+        "chunk_type": "table",
+        "rrf_score": 0.035141491710675474,
+        "rerank_score": 0.1352079063653946
+      }
+    ],
+    "answer": "**根据现有资料无法回答。**\n\n您所提到的“全球最低税”（即OECD支柱二规则）相关内容，在提供的【参考资料】中并未出现。现有资料仅涉及以下税项信息：\n\n- 中国大陆集团内公司适用25%企业所得税率，高新技术企业（2025–2027年）适用15%优惠税率 [1][2]；\n- 巴西子公司涉及的商品流通服务税（ICMS）、社会一体化费（PIS）和社会保险融资贡献费（COFINS）等巴西税种及计税方法 [1]；\n- 2025年度归母净利润及利润分配方案 [3]；\n- 内部控制审计报告及环境信息披露情况 [4][5]。\n\n上述资料均未提及长城汽车对全球最低税（支柱二）规则的会计处理方式——即相关潜在补缴税款是提前确认为递延所得税/预计负债，还是待实际缴纳时入账。若需回答此问题，需查阅年报中关于“递延所得税”“国际税收改革（支柱二）”或“其他重要会计政策”的更完整披露内容，当前提供的资料不足以支撑回答。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "601633"
+      ],
+      "years": [
+        2025
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "长城汽车2025年年报中，现在全球推行了一套新税规，要求跨国经营的企业至少按统一的最低标准交税。公司担心日后因为这套新规可能要多交的税，是提前在账上体现出来，还是等实际交钱的时候才记账？",
+        "长城汽车2025年年报 全球最低税 政策影响 相关披露",
+        "全球最低税下可能补缴的所得税 是否已计提确认递延所得税负债 还是待实际缴纳时确认"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 23228.8,
+    "timings_ms": {
+      "encode": 421.4,
+      "recall": 307.4,
+      "rerank": 516.5,
+      "total": 1245.3
+    }
+  },
+  {
+    "qid": "paraphrase-007",
+    "qtype": "paraphrase",
+    "question": "迈瑞医疗2024年年报中，2024年公司新请来帮忙查账的是哪家机构？一共要付多少钱？其中专门用来检查内控的钱占多少？",
+    "reference_answer": "公司2024年度聘任安永华明会计师事务所（特殊普通合伙）作为审计机构，审计费用为人民币538.00万元，其中内部控制审计费用为人民币55.00万元。",
+    "source_chunk_id": "300760_2024_00353",
+    "source_meta": {
+      "company_name": "迈瑞医疗",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "300760"
+    },
+    "contexts": [
+      {
+        "chunk_id": "300760_2024_00301",
+        "rank": 1,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 145,
+        "chunk_type": "text",
+        "rrf_score": 0.1066817224975397,
+        "rerank_score": 0.964495062828064
+      },
+      {
+        "chunk_id": "300760_2024_00303",
+        "rank": 2,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 146,
+        "chunk_type": "table",
+        "rrf_score": 0.07153578866986775,
+        "rerank_score": 0.884680986404419
+      },
+      {
+        "chunk_id": "300760_2024_00000",
+        "rank": 3,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 2,
+        "chunk_type": "text",
+        "rrf_score": 0.06090574015205792,
+        "rerank_score": 0.7888155579566956
+      },
+      {
+        "chunk_id": "300760_2024_00632",
+        "rank": 4,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 301,
+        "chunk_type": "table",
+        "rrf_score": 0.06098440721391542,
+        "rerank_score": 0.7721083164215088
+      },
+      {
+        "chunk_id": "300760_2024_00625",
+        "rank": 5,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 297,
+        "chunk_type": "table",
+        "rrf_score": 0.08566992521728636,
+        "rerank_score": 0.769630491733551
+      }
+    ],
+    "answer": "根据现有资料，只能部分回答：\n\n**审计机构**：迈瑞医疗2024年度财务报告内部控制的审计机构为**安永华明会计师事务所（特殊普通合伙）**，其已对公司2024年12月31日财务报告内部控制的有效性进行审计并出具报告 [1]。\n\n**无法回答的部分**：\n1. **是否为“新聘请”**：资料中未提及安永华明是本年新聘任的审计机构，无法确认。\n2. **审计费用总额及内控审计费用占比**：所提供的资料（年报第145、146、2、301、297页节选）中均未披露审计费用金额，也没有内控审计费用与财报审计费用的分项数据。\n\n根据现有资料无法回答费用相关的问题，如需准确数据，建议查阅年报中“公司治理”章节下的“审计费用/聘任会计师事务所”相关披露。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "300760"
+      ],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "迈瑞医疗2024年年报中，2024年公司新请来帮忙查账的是哪家机构？一共要付多少钱？其中专门用来检查内控的钱占多少？",
+        "迈瑞医疗2024年新聘任会计师事务所",
+        "迈瑞医疗2024年度审计费用",
+        "迈瑞医疗2024年度内部控制审计费用"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 8229.9,
+    "timings_ms": {
+      "encode": 392.7,
+      "recall": 377.1,
+      "rerank": 561.1,
+      "total": 1330.9
+    }
+  },
+  {
+    "qid": "paraphrase-008",
+    "qtype": "paraphrase",
+    "question": "长城汽车2024年的年报里，如果公司把一笔非交易性权益投资指定为以公允价值计量且其变动计入其他综合收益，等以后不再持有这项投资时，之前记在其他综合收益里的累计赚亏最后要转到哪里？",
+    "reference_answer": "不会直接算进当期利润。这类非交易性权益工具投资的价格涨跌先计入其他综合收益；等终止确认（卖掉）时，之前计入其他综合收益的累计利得或损失才从其他综合收益中转出，计入留存收益。至于持有期间收到的分红（股利）：当公司收取股利的权利已经确立、与股利相关的经济利益很可能流入公司、且股利金额能够可靠计量时，确认股利收入并计入当期损益。",
+    "source_chunk_id": "601633_2024_00502",
+    "source_meta": {
+      "company_name": "长城汽车",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "601633"
+    },
+    "contexts": [
+      {
+        "chunk_id": "601633_2024_00502",
+        "rank": 1,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 192,
+        "chunk_type": "text",
+        "rrf_score": 0.09836065573770493,
+        "rerank_score": 0.9846968650817871
+      },
+      {
+        "chunk_id": "601633_2024_00499",
+        "rank": 2,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 191,
+        "chunk_type": "text",
+        "rrf_score": 0.07691397512598701,
+        "rerank_score": 0.7002401947975159
+      },
+      {
+        "chunk_id": "601633_2024_00553",
+        "rank": 3,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 217,
+        "chunk_type": "table",
+        "rrf_score": 0.07866753543073034,
+        "rerank_score": 0.6950624585151672
+      },
+      {
+        "chunk_id": "601633_2024_00606",
+        "rank": 4,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 241,
+        "chunk_type": "table",
+        "rrf_score": 0.09310216125325234,
+        "rerank_score": 0.555339515209198
+      },
+      {
+        "chunk_id": "601633_2024_00535",
+        "rank": 5,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 209,
+        "chunk_type": "table",
+        "rrf_score": 0.06587084352250727,
+        "rerank_score": 0.5404210090637207
+      }
+    ],
+    "answer": "根据参考资料，长城汽车在会计政策中明确规定：**指定为以公允价值计量且其变动计入其他综合收益的非交易性权益工具投资，在终止确认（即不再持有）时，之前计入其他综合收益的累计利得或损失从其他综合收益中转出，计入留存收益**（而非计入当期损益）[1]。\n\n补充说明两点：\n\n1. **与债务类FVOCI的区别**：分类为FVOCI的金融资产（如债权类），终止确认时之前计入其他综合收益的累计利得或损失是转入**当期损益**；而指定为FVOCI的非交易性**权益工具**则转入**留存收益**，这是两者的关键差异 [1]。\n\n2. **持股期间的股利处理例外**：虽然公允价值变动不进损益，但持有期间若收取股利的权利已确立、经济利益很可能流入且金额能可靠计量，股利收入仍计入**当期损益** [1]。从年报附注「其他权益工具投资」明细中也可看到，公司对非上市权益工具投资确认了股利收入（2024年为2,959,600.00元），且列示的指定原因为「非交易目的持有」[4]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "601633"
+      ],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "concept",
+      "queries": [
+        "长城汽车2024年的年报里，如果公司把一笔非交易性权益投资指定为以公允价值计量且其变动计入其他综合收益，等以后不再持有这项投资时，之前记在其他综合收益里的累计赚亏最后要转到哪里？",
+        "长城汽车2024年年度报告 非交易性权益工具投资指定为以公允价值计量且其变动计入其他综合收益 处置时原计入其他综合收益的累计利得或损失转入哪个科目 会计政策",
+        "长城汽车2024年 金融工具会计政策 指定为以公允价值计量且其变动计入其他综合收益的权益投资 终止确认 其他综合收益累计变动额结转 留存收益"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 15664.6,
+    "timings_ms": {
+      "encode": 352.2,
+      "recall": 249.9,
+      "rerank": 580.0,
+      "total": 1182.2
+    }
+  },
+  {
+    "qid": "paraphrase-009",
+    "qtype": "paraphrase",
+    "question": "贵州茅台2024年的年报里，公司请自家集团下属的物流公司帮忙运货，付给贵州茅台酒厂（集团）物流有限责任公司的运输服务费一共是多少钱？",
+    "reference_answer": "只有集团旗下物流公司承担的拉货运输这一项，是按照跟集团没有关系的普通公司做生意的市场行情价格来算钱的；其余请这些'自家人'公司干活的钱，都是双方事先商量好的价格来结算。付款方式上，所有这些钱都是用现金支付的。",
+    "source_chunk_id": "600519_2024_00123",
+    "source_meta": {
+      "company_name": "贵州茅台",
+      "fiscal_year": 2024,
+      "chunk_type": "table",
+      "stock_code": "600519"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600519_2024_00124",
+        "rank": 1,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2024,
+        "page_num": 43,
+        "chunk_type": "table",
+        "rrf_score": 0.0637560803891449,
+        "rerank_score": 0.9712767004966736
+      },
+      {
+        "chunk_id": "600519_2024_00123",
+        "rank": 2,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2024,
+        "page_num": 43,
+        "chunk_type": "table",
+        "rrf_score": 0.06430053288858155,
+        "rerank_score": 0.9696339964866638
+      },
+      {
+        "chunk_id": "600519_2024_00122",
+        "rank": 3,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2024,
+        "page_num": 43,
+        "chunk_type": "table",
+        "rrf_score": 0.05999047059497879,
+        "rerank_score": 0.9582782983779907
+      },
+      {
+        "chunk_id": "600519_2024_00125",
+        "rank": 4,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2024,
+        "page_num": 43,
+        "chunk_type": "table",
+        "rrf_score": 0.05728199053007237,
+        "rerank_score": 0.9544958472251892
+      },
+      {
+        "chunk_id": "600519_2024_00121",
+        "rank": 5,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2024,
+        "page_num": 43,
+        "chunk_type": "table",
+        "rrf_score": 0.05856869498660544,
+        "rerank_score": 0.9427048563957214
+      }
+    ],
+    "answer": "根据贵州茅台2024年报，公司接受贵州茅台酒厂（集团）物流有限责任公司（母公司的控股子公司）提供的**货物运输服务**，2024年度交易金额为 **242,909,426.03元**（约占同类交易的67.15%），交易定价参照独立第三方交易价格执行，以现金方式支付 [1]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "600519"
+      ],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "贵州茅台2024年的年报里，公司请自家集团下属的物流公司帮忙运货，付给贵州茅台酒厂（集团）物流有限责任公司的运输服务费一共是多少钱？",
+        "2024年年报 公司向关联方贵州茅台酒厂（集团）物流有限责任公司支付运输服务费 接受劳务关联交易发生金额"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 10553.6,
+    "timings_ms": {
+      "encode": 336.7,
+      "recall": 171.8,
+      "rerank": 585.6,
+      "total": 1094.2
+    }
+  },
+  {
+    "qid": "paraphrase-010",
+    "qtype": "paraphrase",
+    "question": "比亚迪2024年年报中，会计师事务所查完公司账后，把查账过程中最要紧的问题写进公开的审计报告，在什么情况下这些问题可以不写出来？",
+    "reference_answer": "根据片段内容，有两种情况可以不写：一是法律法规禁止公开披露这些事项；二是在极少数情形下，如果合理预期把该事项写进审计报告所造成的负面后果超过在公众利益方面产生的好处，审计师就可以决定不在报告中沟通该事项。",
+    "source_chunk_id": "002594_2024_00468",
+    "source_meta": {
+      "company_name": "比亚迪",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "002594"
+    },
+    "contexts": [
+      {
+        "chunk_id": "002594_2024_00459",
+        "rank": 1,
+        "company_name": "比亚迪",
+        "fiscal_year": 2024,
+        "page_num": 137,
+        "chunk_type": "table",
+        "rrf_score": 0.06056531811373199,
+        "rerank_score": 0.7999266982078552
+      },
+      {
+        "chunk_id": "002594_2024_00461",
+        "rank": 2,
+        "company_name": "比亚迪",
+        "fiscal_year": 2024,
+        "page_num": 138,
+        "chunk_type": "table",
+        "rrf_score": 0.05783192292981449,
+        "rerank_score": 0.7968012690544128
+      },
+      {
+        "chunk_id": "002594_2024_00462",
+        "rank": 3,
+        "company_name": "比亚迪",
+        "fiscal_year": 2024,
+        "page_num": 138,
+        "chunk_type": "table",
+        "rrf_score": 0.04215194551502033,
+        "rerank_score": 0.7794604301452637
+      },
+      {
+        "chunk_id": "002594_2024_00466",
+        "rank": 4,
+        "company_name": "比亚迪",
+        "fiscal_year": 2024,
+        "page_num": 139,
+        "chunk_type": "text",
+        "rrf_score": 0.038101070189251456,
+        "rerank_score": 0.6439969539642334
+      },
+      {
+        "chunk_id": "002594_2024_00222",
+        "rank": 5,
+        "company_name": "比亚迪",
+        "fiscal_year": 2024,
+        "page_num": 72,
+        "chunk_type": "table",
+        "rrf_score": 0.041613248708736277,
+        "rerank_score": 0.5855250358581543
+      }
+    ],
+    "answer": "**根据现有资料无法回答。**\n\n所提供的资料片段中，并未包含“关键审计事项在何种情形下可以不予披露/不沟通”的相关规定。资料实际内容为：\n\n- 比亚迪2024年报审计报告中，安永华明识别了两个关键审计事项：\n  1. **收入确认**——因本年收入持续增长（营业收入人民币7,771亿元，较2023年增加1,748亿元，增长率29%），且销售量大、涉及不同类型客户和业务类型，不恰当确认对财务报表有重大影响 [1]；\n  2. **应收账款和长期应收款的预期信用损失**——因管理层对不同信用风险特征组合类别的划分、预期信用损失率的估计等涉及重大的判断和估计（应收账款账面价值人民币623亿元、长期应收款人民币216亿元）[2][3]。\n- 资料[4]仅说明了注册会计师对财务报表审计的一般责任（对是否不存在由于舞弊或错误导致的重大错报获取合理保证），未涉及关键审计事项的豁免情形。\n- 资料[5]为内部控制自我评价报告内容，与该问题无关。\n\n“哪些情形下可以不披露关键审计事项”属于审计准则层面的规定（如审计意见类型、法规限制等），不在所给参考资料范围内。如需回答，需补充相关审计准则或审计报告完整段落。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "002594"
+      ],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "concept",
+      "queries": [
+        "比亚迪2024年年报中，会计师事务所查完公司账后，把查账过程中最要紧的问题写进公开的审计报告，在什么情况下这些问题可以不写出来？",
+        "比亚迪2024年年报 审计报告 关键审计事项 不在审计报告中沟通关键审计事项的情形"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 8611.1,
+    "timings_ms": {
+      "encode": 335.5,
+      "recall": 161.8,
+      "rerank": 505.4,
+      "total": 1002.7
+    }
+  },
+  {
+    "qid": "paraphrase-011",
+    "qtype": "paraphrase",
+    "question": "华能国际2025年年报中，这一年公司靠发长期债券、拉新股东入伙这些方式一共到手多少钱？跟上一年比是变多还是变少了？",
+    "reference_answer": "本期合计25,720,337,317元（约257.20亿元），上期合计26,896,698,259元（约268.97亿元），今年比上一年少了约11.76亿元。其中：发行永续债收到245亿元，子公司吸收少数股东投资收到932,227,181元，子公司所有者权益份额变化收到288,110,136元。",
+    "source_chunk_id": "600011_2025_00697",
+    "source_meta": {
+      "company_name": "华能国际",
+      "fiscal_year": 2025,
+      "chunk_type": "table",
+      "stock_code": "600011"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600011_2025_00794",
+        "rank": 1,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 315,
+        "chunk_type": "table",
+        "rrf_score": 0.04722835723395651,
+        "rerank_score": 0.9521250128746033
+      },
+      {
+        "chunk_id": "600011_2025_00003",
+        "rank": 2,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 2,
+        "chunk_type": "text",
+        "rrf_score": 0.05114052614052614,
+        "rerank_score": 0.9378262162208557
+      },
+      {
+        "chunk_id": "600011_2025_00793",
+        "rank": 3,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 315,
+        "chunk_type": "table",
+        "rrf_score": 0.04624678588125292,
+        "rerank_score": 0.9367181658744812
+      },
+      {
+        "chunk_id": "600011_2025_00220",
+        "rank": 4,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 76,
+        "chunk_type": "table",
+        "rrf_score": 0.06368713260546999,
+        "rerank_score": 0.9294332265853882
+      },
+      {
+        "chunk_id": "600011_2025_00345",
+        "rank": 5,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 141,
+        "chunk_type": "table",
+        "rrf_score": 0.04534213829988478,
+        "rerank_score": 0.9247649908065796
+      }
+    ],
+    "answer": "**根据现有资料无法回答这个问题的完整答案**，原因如下：\n\n1. 问题指向的是筹资活动（发债+引入股东投资）的现金流入总额及与上年比较，但参考资料中**未包含现金流量表**（即“筹资活动产生的现金流量”及上年同期数据）；\n2. 债券发行信息仅摘录了年报第76页的部分列表[4]，无法汇总全年发债总额；\n3. 所有者权益变动表仅有本期数，未见上期对比数[5]。\n\n**资料中可确认的部分信息如下：**\n\n**股权/永续债类融资** [5]：\n- 本期其他权益工具（永续债）持有者投入资本：**24,500,000,000元**\n- 其他权益工具到期赎回：**-2,500,000,000元**\n- 少数股东投入资本：**1,694,027,150元**\n- “所有者投入和减少资本”项目合计为**净减少795,525,996元**（含赎回永续债的抵减）\n\n**债券发行（部分列表，为发行面额而非实际到手金额）** [4]：\n- 中期票据：第一期20亿元（2.00%）、第二期20亿元（1.80%）、第三期20亿元（2.12%）、第四期15亿元（2.28%）、第五期15亿元（2.20%）等\n- 超短期融资券：第十一期30亿元（1.45%）等\n\n需说明的是：[4]仅为年报中发债情况表的部分摘录（超短融已发行至第十一期，但资料中只显示了一期），且债券发行的实际现金流入需扣除发行费用；永续债在会计上计入权益工具而非负债。**如需准确回答“全年筹资到手总金额及同比增减”，需补充现金流量表及上年度同期数据。**",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "600011"
+      ],
+      "years": [
+        2025
+      ],
+      "rewrite_ok": true,
+      "intent": "comparison",
+      "queries": [
+        "华能国际2025年年报中，这一年公司靠发长期债券、拉新股东入伙这些方式一共到手多少钱？跟上一年比是变多还是变少了？",
+        "华能国际2025年筹资活动产生的现金流入：吸收投资收到的现金、发行债券收到的现金",
+        "华能国际2025年筹资活动现金流入较上年的同比增减变动情况"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 8746.1,
+    "timings_ms": {
+      "encode": 380.2,
+      "recall": 280.5,
+      "rerank": 529.9,
+      "total": 1190.6
+    }
+  },
+  {
+    "qid": "paraphrase-012",
+    "qtype": "paraphrase",
+    "question": "伊利股份2024年年报中，公司过去给某些资产做价值检查的时候用的资料，跟外面的公开资料或者后来实际发生的情况，有没有出现过明显对不上的情况？如果有，是什么原因？",
+    "reference_answer": "没有出现过。片段中两项均勾选了'不适用'：一是前述信息与以前年度减值测试采用的信息或外部信息明显不一致的差异原因不适用；二是以前年度减值测试采用信息与当年实际情况明显不一致的差异原因不适用。即公司以前年度评估资产价值时采用的资料与外部资料、与当年实际情况都不存在明显对不上的情况，因此无需说明差异原因。",
+    "source_chunk_id": "600887_2024_00553",
+    "source_meta": {
+      "company_name": "伊利股份",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "600887"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600887_2024_00202",
+        "rank": 1,
+        "company_name": "伊利股份",
+        "fiscal_year": 2024,
+        "page_num": 84,
+        "chunk_type": "table",
+        "rrf_score": 0.08939909159305097,
+        "rerank_score": 0.9297654628753662
+      },
+      {
+        "chunk_id": "600887_2024_00200",
+        "rank": 2,
+        "company_name": "伊利股份",
+        "fiscal_year": 2024,
+        "page_num": 83,
+        "chunk_type": "table",
+        "rrf_score": 0.0885603733997634,
+        "rerank_score": 0.9088202118873596
+      },
+      {
+        "chunk_id": "600887_2024_00542",
+        "rank": 3,
+        "company_name": "伊利股份",
+        "fiscal_year": 2024,
+        "page_num": 261,
+        "chunk_type": "table",
+        "rrf_score": 0.052190473434380706,
+        "rerank_score": 0.8929669260978699
+      },
+      {
+        "chunk_id": "600887_2024_00540",
+        "rank": 4,
+        "company_name": "伊利股份",
+        "fiscal_year": 2024,
+        "page_num": 259,
+        "chunk_type": "table",
+        "rrf_score": 0.06852391234281802,
+        "rerank_score": 0.8777137398719788
+      },
+      {
+        "chunk_id": "600887_2024_00205",
+        "rank": 5,
+        "company_name": "伊利股份",
+        "fiscal_year": 2024,
+        "page_num": 85,
+        "chunk_type": "text",
+        "rrf_score": 0.07727429185117524,
+        "rerank_score": 0.8718841075897217
+      }
+    ],
+    "answer": "**根据现有资料无法回答“是否存在明显对不上的情况”。**\n\n参考资料中与“过去估值所用假设 vs. 实际情况”最相关的内容，是审计报告中关于**商誉和商标权减值**这一关键审计事项的说明 [1]：\n\n1. **审计师确实执行了“回头看”的核对程序**：审计应对措施之一是“将管理层在上年计算预计未来现金流量现值时采用的估计与本年实际情况进行比较，评价管理层预测结果的历史准确性；评估管理层做出预测的合理性，并考虑管理层在选取数据时做出的判断是否会存在管理层偏向” [1]。\n\n2. **对关键假设的合理性进行了评估**：审计师结合公司历史经营情况及未来经营计划、市场发展情况等，评估了减值测试中采用的**预计收入增长率、税息折旧及摊销前利润盈利率、永续年增长率及折现率**等关键假设的合理性 [1]。\n\n3. **但资料中未披露核对结果**：上述内容仅描述了审计程序本身，属于减值测试的常规审计应对措施。参考资料**没有披露**管理层以前的预测与实际结果之间是否存在明显差异、是否发现管理层偏向，也没有披露所用假设与外部公开数据是否存在重大不符。\n\n**补充说明**：2024年末伊利集团商誉账面原值58.13亿元、减值准备余额34.76亿元；商标权账面原值20.94亿元、减值准备余额1.14亿元 [1]。由于商誉和商标权金额较大，且减值测试关键假设涉及重大会计估计与判断，才被识别为关键审计事项 [1]——这仅说明该事项**估计不确定性较高、审计重要性大**，并不等于历史上出现过估计与实际明显不符的情形。\n\n因此，仅凭现有资料，既不能确认“出现过明显对不上的情况”，也无法说明相关原因。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "600887"
+      ],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "伊利股份2024年年报中，公司过去给某些资产做价值检查的时候用的资料，跟外面的公开资料或者后来实际发生的情况，有没有出现过明显对不上的情况？如果有，是什么原因？",
+        "伊利股份2024年年报 商誉减值测试及资产减值测试中采用的关键假设、关键参数与外部公开信息或实际经营情况是否存在重大差异",
+        "伊利股份2024年年报 减值测试关键假设与公开信息或实际情况出现重大差异的原因说明"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 19367.9,
+    "timings_ms": {
+      "encode": 291.1,
+      "recall": 273.8,
+      "rerank": 649.7,
+      "total": 1214.6
+    }
+  },
+  {
+    "qid": "paraphrase-013",
+    "qtype": "paraphrase",
+    "question": "宁波银行2024年的年报里，这家公司说每年拿现金分给股东的钱，最少不能低于当年可分配利润的百分之多少？",
+    "reference_answer": "按年报披露（单位：人民币百万元）：2022年给股东的现金分红为3,302百万元（约33.02亿元），占当年归属于母公司普通股股东净利润的14.80%；2023年分红3,962百万元（约39.62亿元），占比15.99%；2024年分红5,943百万元（约59.43亿元），占比22.77%。",
+    "source_chunk_id": "002142_2024_00199",
+    "source_meta": {
+      "company_name": "宁波银行",
+      "fiscal_year": 2024,
+      "chunk_type": "table",
+      "stock_code": "002142"
+    },
+    "contexts": [
+      {
+        "chunk_id": "002142_2024_00201",
+        "rank": 1,
+        "company_name": "宁波银行",
+        "fiscal_year": 2024,
+        "page_num": 66,
+        "chunk_type": "table",
+        "rrf_score": 0.09324811896796222,
+        "rerank_score": 0.9765697121620178
+      },
+      {
+        "chunk_id": "002142_2024_00199",
+        "rank": 2,
+        "company_name": "宁波银行",
+        "fiscal_year": 2024,
+        "page_num": 65,
+        "chunk_type": "table",
+        "rrf_score": 0.09836065573770493,
+        "rerank_score": 0.9760732650756836
+      },
+      {
+        "chunk_id": "002142_2024_00005",
+        "rank": 3,
+        "company_name": "宁波银行",
+        "fiscal_year": 2024,
+        "page_num": 6,
+        "chunk_type": "text",
+        "rrf_score": 0.057094943240454075,
+        "rerank_score": 0.9199574589729309
+      },
+      {
+        "chunk_id": "002142_2024_00257",
+        "rank": 4,
+        "company_name": "宁波银行",
+        "fiscal_year": 2024,
+        "page_num": 79,
+        "chunk_type": "table",
+        "rrf_score": 0.0878633766807651,
+        "rerank_score": 0.9041441679000854
+      },
+      {
+        "chunk_id": "002142_2024_00088",
+        "rank": 5,
+        "company_name": "宁波银行",
+        "fiscal_year": 2024,
+        "page_num": 33,
+        "chunk_type": "text",
+        "rrf_score": 0.08096562221887121,
+        "rerank_score": 0.8877277374267578
+      }
+    ],
+    "answer": "根据参考资料[2]，宁波银行的现金分红政策规定：公司优先采用现金分红的方式进行股利分配，**每年以现金方式分配的利润不少于当年度实现的可分配利润的10%**，并且在盈利和资本充足率满足持续经营和长远发展要求的前提下，实施积极的利润分配方案。\n\n补充一点：报告期内，公司现金分红政策未做出调整或变更 [2]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "002142"
+      ],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "宁波银行2024年的年报里，这家公司说每年拿现金分给股东的钱，最少不能低于当年可分配利润的百分之多少？",
+        "宁波银行2024年年报 利润分配政策 现金分红占当年可分配利润的最低比例",
+        "宁波银行 章程规定的现金分红比例 不少于当年可分配利润"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 10951.3,
+    "timings_ms": {
+      "encode": 310.9,
+      "recall": 253.0,
+      "rerank": 584.9,
+      "total": 1148.7
+    }
+  },
+  {
+    "qid": "paraphrase-014",
+    "qtype": "paraphrase",
+    "question": "迈瑞医疗2024年年报中，会计师事务所给公司查账时，那些被认为最要紧、最需要花功夫核实的问题是根据什么定出来的？查账的人会不会专门就这些问题一个个单独给出结论？",
+    "reference_answer": "这些最要紧的事项（即关键审计事项）是注册会计师根据职业判断确定的，也就是他们认为对本期财务报表审计最为重要的事项。查账人员不会对这些事项单独发表意见（即不单独给出结论），对这些事项的应对是在对财务报表整体进行审计并形成审计意见的背景下进行的。审计工作包括执行为应对评估的财务报表重大错报风险而设计的审计程序，执行这些程序（包括应对关键审计事项所执行的程序）的结果，为对财务报表整体发表审计意见提供了基础。",
+    "source_chunk_id": "300760_2024_00397",
+    "source_meta": {
+      "company_name": "迈瑞医疗",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "300760"
+    },
+    "contexts": [
+      {
+        "chunk_id": "300760_2024_00301",
+        "rank": 1,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 145,
+        "chunk_type": "text",
+        "rrf_score": 0.08396142939492304,
+        "rerank_score": 0.8621819615364075
+      },
+      {
+        "chunk_id": "300760_2024_00399",
+        "rank": 2,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 191,
+        "chunk_type": "table",
+        "rrf_score": 0.07401454951858177,
+        "rerank_score": 0.8550492525100708
+      },
+      {
+        "chunk_id": "300760_2024_00002",
+        "rank": 3,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 2,
+        "chunk_type": "text",
+        "rrf_score": 0.038464384828862164,
+        "rerank_score": 0.8514044284820557
+      },
+      {
+        "chunk_id": "300760_2024_00402",
+        "rank": 4,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 192,
+        "chunk_type": "text",
+        "rrf_score": 0.05966860567600918,
+        "rerank_score": 0.7765263915061951
+      },
+      {
+        "chunk_id": "300760_2024_00395",
+        "rank": 5,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 190,
+        "chunk_type": "text",
+        "rrf_score": 0.08024306634478252,
+        "rerank_score": 0.7594775557518005
+      }
+    ],
+    "answer": "## 一、关键审计事项是根据什么定出来的？\n\n**总体确定逻辑：** 审计师（安永华明）在审计过程中运用职业判断、保持职业怀疑，识别和评估由于舞弊或错误导致的财务报表重大错报风险，并据此设计和实施审计程序 [4]。在此基础上，把对本期审计**最重要、最需要花功夫**的事项确定为关键审计事项。\n\n**具体判断标准（以本年报为例）：** 主要看事项的**重大性**和**涉及判断的复杂程度**。以收入确认为例，审计师将其识别为关键审计事项的理由是 [2]：\n\n- 集团收入金额**重大**；\n- 收入来源于**全球不同地区的众多客户**；\n- 针对不同产品类型和客户类型，有**不同的销售合同条款**；\n- 收入**确认的时点涉及判断**。\n\n此外，**商誉的减值测试**也被列为关键审计事项 [2]。\n\n## 二、审计师会不会就每个关键审计事项单独给出结论？\n\n**不会。** 从年报披露看：\n\n1. 审计师的目标是“对财务报表**整体**是否不存在由于舞弊或错误导致的重大错报获取合理保证，并出具**包含审计意见的审计报告**\"[4]——即审计意见是针对财务报表整体发表的。\n2. 实际出具的审计意见也仅是对财务报表整体公允性发表意见，即2024年12月31日的财务状况及2024年度经营成果和现金流量的整体公允反映 [5]，并未对单个关键审计事项逐项发表单独的鉴证结论。\n3. 审计报告中关键审计事项部分的内容，是说明该事项**为何被认定为关键**（如收入确认的重大性和判断复杂性）以及审计中**采取了哪些应对程序**（如背景调查、分析程序、函证、抽样检查销售合同/发票/签收单等支持性文件、资产负债表日前后收入的截止测试等）[2]，而非对每个事项单独下结论。\n\n简言之：关键审计事项是审计师基于重大错报风险评估和职业判断确定的重点核查领域，但审计结论只有一个——针对财务报表整体的审计意见，不对单个事项分别出具结论 [2][4][5]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "300760"
+      ],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "迈瑞医疗2024年年报中，会计师事务所给公司查账时，那些被认为最要紧、最需要花功夫核实的问题是根据什么定出来的？查账的人会不会专门就这些问题一个个单独给出结论？",
+        "迈瑞医疗2024年年报审计报告中关键审计事项的确定依据",
+        "迈瑞医疗2024年年报注册会计师是否对关键审计事项单独发表审计意见或结论"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 9371.4,
+    "timings_ms": {
+      "encode": 323.1,
+      "recall": 279.9,
+      "rerank": 625.1,
+      "total": 1228.1
+    }
+  },
+  {
+    "qid": "paraphrase-015",
+    "qtype": "paraphrase",
+    "question": "长城汽车2024年年报中，公司搞研发花的钱，什么情况下可以记成资产（无形资产），而不是直接算进当年的开销里？如果搞不清哪些钱属于前期研究、哪些钱属于后期开发，该怎么记账？",
+    "reference_answer": "研发支出分为研究阶段和开发阶段两部分：研究阶段的花费一律直接计入当期损益（即作为当期费用）。开发阶段的花费只有同时满足五个条件才能确认为无形资产：一是技术上能够完成并使用或出售；二是有完成并使用或出售的意图；三是能证明产品有市场或无形资产自身有市场（自用的要能证明其有用性）；四是有足够的技术、财务和其他资源支持完成开发，并有能力使用或出售；五是这部分花费能可靠计量。不满足这些条件的开发支出同样计入当期损益。如果分不清研究阶段和开发阶段的支出，则全部计入当期损益。此外，内部开发形成的无形资产，其成本只包括满足资本化条件时点到达到预定用途前的花费，之前已作为费用处理的部分不再调整。",
+    "source_chunk_id": "601633_2024_00531",
+    "source_meta": {
+      "company_name": "长城汽车",
+      "fiscal_year": 2024,
+      "chunk_type": "table",
+      "stock_code": "601633"
+    },
+    "contexts": [
+      {
+        "chunk_id": "601633_2024_00531",
+        "rank": 1,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 206,
+        "chunk_type": "table",
+        "rrf_score": 0.09809624537281862,
+        "rerank_score": 0.816616952419281
+      },
+      {
+        "chunk_id": "601633_2024_00571",
+        "rank": 2,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 225,
+        "chunk_type": "text",
+        "rrf_score": 0.05727078935897063,
+        "rerank_score": 0.812877893447876
+      },
+      {
+        "chunk_id": "601633_2024_00013",
+        "rank": 3,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 8,
+        "chunk_type": "table",
+        "rrf_score": 0.04366784323271665,
+        "rerank_score": 0.7713063359260559
+      },
+      {
+        "chunk_id": "601633_2024_00433",
+        "rank": 4,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 167,
+        "chunk_type": "text",
+        "rrf_score": 0.08065355527016024,
+        "rerank_score": 0.7393674254417419
+      },
+      {
+        "chunk_id": "601633_2024_00553",
+        "rank": 5,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 217,
+        "chunk_type": "table",
+        "rrf_score": 0.0486971361971362,
+        "rerank_score": 0.6838690042495728
+      }
+    ],
+    "answer": "根据长城汽车2024年报的会计政策 [1]，处理方式如下：\n\n**一、研发支出先分两个阶段**\n\n公司内部研究开发项目的支出分为**研究阶段支出**与**开发阶段支出**，其中：\n- **研究阶段的支出**：于发生时直接计入当期损益（即作为当期费用）[1]；\n- **开发阶段的支出**：只有**同时满足以下5个条件**时，才确认为无形资产（记成资产）；不能满足条件的，仍计入当期损益 [1]：\n  1. 完成该无形资产以使其能够使用或出售，在**技术上具有可行性**；\n  2. 具有完成该无形资产并**使用或出售的意图**；\n  3. 能证明该无形资产**产生经济利益的方式**——包括能证明运用该无形资产生产的产品存在市场，或无形资产自身存在市场；若在内部使用，能证明其有用性；\n  4. 有足够的**技术、财务资源和其他资源**支持完成开发，并有能力使用或出售该无形资产；\n  5. 归属于该无形资产开发阶段的支出能够**可靠地计量** [1]。\n\n**二、分不清研究阶段还是开发阶段时怎么办**\n\n如果**无法区分**研究阶段支出和开发阶段支出，公司将发生的研发支出**全部计入当期损益**（即全部费用化，不确认无形资产）[1]。\n\n**三、补充说明**\n\n- 公司研发项目需满足上述资本化条件，通过技术可行性及经济可行性研究、经评审立项后，才进入开发阶段并开始资本化 [1]。\n- 内部开发形成的无形资产，其成本仅包括**满足资本化条件的时点**至无形资产达到预定用途前发生的支出总额；此前已费用化计入损益的支出，**不再调整** [1]。\n- 由于开发支出是否满足资本化条件涉及重大管理层判断，截至2024年12月31日公司开发支出资本化余额为人民币12,336,613,743.77元，该项被审计机构列为关键审计事项 [4]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "601633"
+      ],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "长城汽车2024年年报中，公司搞研发花的钱，什么情况下可以记成资产（无形资产），而不是直接算进当年的开销里？如果搞不清哪些钱属于前期研究、哪些钱属于后期开发，该怎么记账？",
+        "长城汽车2024年年报 内部研究开发项目支出 确认为无形资产的资本化条件 开发阶段支出资本化的会计政策",
+        "长城汽车2024年年报 无法区分研究阶段支出和开发阶段支出 会计处理方法 研究阶段支出费用化计入当期损益"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 8176.1,
+    "timings_ms": {
+      "encode": 330.0,
+      "recall": 348.8,
+      "rerank": 599.0,
+      "total": 1277.8
+    }
+  },
+  {
+    "qid": "paraphrase-016",
+    "qtype": "paraphrase",
+    "question": "贵州茅台2025年年报中，这家酒企平时会和老板旗下其他“自己人”开的公司做生意。在这些和自家企业的往来中，公司掏钱最多的是给了哪家？这笔钱是干什么用的、一共多少钱？",
+    "reference_answer": "掏钱最多的是贵州茅台酒厂（集团）保健酒业有限公司，这笔钱属于劳务费（即请对方干活、提供服务的报酬），金额为415,233,454.54元（上年同期为364,282,785.91元）。",
+    "source_chunk_id": "600519_2025_00334",
+    "source_meta": {
+      "company_name": "贵州茅台",
+      "fiscal_year": 2025,
+      "chunk_type": "table",
+      "stock_code": "600519"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600519_2025_00358",
+        "rank": 1,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2025,
+        "page_num": 135,
+        "chunk_type": "text",
+        "rrf_score": 0.07098315304003454,
+        "rerank_score": 0.39554697275161743
+      },
+      {
+        "chunk_id": "600519_2025_00147",
+        "rank": 2,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2025,
+        "page_num": 54,
+        "chunk_type": "text",
+        "rrf_score": 0.07532810627976974,
+        "rerank_score": 0.37393248081207275
+      },
+      {
+        "chunk_id": "600519_2025_00145",
+        "rank": 3,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2025,
+        "page_num": 53,
+        "chunk_type": "text",
+        "rrf_score": 0.07574824245718348,
+        "rerank_score": 0.30100569128990173
+      },
+      {
+        "chunk_id": "600519_2025_00338",
+        "rank": 4,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2025,
+        "page_num": 129,
+        "chunk_type": "table",
+        "rrf_score": 0.0689010818621384,
+        "rerank_score": 0.27945175766944885
+      },
+      {
+        "chunk_id": "600519_2025_00334",
+        "rank": 5,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2025,
+        "page_num": 128,
+        "chunk_type": "table",
+        "rrf_score": 0.061593852797213314,
+        "rerank_score": 0.23720723390579224
+      }
+    ],
+    "answer": "根据年报关联交易披露，在与关联方的往来中，贵州茅台掏钱最多的对象是**贵州茅台酒厂（集团）保健酒业有限公司**，支付性质为**劳务费**，本期发生额为 **415,233,454.54 元（约合4.15亿元）**，上期为 364,282,785.91 元 [5]。\n\n对比参考（均为关联交易表中其他较大项目，但金额均低于上述劳务费）：\n- 购买商品最大一笔：贵州新华羲玻璃有限责任公司 50,723,017.23 元 [5]；\n- 关联托管费最大一笔：支付给贵州双龙飞天供应链管理有限公司 8,365.05 万元（约0.84亿元）[4]。\n\n补充说明：\n1. 上表 [5] 摘录未标注单位，结合公司营业收入规模（16,883,810.25 万元，约合1,688亿元 [3]）及各项目金额量级判断，该表单位应为“元”。\n2. 年报审计机构将关联交易列为关键审计事项，原因是关联方数量多、交易类型多样且金额重大，关联交易金额的准确性对财务报表影响较大 [2]。\n3. 资料中仅披露该款项性质为“劳务费”，未说明具体服务内容，无法进一步展开。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "600519"
+      ],
+      "years": [
+        2025
+      ],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "贵州茅台2025年年报中，这家酒企平时会和老板旗下其他“自己人”开的公司做生意。在这些和自家企业的往来中，公司掏钱最多的是给了哪家？这笔钱是干什么用的、一共多少钱？",
+        "贵州茅台2025年年报 关联方及关联交易 公司支付金额最大的关联方是哪家",
+        "贵州茅台2025年年报 该关联交易的内容 性质 交易金额"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 17054.5,
+    "timings_ms": {
+      "encode": 314.8,
+      "recall": 297.7,
+      "rerank": 531.6,
+      "total": 1144.1
+    }
+  },
+  {
+    "qid": "paraphrase-017",
+    "qtype": "paraphrase",
+    "question": "招商银行2025年年报中，2024年这一年，这家公司靠发存单、发债券等方式向别人新借到手的钱，全部加起来一共有多少？",
+    "reference_answer": "合计208,317，其中同业存单155,569、其他债券42,758、债券9,990。",
+    "source_chunk_id": "600036_2025_00761",
+    "source_meta": {
+      "company_name": "招商银行",
+      "fiscal_year": 2025,
+      "chunk_type": "text",
+      "stock_code": "600036"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600036_2025_00413",
+        "rank": 1,
+        "company_name": "招商银行",
+        "fiscal_year": 2025,
+        "page_num": 138,
+        "chunk_type": "table",
+        "rrf_score": 0.05431931252826776,
+        "rerank_score": 0.8444231748580933
+      },
+      {
+        "chunk_id": "600036_2025_00407",
+        "rank": 2,
+        "company_name": "招商银行",
+        "fiscal_year": 2025,
+        "page_num": 136,
+        "chunk_type": "table",
+        "rrf_score": 0.05607985933618517,
+        "rerank_score": 0.7910467982292175
+      },
+      {
+        "chunk_id": "600036_2025_00427",
+        "rank": 3,
+        "company_name": "招商银行",
+        "fiscal_year": 2025,
+        "page_num": 142,
+        "chunk_type": "table",
+        "rrf_score": 0.04184159416819645,
+        "rerank_score": 0.7518284320831299
+      },
+      {
+        "chunk_id": "600036_2025_00786",
+        "rank": 4,
+        "company_name": "招商银行",
+        "fiscal_year": 2025,
+        "page_num": 320,
+        "chunk_type": "table",
+        "rrf_score": 0.046972340848907876,
+        "rerank_score": 0.7025856971740723
+      },
+      {
+        "chunk_id": "600036_2025_00649",
+        "rank": 5,
+        "company_name": "招商银行",
+        "fiscal_year": 2025,
+        "page_num": 256,
+        "chunk_type": "table",
+        "rrf_score": 0.04413529939476644,
+        "rerank_score": 0.699812114238739
+      }
+    ],
+    "answer": "根据参考资料，2024年招商银行筹资活动（发行存款证、同业存单、债券、永续债等）收到的现金合计为：\n\n- **合并口径**：筹资活动现金流入小计为 **281,970 百万元** [2]\n- **公司（本行）口径**：筹资活动现金流入小计为 **238,314 百万元** [1]\n\n其中合并口径的主要构成为：发行存款证及其他收到现金 61,462 百万元、发行同业存单 155,569 百万元、发行债券 24,995 百万元、发行永续债 29,997 百万元、收到其他与筹资活动有关的现金 9,947 百万元 [2]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "600036"
+      ],
+      "years": [
+        2025
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "招商银行2025年年报中，2024年这一年，这家公司靠发存单、发债券等方式向别人新借到手的钱，全部加起来一共有多少？",
+        "招商银行2024年发行同业存单收到的现金",
+        "招商银行2024年发行债券收到的现金"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 11914.3,
+    "timings_ms": {
+      "encode": 310.8,
+      "recall": 243.0,
+      "rerank": 603.1,
+      "total": 1156.9
+    }
+  },
+  {
+    "qid": "paraphrase-018",
+    "qtype": "paraphrase",
+    "question": "招商银行2023年的年报里，这家银行到年底借出去的钱总共大概有多少亿元，跟上年末相比多了百分之几？",
+    "reference_answer": "截至报告期末，集团贷款和垫款总额为65,088.65亿元，较上年末增长7.56%。",
+    "source_chunk_id": "600036_2023_00055",
+    "source_meta": {
+      "company_name": "招商银行",
+      "fiscal_year": 2023,
+      "chunk_type": "table",
+      "stock_code": "600036"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600036_2023_00653",
+        "rank": 1,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 276,
+        "chunk_type": "table",
+        "rrf_score": 0.04245752291526939,
+        "rerank_score": 0.905945897102356
+      },
+      {
+        "chunk_id": "600036_2023_00403",
+        "rank": 2,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 147,
+        "chunk_type": "table",
+        "rrf_score": 0.042235644257703084,
+        "rerank_score": 0.9023882150650024
+      },
+      {
+        "chunk_id": "600036_2023_00006",
+        "rank": 3,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 5,
+        "chunk_type": "text",
+        "rrf_score": 0.06746656832317349,
+        "rerank_score": 0.9023417830467224
+      },
+      {
+        "chunk_id": "600036_2023_00376",
+        "rank": 4,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 138,
+        "chunk_type": "table",
+        "rrf_score": 0.04361890182785705,
+        "rerank_score": 0.8662810325622559
+      },
+      {
+        "chunk_id": "600036_2023_00010",
+        "rank": 5,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 8,
+        "chunk_type": "text",
+        "rrf_score": 0.04699794699514744,
+        "rerank_score": 0.8356285095214844
+      }
+    ],
+    "answer": "根据现有资料无法回答。\n\n所提供的资料中**没有披露贷款总额（贷款和垫款总额）及同比增速**，无法给出“借出去的钱总共多少亿元、增长百分之几”的数据。\n\n资料中与贷款相关的信息只有以下几项，但均不是贷款总额：\n\n- 风险指标类：2023年末不良贷款率0.95%，拨备覆盖率437.70%，贷款拨备率4.14% [3][5]。这三项指标之间可以相互印证，但资料中未给出不良贷款余额或贷款减值准备余额，因此无法据此推算出贷款总额。\n- 资料[1]虽然出自“以摊余成本计量的贷款和垫款及以摊余成本计量的债务工具投资本金变动表”附注，但所呈现的内容仅为**债务工具投资**部分（本行2023年末阶段余额合计1,726,074百万元），属于投资而非发放的贷款，不能混用。\n\n如需回答该问题，需补充年报中“贷款和垫款”相关披露（如贷款和垫款总额及本金变动表）的资料。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "600036"
+      ],
+      "years": [
+        2023
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "招商银行2023年的年报里，这家银行到年底借出去的钱总共大概有多少亿元，跟上年末相比多了百分之几？",
+        "招商银行2023年末贷款总额（发放贷款和垫款总额）",
+        "招商银行2023年末贷款总额较上年末增长百分比"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 12842.3,
+    "timings_ms": {
+      "encode": 289.9,
+      "recall": 240.2,
+      "rerank": 549.5,
+      "total": 1079.6
+    }
+  },
+  {
+    "qid": "numeric-001",
+    "qtype": "numeric",
+    "question": "《企业事业单位环境信息公开办法》对应的环境保护部令是第几号？",
+    "reference_answer": "第31号",
+    "source_chunk_id": "600519_2023_00116",
+    "source_meta": {
+      "company_name": "贵州茅台",
+      "fiscal_year": 2023,
+      "chunk_type": "text",
+      "stock_code": "600519"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600519_2023_00116",
+        "rank": 1,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2023,
+        "page_num": 37,
+        "chunk_type": "text",
+        "rrf_score": 0.06428490111891752,
+        "rerank_score": 0.9765119552612305
+      },
+      {
+        "chunk_id": "600519_2024_00113",
+        "rank": 2,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2024,
+        "page_num": 38,
+        "chunk_type": "table",
+        "rrf_score": 0.052230981578807664,
+        "rerank_score": 0.8938363194465637
+      },
+      {
+        "chunk_id": "601633_2024_00341",
+        "rank": 3,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 124,
+        "chunk_type": "text",
+        "rrf_score": 0.052102169981916815,
+        "rerank_score": 0.8746410608291626
+      },
+      {
+        "chunk_id": "601633_2023_00342",
+        "rank": 4,
+        "company_name": "长城汽车",
+        "fiscal_year": 2023,
+        "page_num": 125,
+        "chunk_type": "text",
+        "rrf_score": 0.05375842993719512,
+        "rerank_score": 0.8599339723587036
+      },
+      {
+        "chunk_id": "000858_2023_00102",
+        "rank": 5,
+        "company_name": "五粮液",
+        "fiscal_year": 2023,
+        "page_num": 38,
+        "chunk_type": "table",
+        "rrf_score": 0.05376502089864159,
+        "rerank_score": 0.5286218523979187
+      }
+    ],
+    "answer": "《企业事业单位环境信息公开办法》对应的环境保护部令是**第31号** [1][2]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "《企业事业单位环境信息公开办法》对应的环境保护部令是第几号？",
+        "《企业事业单位环境信息公开办法》对应的环境保护部令第几号"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 7781.4,
+    "timings_ms": {
+      "encode": 330.7,
+      "recall": 179.7,
+      "rerank": 635.9,
+      "total": 1146.3
+    }
+  },
+  {
+    "qid": "numeric-002",
+    "qtype": "numeric",
+    "question": "报告期内，本公司共召开了几次股东大会？",
+    "reference_answer": "1次",
+    "source_chunk_id": "000002_2024_00215",
+    "source_meta": {
+      "company_name": "万科A",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "000002"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600036_2023_00260",
+        "rank": 1,
+        "company_name": "招商银行",
+        "fiscal_year": 2023,
+        "page_num": 82,
+        "chunk_type": "text",
+        "rrf_score": 0.031099324975891997,
+        "rerank_score": 0.997791051864624
+      },
+      {
+        "chunk_id": "600036_2025_00287",
+        "rank": 2,
+        "company_name": "招商银行",
+        "fiscal_year": 2025,
+        "page_num": 83,
+        "chunk_type": "text",
+        "rrf_score": 0.031009615384615385,
+        "rerank_score": 0.9976274371147156
+      },
+      {
+        "chunk_id": "000002_2023_00222",
+        "rank": 3,
+        "company_name": "万科A",
+        "fiscal_year": 2023,
+        "page_num": 73,
+        "chunk_type": "text",
+        "rrf_score": 0.031054405392392875,
+        "rerank_score": 0.9974837303161621
+      },
+      {
+        "chunk_id": "600036_2024_00286",
+        "rank": 4,
+        "company_name": "招商银行",
+        "fiscal_year": 2024,
+        "page_num": 84,
+        "chunk_type": "text",
+        "rrf_score": 0.02904040404040404,
+        "rerank_score": 0.9969870448112488
+      },
+      {
+        "chunk_id": "000002_2025_00181",
+        "rank": 5,
+        "company_name": "万科A",
+        "fiscal_year": 2025,
+        "page_num": 69,
+        "chunk_type": "text",
+        "rrf_score": 0.026182294223531334,
+        "rerank_score": 0.9968807697296143
+      }
+    ],
+    "answer": "根据现有资料，“本公司”（招商银行）在各报告期内均召开 **1次** 股东大会：\n\n- **2023年报报告期**：召开1次，即2023年6月27日在深圳召开的2022年度股东大会 [1]\n- **2024年报报告期**：召开1次，即2024年6月25日在深圳召开的2023年度股东大会 [4]\n- **2025年报报告期**：召开1次，即2025年6月25日在深圳召开的2024年度股东大会（该年报中表述为“股东会”）[2]\n\n（供参考：若您询问的是万科A，其报告期内召开2次股东会/股东大会，详见 [3][5]。）",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "报告期内，本公司共召开了几次股东大会？"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 4209.6,
+    "timings_ms": {
+      "encode": 394.6,
+      "recall": 116.0,
+      "rerank": 505.4,
+      "total": 1016.0
+    }
+  },
+  {
+    "qid": "numeric-003",
+    "qtype": "numeric",
+    "question": "年报中环境监测信息显示，工业厂界无组织废气共设置了多少个采样点进行监测？",
+    "reference_answer": "4个",
+    "source_chunk_id": "300760_2023_00376",
+    "source_meta": {
+      "company_name": "迈瑞医疗",
+      "fiscal_year": 2023,
+      "chunk_type": "table",
+      "stock_code": "300760"
+    },
+    "contexts": [
+      {
+        "chunk_id": "300760_2023_00377",
+        "rank": 1,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2023,
+        "page_num": 187,
+        "chunk_type": "table",
+        "rrf_score": 0.08925165362629991,
+        "rerank_score": 0.817614734172821
+      },
+      {
+        "chunk_id": "300760_2024_00322",
+        "rank": 2,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 157,
+        "chunk_type": "table",
+        "rrf_score": 0.07973070100318083,
+        "rerank_score": 0.6929659843444824
+      },
+      {
+        "chunk_id": "300760_2023_00376",
+        "rank": 3,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2023,
+        "page_num": 186,
+        "chunk_type": "table",
+        "rrf_score": 0.05549941130298273,
+        "rerank_score": 0.6738179326057434
+      },
+      {
+        "chunk_id": "300760_2024_00318",
+        "rank": 4,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 155,
+        "chunk_type": "table",
+        "rrf_score": 0.05962305183037332,
+        "rerank_score": 0.6253567337989807
+      },
+      {
+        "chunk_id": "300760_2024_00320",
+        "rank": 5,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2024,
+        "page_num": 156,
+        "chunk_type": "table",
+        "rrf_score": 0.06040048625650031,
+        "rerank_score": 0.6136239171028137
+      }
+    ],
+    "answer": "根据参考资料，各主体的**工业厂界无组织废气**监测采样点数量如下：\n\n- **光明生产厂**：厂界东南西北共 **4 个**采样点，监测臭气浓度、锡及其化合物、颗粒物、非甲烷总烃、氯化氢、氨、硫化氢、三氯甲烷等因子，监测频率为 1 次/半年 [3][4]。\n- **上海长岛生物技术有限公司**（2024年报）：厂界上风向 1 个点、下风向 3 个点，共 **4 个**采样点，监测非甲烷总烃、三氯甲烷、异丙醇、氨、硫化氢、臭气浓度，监测频率为 1 次/半年 [2]。\n- **迈瑞南京生物技术有限公司**（2024年报）：厂界上风向 1 个点、下风向 3 个点，共 **4 个**采样点，监测氯化氢、甲醛、VOCs（总项），监测频率为 1 次/年 [5]。\n\n综上，各生产主体在工业厂界无组织废气监测中均设置了 **4 个采样点**；若按 2024 年报所披露的光明生产厂、上海长岛、迈瑞南京三家主体合计，共 **12 个**采样点。\n\n（注：另有“厂内无组织废气”在厂内道路设置 5 个采样点监测非甲烷总烃 [1][4]，但该类属于厂内道路点位，不属于工业厂界无组织废气。）",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "年报中环境监测信息显示，工业厂界无组织废气共设置了多少个采样点进行监测？",
+        "工业厂界无组织废气监测采样点数量",
+        "环境监测信息 工业厂界无组织废气 采样点位设置"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 6958.6,
+    "timings_ms": {
+      "encode": 362.7,
+      "recall": 285.9,
+      "rerank": 565.3,
+      "total": 1214.0
+    }
+  },
+  {
+    "qid": "numeric-004",
+    "qtype": "numeric",
+    "question": "截至2024年底，美的新能源及工业技术打造的车规级热管理、电驱动系统、底盘执行系统三大类产品累计供货达到多少台？",
+    "reference_answer": "300万台",
+    "source_chunk_id": "000333_2024_00068",
+    "source_meta": {
+      "company_name": "美的集团",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "000333"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000333_2024_00068",
+        "rank": 1,
+        "company_name": "美的集团",
+        "fiscal_year": 2024,
+        "page_num": 21,
+        "chunk_type": "text",
+        "rrf_score": 0.058667382604870436,
+        "rerank_score": 0.9996922016143799
+      },
+      {
+        "chunk_id": "000333_2023_00069",
+        "rank": 2,
+        "company_name": "美的集团",
+        "fiscal_year": 2023,
+        "page_num": 21,
+        "chunk_type": "text",
+        "rrf_score": 0.06427650713907986,
+        "rerank_score": 0.9947262406349182
+      },
+      {
+        "chunk_id": "000333_2024_00066",
+        "rank": 3,
+        "company_name": "美的集团",
+        "fiscal_year": 2024,
+        "page_num": 21,
+        "chunk_type": "text",
+        "rrf_score": 0.05996542761248644,
+        "rerank_score": 0.9656773209571838
+      },
+      {
+        "chunk_id": "000333_2025_00050",
+        "rank": 4,
+        "company_name": "美的集团",
+        "fiscal_year": 2025,
+        "page_num": 29,
+        "chunk_type": "text",
+        "rrf_score": 0.06166271139765438,
+        "rerank_score": 0.9536848068237305
+      },
+      {
+        "chunk_id": "000333_2024_00064",
+        "rank": 5,
+        "company_name": "美的集团",
+        "fiscal_year": 2024,
+        "page_num": 21,
+        "chunk_type": "text",
+        "rrf_score": 0.06299603174603174,
+        "rerank_score": 0.9465215802192688
+      }
+    ],
+    "answer": "截至2024年底，美的新能源及工业技术打造的车规级热管理、电驱动系统、底盘执行系统三大类产品累计供货达到 **300万台**，其中电动压缩机累计生产达100万台 [1]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "截至2024年底，美的新能源及工业技术打造的车规级热管理、电驱动系统、底盘执行系统三大类产品累计供货达到多少台？",
+        "截至2024年底，美的新能源及工业技术车规级热管理、电驱动系统、底盘执行系统三大类产品累计供货数量（台）"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 6853.5,
+    "timings_ms": {
+      "encode": 424.9,
+      "recall": 183.2,
+      "rerank": 753.0,
+      "total": 1361.2
+    }
+  },
+  {
+    "qid": "numeric-005",
+    "qtype": "numeric",
+    "question": "公司所辖的可再生能源发电项目分布在全国多少个省区？",
+    "reference_answer": "20余省区",
+    "source_chunk_id": "601985_2024_00034",
+    "source_meta": {
+      "company_name": "中国核电",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "601985"
+    },
+    "contexts": [
+      {
+        "chunk_id": "601985_2023_00031",
+        "rank": 1,
+        "company_name": "中国核电",
+        "fiscal_year": 2023,
+        "page_num": 12,
+        "chunk_type": "text",
+        "rrf_score": 0.03252247488101534,
+        "rerank_score": 0.9875840544700623
+      },
+      {
+        "chunk_id": "601985_2024_00034",
+        "rank": 2,
+        "company_name": "中国核电",
+        "fiscal_year": 2024,
+        "page_num": 13,
+        "chunk_type": "text",
+        "rrf_score": 0.03200204813108039,
+        "rerank_score": 0.9784392714500427
+      },
+      {
+        "chunk_id": "601985_2025_00023",
+        "rank": 3,
+        "company_name": "中国核电",
+        "fiscal_year": 2025,
+        "page_num": 11,
+        "chunk_type": "text",
+        "rrf_score": 0.03149801587301587,
+        "rerank_score": 0.9779016971588135
+      },
+      {
+        "chunk_id": "600011_2024_00032",
+        "rank": 4,
+        "company_name": "华能国际",
+        "fiscal_year": 2024,
+        "page_num": 13,
+        "chunk_type": "text",
+        "rrf_score": 0.03278688524590164,
+        "rerank_score": 0.9305810928344727
+      },
+      {
+        "chunk_id": "600011_2025_00029",
+        "rank": 5,
+        "company_name": "华能国际",
+        "fiscal_year": 2025,
+        "page_num": 12,
+        "chunk_type": "text",
+        "rrf_score": 0.03225806451612903,
+        "rerank_score": 0.9305810928344727
+      }
+    ],
+    "answer": "根据参考资料，该描述出自中国核能电力股份有限公司年报，各年度披露情况如下：\n\n- **2023年报及2024年报**：公司所辖的可再生能源发电项目分布全国 **20余省区** [1][2]\n- **2025年报**：公司所辖的可再生能源发电项目分布全国 **30余省区** [3]\n\n可见可再生能源发电项目的覆盖省区范围在扩大，从20余省区增加到30余省区。以上项目均销售至所在省区电力公司 [1][2][3]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "公司所辖的可再生能源发电项目分布在全国多少个省区？",
+        "公司所属可再生能源发电项目在全国各省区的分布情况及覆盖省区数量"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 7366.3,
+    "timings_ms": {
+      "encode": 212.4,
+      "recall": 192.4,
+      "rerank": 573.5,
+      "total": 978.3
+    }
+  },
+  {
+    "qid": "numeric-006",
+    "qtype": "numeric",
+    "question": "2024年年度报告中，造影剂产品\"原材料及包装物\"成本的本期金额是多少元？",
+    "reference_answer": "830,096,330.86元",
+    "source_chunk_id": "600276_2024_00102",
+    "source_meta": {
+      "company_name": "恒瑞医药",
+      "fiscal_year": 2024,
+      "chunk_type": "table",
+      "stock_code": "600276"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600276_2024_00102",
+        "rank": 1,
+        "company_name": "恒瑞医药",
+        "fiscal_year": 2024,
+        "page_num": 55,
+        "chunk_type": "table",
+        "rrf_score": 0.06557377049180328,
+        "rerank_score": 0.9866287708282471
+      },
+      {
+        "chunk_id": "600276_2024_00153",
+        "rank": 2,
+        "company_name": "恒瑞医药",
+        "fiscal_year": 2024,
+        "page_num": 79,
+        "chunk_type": "text",
+        "rrf_score": 0.05357179944678883,
+        "rerank_score": 0.9156700372695923
+      },
+      {
+        "chunk_id": "600519_2024_00044",
+        "rank": 3,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2024,
+        "page_num": 15,
+        "chunk_type": "text",
+        "rrf_score": 0.0315136476426799,
+        "rerank_score": 0.8911167979240417
+      },
+      {
+        "chunk_id": "600660_2024_00477",
+        "rank": 4,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2024,
+        "page_num": 163,
+        "chunk_type": "text",
+        "rrf_score": 0.04500307930229315,
+        "rerank_score": 0.8371821641921997
+      },
+      {
+        "chunk_id": "600519_2024_00043",
+        "rank": 5,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2024,
+        "page_num": 15,
+        "chunk_type": "text",
+        "rrf_score": 0.027984344422700584,
+        "rerank_score": 0.7921788692474365
+      }
+    ],
+    "answer": "根据参考资料[1]，恒瑞医药2024年年报中，造影剂产品“原材料及包装物”成本的本期金额为 **830,096,330.86 元**，占总成本比例22.21%，较上年同期（844,547,200.96元，占比24.40%）变动 **-1.71%**。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "2024年年度报告中，造影剂产品\"原材料及包装物\"成本的本期金额是多少元？",
+        "2024年年度报告 造影剂产品 原材料及包装物 成本 本期金额"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 22225.3,
+    "timings_ms": {
+      "encode": 362.4,
+      "recall": 186.0,
+      "rerank": 671.3,
+      "total": 1219.7
+    }
+  },
+  {
+    "qid": "numeric-007",
+    "qtype": "numeric",
+    "question": "根据珠海格力电器股份有限公司2024年度财务报表附注，其债权投资中可转让大额存单的金额合计是多少元？",
+    "reference_answer": "17,470,847,440.92元",
+    "source_chunk_id": "000651_2024_00499",
+    "source_meta": {
+      "company_name": "格力电器",
+      "fiscal_year": 2024,
+      "chunk_type": "table",
+      "stock_code": "000651"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000651_2024_00499",
+        "rank": 1,
+        "company_name": "格力电器",
+        "fiscal_year": 2024,
+        "page_num": 168,
+        "chunk_type": "table",
+        "rrf_score": 0.06557377049180328,
+        "rerank_score": 0.9997557997703552
+      },
+      {
+        "chunk_id": "000651_2024_00500",
+        "rank": 2,
+        "company_name": "格力电器",
+        "fiscal_year": 2024,
+        "page_num": 169,
+        "chunk_type": "table",
+        "rrf_score": 0.06426011264720942,
+        "rerank_score": 0.999509334564209
+      },
+      {
+        "chunk_id": "000651_2024_00498",
+        "rank": 3,
+        "company_name": "格力电器",
+        "fiscal_year": 2024,
+        "page_num": 168,
+        "chunk_type": "table",
+        "rrf_score": 0.06084611905507428,
+        "rerank_score": 0.9990241527557373
+      },
+      {
+        "chunk_id": "000651_2024_00497",
+        "rank": 4,
+        "company_name": "格力电器",
+        "fiscal_year": 2024,
+        "page_num": 167,
+        "chunk_type": "table",
+        "rrf_score": 0.05533222052209394,
+        "rerank_score": 0.996171772480011
+      },
+      {
+        "chunk_id": "000651_2024_00572",
+        "rank": 5,
+        "company_name": "格力电器",
+        "fiscal_year": 2024,
+        "page_num": 203,
+        "chunk_type": "table",
+        "rrf_score": 0.0561019319870618,
+        "rerank_score": 0.9939454197883606
+      }
+    ],
+    "answer": "根据资料[1]（2024年报 p.168 附注15“债权投资”），期末**债权投资**中可转让大额存单的金额如下：\n\n- 成本：16,667,335,007.45 元\n- 应计利息：803,512,433.47 元\n- **账面价值合计：17,470,847,440.92 元**\n\n即债权投资中可转让大额存单账面价值合计为 **17,470,847,440.92 元** [1]。\n\n（注：若为其他债权投资中的可转让大额存单，账面价值为 22,745,541,913.37 元，列示于附注16“其他债权投资”，见资料[3]，两者属不同报表项目，请勿混淆。）",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "000651"
+      ],
+      "years": [
+        2024
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "根据珠海格力电器股份有限公司2024年度财务报表附注，其债权投资中可转让大额存单的金额合计是多少元？",
+        "珠海格力电器股份有限公司2024年度财务报表附注中债权投资项下大额可转让存单的金额合计是多少元？"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 13940.4,
+    "timings_ms": {
+      "encode": 259.9,
+      "recall": 167.0,
+      "rerank": 605.6,
+      "total": 1032.6
+    }
+  },
+  {
+    "qid": "numeric-008",
+    "qtype": "numeric",
+    "question": "根据年报中东芝品牌在国内的渠道建设情况，东芝已与多少家品牌运营商合作？累计共建了多少家东芝品牌店和东芝品牌厅？",
+    "reference_answer": "超过300家品牌运营商，累计共建超过500家东芝品牌店和超过1,000家东芝品牌厅",
+    "source_chunk_id": "000333_2024_00063",
+    "source_meta": {
+      "company_name": "美的集团",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "000333"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000333_2025_00032",
+        "rank": 1,
+        "company_name": "美的集团",
+        "fiscal_year": 2025,
+        "page_num": 20,
+        "chunk_type": "text",
+        "rrf_score": 0.09836065573770493,
+        "rerank_score": 0.9988144636154175
+      },
+      {
+        "chunk_id": "000333_2024_00063",
+        "rank": 2,
+        "company_name": "美的集团",
+        "fiscal_year": 2024,
+        "page_num": 21,
+        "chunk_type": "text",
+        "rrf_score": 0.0935925840596038,
+        "rerank_score": 0.9981759786605835
+      },
+      {
+        "chunk_id": "000333_2023_00063",
+        "rank": 3,
+        "company_name": "美的集团",
+        "fiscal_year": 2023,
+        "page_num": 21,
+        "chunk_type": "text",
+        "rrf_score": 0.09525409626216078,
+        "rerank_score": 0.9967418313026428
+      },
+      {
+        "chunk_id": "000333_2023_00127",
+        "rank": 4,
+        "company_name": "美的集团",
+        "fiscal_year": 2023,
+        "page_num": 61,
+        "chunk_type": "text",
+        "rrf_score": 0.09526172751979203,
+        "rerank_score": 0.8796951770782471
+      },
+      {
+        "chunk_id": "000333_2024_00062",
+        "rank": 5,
+        "company_name": "美的集团",
+        "fiscal_year": 2024,
+        "page_num": 21,
+        "chunk_type": "text",
+        "rrf_score": 0.08775108589718854,
+        "rerank_score": 0.5215875506401062
+      }
+    ],
+    "answer": "根据参考资料中各年度年报披露的东芝国内渠道建设情况如下：\n\n**2025年报（截至2025年底）**：东芝在国内已与超过 **200 家**品牌运营商合作，累计建立超过 **650 家**东芝品牌店和超过 **1,200 家**东芝品牌厅 [1]。\n\n**2024年报**：东芝在国内已与超过 **300 家**品牌运营商合作，累计共建超过 **500 家**东芝品牌店和超过 **1,000 家**东芝品牌厅 [2]。\n\n**2023年报**：东芝在国内已与超过 **200 家**品牌运营商合作，累计共建超过 **260 家**东芝品牌星级生活馆和超过 **350 家**东芝品牌合厅 [3]。\n\n**趋势小结**：品牌店/品牌厅数量逐年增长（2023年约260/350家 → 2024年超500/1,000家 → 2025年超650/1,200家）[3][2][1]。需要注意的是，2025年报披露的合作品牌运营商数量为“超过200家”[1]，低于2024年报披露的“超过300家”[2]，年报中未说明该变化的具体原因。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "multi",
+      "queries": [
+        "根据年报中东芝品牌在国内的渠道建设情况，东芝已与多少家品牌运营商合作？累计共建了多少家东芝品牌店和东芝品牌厅？",
+        "东芝品牌在国内的渠道建设情况，已合作的品牌运营商数量",
+        "累计共建东芝品牌店、东芝品牌厅的数量"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 9503.4,
+    "timings_ms": {
+      "encode": 254.5,
+      "recall": 291.6,
+      "rerank": 562.9,
+      "total": 1109.0
+    }
+  },
+  {
+    "qid": "numeric-009",
+    "qtype": "numeric",
+    "question": "按坏账计提方法分类披露的应收账款中，大水电业务款项组合的期末账面余额是多少？",
+    "reference_answer": "1,687,032,065.55元",
+    "source_chunk_id": "600900_2023_00581",
+    "source_meta": {
+      "company_name": "长江电力",
+      "fiscal_year": 2023,
+      "chunk_type": "table",
+      "stock_code": "600900"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600900_2025_00544",
+        "rank": 1,
+        "company_name": "长江电力",
+        "fiscal_year": 2025,
+        "page_num": 244,
+        "chunk_type": "table",
+        "rrf_score": 0.016129032258064516,
+        "rerank_score": 0.9911643862724304
+      },
+      {
+        "chunk_id": "600900_2023_00581",
+        "rank": 2,
+        "company_name": "长江电力",
+        "fiscal_year": 2023,
+        "page_num": 253,
+        "chunk_type": "table",
+        "rrf_score": 0.03278688524590164,
+        "rerank_score": 0.9888836741447449
+      },
+      {
+        "chunk_id": "600900_2023_00373",
+        "rank": 3,
+        "company_name": "长江电力",
+        "fiscal_year": 2023,
+        "page_num": 151,
+        "chunk_type": "table",
+        "rrf_score": 0.026289682539682536,
+        "rerank_score": 0.9796913266181946
+      },
+      {
+        "chunk_id": "300760_2023_00699",
+        "rank": 4,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2023,
+        "page_num": 333,
+        "chunk_type": "table",
+        "rrf_score": 0.014084507042253521,
+        "rerank_score": 0.9776731729507446
+      },
+      {
+        "chunk_id": "300760_2023_00553",
+        "rank": 5,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2023,
+        "page_num": 268,
+        "chunk_type": "text",
+        "rrf_score": 0.030117753623188408,
+        "rerank_score": 0.9737207293510437
+      }
+    ],
+    "answer": "根据现有资料，“大水电业务款项组合”出现在长江电力的应收账款披露中，不同报表口径/年度的期末账面余额如下：\n\n- **长江电力2025年报（母公司财务报表）**：期末账面余额 **1,554,497,806.46 元**，占账面余额比例 99.49% [1]\n- **长江电力2023年报（母公司财务报表）**：期末账面余额 **1,687,032,065.55 元**，占 99.77% [2]\n- **长江电力2023年报（合并财务报表）**：期末账面余额 **6,503,168,721.32 元**，占 75.86% [3]\n\n参考资料[4][5]为迈瑞医疗的应收账款披露，不涉及“大水电业务款项组合”。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "按坏账计提方法分类披露的应收账款中，大水电业务款项组合的期末账面余额是多少？"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 13681.3,
+    "timings_ms": {
+      "encode": 377.3,
+      "recall": 88.8,
+      "rerank": 572.5,
+      "total": 1038.6
+    }
+  },
+  {
+    "qid": "numeric-010",
+    "qtype": "numeric",
+    "question": "本期末固定资产的期末账面价值合计为多少元？",
+    "reference_answer": "18,131,699,338元",
+    "source_chunk_id": "600660_2025_00410",
+    "source_meta": {
+      "company_name": "福耀玻璃",
+      "fiscal_year": 2025,
+      "chunk_type": "table",
+      "stock_code": "600660"
+    },
+    "contexts": [
+      {
+        "chunk_id": "601985_2023_00443",
+        "rank": 1,
+        "company_name": "中国核电",
+        "fiscal_year": 2023,
+        "page_num": 168,
+        "chunk_type": "table",
+        "rrf_score": 0.02967032967032967,
+        "rerank_score": 0.9862165451049805
+      },
+      {
+        "chunk_id": "002230_2024_00542",
+        "rank": 2,
+        "company_name": "科大讯飞",
+        "fiscal_year": 2024,
+        "page_num": 208,
+        "chunk_type": "table",
+        "rrf_score": 0.02946236559139785,
+        "rerank_score": 0.9774022698402405
+      },
+      {
+        "chunk_id": "600660_2025_00409",
+        "rank": 3,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2025,
+        "page_num": 132,
+        "chunk_type": "table",
+        "rrf_score": 0.014285714285714285,
+        "rerank_score": 0.9646443724632263
+      },
+      {
+        "chunk_id": "000858_2023_00269",
+        "rank": 4,
+        "company_name": "五粮液",
+        "fiscal_year": 2023,
+        "page_num": 110,
+        "chunk_type": "table",
+        "rrf_score": 0.01639344262295082,
+        "rerank_score": 0.9610490798950195
+      },
+      {
+        "chunk_id": "000858_2023_00276",
+        "rank": 5,
+        "company_name": "五粮液",
+        "fiscal_year": 2023,
+        "page_num": 113,
+        "chunk_type": "table",
+        "rrf_score": 0.014925373134328358,
+        "rerank_score": 0.953787088394165
+      }
+    ],
+    "answer": "问题未指明具体公司，各参考资料中“固定资产期末账面价值”如下：\n\n| 公司/资料 | 期末账面价值合计 |\n|---|---|\n| 中国核电（2023年报） | 固定资产 276,920,574,091.85 元 + 固定资产清理 1,808,316.26 元 = **合计 276,922,382,408.11 元** [1] |\n| 科大讯飞（2024年报） | 5,037,418,177.15 元 [2] |\n| 五粮液（2023年报） | 5,188,163,140.11 元（期初为 5,311,203,941.09 元）[4] |\n| 福耀玻璃（2025年报） | 资料仅披露账面原值期末余额 36,261,499,915 元，**未披露账面价值，根据现有资料无法回答** [3] |\n\n如需确认某一特定公司的数值，请补充说明公司名称。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "本期末固定资产的期末账面价值合计为多少元？"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 3442.5,
+    "timings_ms": {
+      "encode": 190.8,
+      "recall": 103.8,
+      "rerank": 539.4,
+      "total": 834.0
+    }
+  },
+  {
+    "qid": "numeric-011",
+    "qtype": "numeric",
+    "question": "报告期内，公司房地产出租情况中，购物中心业态的经营收入是多少万元？",
+    "reference_answer": "67,956万元",
+    "source_chunk_id": "600048_2024_00208",
+    "source_meta": {
+      "company_name": "保利发展",
+      "fiscal_year": 2024,
+      "chunk_type": "table",
+      "stock_code": "600048"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600048_2025_00173",
+        "rank": 1,
+        "company_name": "保利发展",
+        "fiscal_year": 2025,
+        "page_num": 42,
+        "chunk_type": "table",
+        "rrf_score": 0.05680829824665441,
+        "rerank_score": 0.9728020429611206
+      },
+      {
+        "chunk_id": "600048_2024_00208",
+        "rank": 2,
+        "company_name": "保利发展",
+        "fiscal_year": 2024,
+        "page_num": 50,
+        "chunk_type": "table",
+        "rrf_score": 0.06402049075403121,
+        "rerank_score": 0.9606516361236572
+      },
+      {
+        "chunk_id": "600048_2023_00219",
+        "rank": 3,
+        "company_name": "保利发展",
+        "fiscal_year": 2023,
+        "page_num": 35,
+        "chunk_type": "table",
+        "rrf_score": 0.0626129726185719,
+        "rerank_score": 0.9594321846961975
+      },
+      {
+        "chunk_id": "600048_2024_00035",
+        "rank": 4,
+        "company_name": "保利发展",
+        "fiscal_year": 2024,
+        "page_num": 14,
+        "chunk_type": "text",
+        "rrf_score": 0.06282550518404564,
+        "rerank_score": 0.9004180431365967
+      },
+      {
+        "chunk_id": "600048_2024_00036",
+        "rank": 5,
+        "company_name": "保利发展",
+        "fiscal_year": 2024,
+        "page_num": 14,
+        "chunk_type": "table",
+        "rrf_score": 0.0555209496385967,
+        "rerank_score": 0.7267799973487854
+      }
+    ],
+    "answer": "根据参考资料，报告期内（2025年）公司房地产出租情况中，**购物中心业态的经营收入为 78,780 万元**，共33个项目，总建筑面积1,377,032平方米，可供出租面积1,030,993平方米 [1]。\n\n如需对比：\n- 2024年：购物中心经营收入 67,956 万元（34个项目）[2]\n- 2023年：购物中心经营收入 55,591 万元（24个项目）[3]\n\n可见购物中心业态收入呈逐年增长趋势。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "报告期内，公司房地产出租情况中，购物中心业态的经营收入是多少万元？",
+        "报告期内公司房地产出租情况中购物中心业态的经营收入"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 11465.0,
+    "timings_ms": {
+      "encode": 302.9,
+      "recall": 198.1,
+      "rerank": 622.6,
+      "total": 1123.6
+    }
+  },
+  {
+    "qid": "numeric-012",
+    "qtype": "numeric",
+    "question": "根据片段，公司董事会审议通过的年度奖金方案适用的年度区间是什么？",
+    "reference_answer": "2023-2025年度",
+    "source_chunk_id": "000002_2024_00262",
+    "source_meta": {
+      "company_name": "万科A",
+      "fiscal_year": 2024,
+      "chunk_type": "text",
+      "stock_code": "000002"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000002_2024_00262",
+        "rank": 1,
+        "company_name": "万科A",
+        "fiscal_year": 2024,
+        "page_num": 92,
+        "chunk_type": "text",
+        "rrf_score": 0.06504494976203068,
+        "rerank_score": 0.8329533338546753
+      },
+      {
+        "chunk_id": "000002_2023_00281",
+        "rank": 2,
+        "company_name": "万科A",
+        "fiscal_year": 2023,
+        "page_num": 95,
+        "chunk_type": "text",
+        "rrf_score": 0.06430053288858155,
+        "rerank_score": 0.8165237903594971
+      },
+      {
+        "chunk_id": "300760_2023_00355",
+        "rank": 3,
+        "company_name": "迈瑞医疗",
+        "fiscal_year": 2023,
+        "page_num": 175,
+        "chunk_type": "text",
+        "rrf_score": 0.03016210739614995,
+        "rerank_score": 0.4904487431049347
+      },
+      {
+        "chunk_id": "000002_2023_00254",
+        "rank": 4,
+        "company_name": "万科A",
+        "fiscal_year": 2023,
+        "page_num": 85,
+        "chunk_type": "table",
+        "rrf_score": 0.03149801587301587,
+        "rerank_score": 0.44574689865112305
+      },
+      {
+        "chunk_id": "601985_2024_00185",
+        "rank": 5,
+        "company_name": "中国核电",
+        "fiscal_year": 2024,
+        "page_num": 61,
+        "chunk_type": "text",
+        "rrf_score": 0.050585684689780586,
+        "rerank_score": 0.412730872631073
+      }
+    ],
+    "answer": "根据参考资料，万科董事会（第二十届董事会第三次会议）审议通过的年度奖金方案适用于**2023–2025年度**，即“2023-2025年度奖金方案”，该方案继续以净利润为考核指标，董事会主席和总裁的现金薪酬方案与年度净利润挂钩，并增加年度股价变动作为调节系数 [1][2]。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "根据片段，公司董事会审议通过的年度奖金方案适用的年度区间是什么？",
+        "公司董事会审议通过的年度奖金方案适用的年度区间"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 12581.8,
+    "timings_ms": {
+      "encode": 310.8,
+      "recall": 186.7,
+      "rerank": 621.6,
+      "total": 1119.2
+    }
+  },
+  {
+    "qid": "numeric-013",
+    "qtype": "numeric",
+    "question": "2024年公司扣除非经常性损益后的加权平均净资产收益率为多少？",
+    "reference_answer": "2.16%",
+    "source_chunk_id": "600048_2024_00008",
+    "source_meta": {
+      "company_name": "保利发展",
+      "fiscal_year": 2024,
+      "chunk_type": "table",
+      "stock_code": "600048"
+    },
+    "contexts": [
+      {
+        "chunk_id": "600660_2024_00012",
+        "rank": 1,
+        "company_name": "福耀玻璃",
+        "fiscal_year": 2024,
+        "page_num": 8,
+        "chunk_type": "table",
+        "rrf_score": 0.06428490111891752,
+        "rerank_score": 0.9996135830879211
+      },
+      {
+        "chunk_id": "600048_2024_00008",
+        "rank": 2,
+        "company_name": "保利发展",
+        "fiscal_year": 2024,
+        "page_num": 5,
+        "chunk_type": "table",
+        "rrf_score": 0.057184483351185054,
+        "rerank_score": 0.999272882938385
+      },
+      {
+        "chunk_id": "600519_2024_00009",
+        "rank": 3,
+        "company_name": "贵州茅台",
+        "fiscal_year": 2024,
+        "page_num": 5,
+        "chunk_type": "table",
+        "rrf_score": 0.06005729231535683,
+        "rerank_score": 0.9990599751472473
+      },
+      {
+        "chunk_id": "600276_2024_00011",
+        "rank": 4,
+        "company_name": "恒瑞医药",
+        "fiscal_year": 2024,
+        "page_num": 7,
+        "chunk_type": "table",
+        "rrf_score": 0.053676847497072216,
+        "rerank_score": 0.9990228414535522
+      },
+      {
+        "chunk_id": "601633_2024_00016",
+        "rank": 5,
+        "company_name": "长城汽车",
+        "fiscal_year": 2024,
+        "page_num": 9,
+        "chunk_type": "table",
+        "rrf_score": 0.05816350052204097,
+        "rerank_score": 0.99872225522995
+      }
+    ],
+    "answer": "由于参考资料涉及五家公司，且问题未指明具体是哪家公司，现将各公司2024年扣除非经常性损益后的加权平均净资产收益率列示如下：\n\n| 公司 | 2024年数值 | 同比变动 |\n|---|---|---|\n| 福耀玻璃 | 22.57% | 较上年（18.63%）增加3.94个百分点 [1] |\n| 保利发展 | 2.16% | 较上年（5.99%）减少3.83个百分点 [2] |\n| 贵州茅台 | 36.03% | 较上年（34.20%）增加1.83个百分点 [3] |\n| 恒瑞医药 | 14.36% | 较上年（10.58%）增加3.78个百分点 [4] |\n| 长城汽车 | 13.18% | 较上年增加5.88个百分点 [5] |\n\n如需了解某一家公司的详细情况，请告知具体公司名称。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [],
+      "years": [],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "2024年公司扣除非经常性损益后的加权平均净资产收益率为多少？",
+        "2024年公司扣除非经常性损益后的加权平均净资产收益率"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 4405.8,
+    "timings_ms": {
+      "encode": 375.9,
+      "recall": 193.3,
+      "rerank": 682.4,
+      "total": 1251.6
+    }
+  },
+  {
+    "qid": "numeric-014",
+    "qtype": "numeric",
+    "question": "五粮液股份有限公司2025年年度报告同业竞争情况部分的表格中，合计行显示的具体数值分别是多少？",
+    "reference_answer": "1、26,153、126,153",
+    "source_chunk_id": "000858_2025_00069",
+    "source_meta": {
+      "company_name": "五粮液",
+      "fiscal_year": 2025,
+      "chunk_type": "table",
+      "stock_code": "000858"
+    },
+    "contexts": [
+      {
+        "chunk_id": "000858_2025_00069",
+        "rank": 1,
+        "company_name": "五粮液",
+        "fiscal_year": 2025,
+        "page_num": 25,
+        "chunk_type": "table",
+        "rrf_score": 0.06557377049180328,
+        "rerank_score": 0.9820199608802795
+      },
+      {
+        "chunk_id": "000858_2025_00298",
+        "rank": 2,
+        "company_name": "五粮液",
+        "fiscal_year": 2025,
+        "page_num": 115,
+        "chunk_type": "table",
+        "rrf_score": 0.04616813871486769,
+        "rerank_score": 0.9815554022789001
+      },
+      {
+        "chunk_id": "000858_2025_00033",
+        "rank": 3,
+        "company_name": "五粮液",
+        "fiscal_year": 2025,
+        "page_num": 15,
+        "chunk_type": "table",
+        "rrf_score": 0.039889579020013805,
+        "rerank_score": 0.9649806022644043
+      },
+      {
+        "chunk_id": "000858_2025_00350",
+        "rank": 4,
+        "company_name": "五粮液",
+        "fiscal_year": 2025,
+        "page_num": 136,
+        "chunk_type": "table",
+        "rrf_score": 0.04114666934189406,
+        "rerank_score": 0.9582599997520447
+      },
+      {
+        "chunk_id": "000858_2025_00330",
+        "rank": 5,
+        "company_name": "五粮液",
+        "fiscal_year": 2025,
+        "page_num": 130,
+        "chunk_type": "table",
+        "rrf_score": 0.055032265601719324,
+        "rerank_score": 0.9574199318885803
+      }
+    ],
+    "answer": "根据参考资料[1]（五粮液2025年报第25页“三、同业竞争情况”部分），合计行显示的内容为：\n\n**原文：** 合计 | -- | -- | -- | -- | -- | -- | 1 | 26,153 0 0 0 | 126,153 | --\n\n即：\n- 前6列：均为\"--\"\n- 第7列：**1**\n- 第8列起：**26,153、0、0、0**\n- 随后一列：**126,153**\n- 最后一列：**--**\n\n**需要说明的是**：该段原文为PDF提取文本，数字排版存在粘连断行（\"26,153 0 0 0\"与\"126,153\"相邻，有可能是数值\"126,153\"被拆分显示），且资料中未完整呈现各列的表头名称，因此无法准确将各数值对应到具体列名。如需精确对应关系，建议核对年报原文第25页。",
+    "answer_degraded": null,
+    "rewrite": {
+      "codes": [
+        "000858"
+      ],
+      "years": [
+        2025
+      ],
+      "rewrite_ok": true,
+      "intent": "fact",
+      "queries": [
+        "五粮液股份有限公司2025年年度报告同业竞争情况部分的表格中，合计行显示的具体数值分别是多少？",
+        "五粮液股份有限公司2025年年度报告 同业竞争情况 表格合计行具体数值"
+      ],
+      "fallback_reason": ""
+    },
+    "retrieve_ms": 9900.5,
+    "timings_ms": {
+      "encode": 319.8,
+      "recall": 153.7,
+      "rerank": 540.5,
+      "total": 1014.1
+    }
+  }
+]
