@@ -79,10 +79,10 @@ cp config/.env.example config/.env
 | Key | 用途 | 是否必需 |
 |---|---|---|
 | `SILICONFLOW_API_KEY` | 云端重排（E3 实验组） | 用 E3 重排才需要 |
-| `GLM_API_KEY` | LLM 生成（start_ui.py 问答） | 用问答总结才需要 |
+| `GLM_API_KEY` | LLM 生成 + 查询增强术语改写 | 问答总结 / 查询增强才需要 |
 | `DEEPSEEK_API_KEY` | 评测裁判 | 跑评测才需要 |
 
-> **纯检索链路（无重排、无生成）完全本地运行，无需任何 key**。检索 + BM25 + RRF 融合 + BGE-M3 编码都不依赖外部 API。
+> **纯检索链路（无重排、无生成、查询增强关闭）完全本地运行，无需任何 key**。检索 + BM25 + RRF 融合 + BGE-M3 编码都不依赖外部 API。
 
 ## 2. 数据准备
 
@@ -105,9 +105,16 @@ python src/download_pdf.py
 | `data/parsed/` | 解析中间产物 JSON | ❌ | `parse_pdf.py` |
 | `data/chunks/` | 切块产物 JSON | ✅（已入库） | `chunk_documents.py` |
 | `data/embeddings/` | 编码缓存 npz | ❌ | `index_documents.py` 阶段 A |
-| `data/eval/` | 评测集 + 报告 | ✅ | `evaluate.py` |
+| `data/eval/` | 评测集 + 报告（v1~v6 多版本） | ✅ | `evaluate.py` |
 
-> `data/chunks/`（56M）已随仓库入库，供演示或重建索引使用；其余均可按上述命令再生。
+> `data/chunks/`（62M，56,338 块）已随仓库入库，供演示或重建索引使用；其余均可按上述命令再生。
+
+**从 PDF 重建 chunks**（表格提取 lines 策略 + 崩溃页子进程兜底）：
+
+```bash
+python src/parse_pdf.py                          # 解析 60 份 → data/parsed/
+python -m src.chunk_documents                    # 切块 → data/chunks/（注意 -m 方式）
+```
 
 ## 3. 启动 Qdrant
 
@@ -140,7 +147,8 @@ collection `annual_reports` 含三命名向量：
 ## 4. 构建索引
 
 ```bash
-# 全量两阶段（编码 + 入库；首次编码约 20~40min，重跑命中缓存免 GPU）
+# 全量两阶段（编码 + 入库；5.6 万块首次编码约 1.5~2.6h（GTX 1650 fp32），
+# 重跑命中 npz 缓存免 GPU，重建 collection 仅数分钟）
 python src/index_documents.py
 
 # 指定公司（增量 / 小样本）
@@ -188,6 +196,7 @@ python scripts/start_ui.py --port 9000
 启动即预热（加载 BGE-M3 + 连接 Qdrant），首问不卡。界面支持：
 
 - **提问**：输入自然语言问题，点「检索并回答」或回车提交
+- **查询增强（v1.13，默认开）**：两级级联——规则实体抽取（题面出现公司名/年份时自动生成元数据过滤，与手动过滤合并、手动优先）+ LLM 术语归一改写（口语措辞 → 年报术语，原句/改写双路融合检索）。关闭则退回裸检索；meta 行会显示「查询增强: 代码/年度 · 改写状态」
 - **实验组切换**：E0~E4 五组路由（E3 为完整链路，含云端重排）
 - **元数据过滤**：按股票代码 / 年份区间限定召回范围
 - **引用溯源**：每个命中块带公司 / 代码 / 年度 / 章节 / 页码
@@ -211,7 +220,33 @@ hits = r.retrieve("...", exp="E2")
 # 带过滤（限定股票代码 + 年份区间）
 flt = build_filter(codes=["000001"], year_from=2023, year_to=2024)
 hits = r.retrieve("...", exp="E3", flt=flt)
+
+# 多查询融合（v1.10）：原句 + 改写句同池 RRF，共识块得分翻倍；
+# 列表首元素为重排基准句
+hits = r.retrieve(["口语问题", "术语化改写问题"], exp="E3")
 ```
+
+### 5.3 查询侧增强（query_intent）
+
+```python
+import sys
+sys.path.insert(0, "src")
+import query_intent as QI
+from retrieve import Retriever
+
+# 第一级：规则实体抽取（零 LLM 成本）
+ent = QI.extract("贵州茅台2024年年报里借出去的钱有多少收不回来")
+print(ent.codes, ent.years, ent.to_filter_args())
+# → ['600519'] [2024] {'codes': ['600519'], 'year_from': 2024, 'year_to': 2024}
+
+# 两级级联（规则过滤 + LLM 术语归一改写 + 双路融合检索）
+r = Retriever()
+transformer = QI.Transformer(r.cfg["llm"])
+hits, dbg = QI.pipeline_query("口语问题", r, transformer)
+print(dbg["codes"], dbg["years"], dbg["rewrite_ok"], dbg["queries"])
+```
+
+> 改写失败（限速/超时/输出不合法）自动回退原句检索，不中断。
 
 **实验组路由**（`exp` 参数）：
 
@@ -250,19 +285,36 @@ python test_mcp_client.py get_chunk_detail --chunk_id "000001_2023_00002"
 ## 7. 评测
 
 ```bash
-# 生成评测集（50 题，分层抽样 seed=42）
+# 生成评测集（50 题 18/18/14 配额，分层抽样 seed=42，题面自动带公司+年份）
 python src/evaluate.py gen
 
 # 跑批（断点续跑）
 python src/evaluate.py run
 
+# 跑批 + 查询增强链路（规则过滤 + LLM 改写双路融合）
+python src/evaluate.py run --rewrite
+
 # 打分（五指标 + 裁判报告）
 python src/evaluate.py score
 ```
 
-产出到 `data/eval/`：`eval_set.json`（评测集）/ `run_results.json`（结果）/ `report.md`（报告）。
+**tag 机制（评测产物隔离，v1.9）**：加 `--tag` 后所有产物带后缀，互不覆盖——`eval_set_v2.json` / `run_results_v2.json` / `report_v2.md`。用于对照实验（同题集不同链路、或不同题集）：
 
-**五指标**：Recall@5 / Precision@5 / HitRate@5 / MRR / NDCG@5，金标准 = 出题源 chunk 唯一命中。
+```bash
+python src/evaluate.py gen --tag v5     # → eval_set_v5.json
+python src/evaluate.py run --tag v5     # → run_results_v5.json（裸检索基线）
+cp data/eval/eval_set_v5.json data/eval/eval_set_v6.json
+python src/evaluate.py run --tag v6 --rewrite   # 同题集 + 查询增强对照
+python src/evaluate.py score --tag v6 --skip-judge  # 跳过裁判省时间
+```
+
+**校准子命令**：`regen` 同源块重出改写题面（注入主体信息，A/B 对照用）：
+
+```bash
+python src/evaluate.py regen --tag v2 --judge   # --judge 用 DeepSeek 出题（GLM 限速时）
+```
+
+产出到 `data/eval/`。**五指标**：Recall@5 / Precision@5 / HitRate@5 / MRR / NDCG@5，金标准 = 出题源 chunk 唯一命中。仓库内含 v1~v6 六轮评测产物（演进链：出题校准 → 表格升级重建 → 查询增强对照），详见 `docs/architecture.md` M4b~M4e。
 
 ## 8. 常见问题（FAQ）
 
@@ -288,4 +340,12 @@ BGE-M3 首次加载约 20s；GTX 1650（4G 显存）下 `batch_size` 已调 16�
 
 ### Q6：数据 / 权重为什么不在仓库里？
 
-年报 PDF（326M）、模型权重（4.3G）体积过大且可公开下载，已 .gitignore。仓库只含源码 + 配置 + 文档 + `data/chunks`（56M 切块产物）。
+年报 PDF（326M）、模型权重（4.3G）体积过大且可公开下载，已 .gitignore。仓库只含源码 + 配置 + 文档 + `data/chunks`（62M 切块产物）+ 语料清单 `data/raw/manifest.json`。
+
+### Q7：表格解析崩溃 / 崩页怎么处理？
+
+PyMuPDF `lines` 策略在个别 PDF 页触发 C 层段错误（无法 try 捕获）。批量解析已内置子进程隔离：崩掉的份自动降级为逐页子进程兜底（崩页跳过表格提取、保留正文，记入 parsed 产物的 warnings 字段），不影响其余份。实测 60 份中 6 份共 19 页（0.13%）触发，属可接受损失。
+
+### Q8：切块脚本报 `No module named 'src'`？
+
+`chunk_documents.py` 顶部 `from src.utils import Log` 需要项目根在 sys.path。用模块方式从项目根运行：`python -m src.chunk_documents`（不要 `python src/chunk_documents.py`）。
