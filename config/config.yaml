@@ -40,13 +40,13 @@ sparse:
   k1: 1.5                          # 归属于上市公司股东的净利润）额外产出子词与全词
   b: 0.75                          # 双份索引，部分匹配召回更稳；exact 模式长词一次
                                    # 命中失败即全失败。检索查询同样用 for_search。
-  avgdl_frozen: 248.54             # v1.6：BM25 的 idf 改由 Qdrant 服务端 Modifier.IDF
+  avgdl_frozen: 328.09             # v1.6：BM25 的 idf 改由 Qdrant 服务端 Modifier.IDF
                                    # 维护（随点增删自动更新，新增文档零全局重算），
                                    # 客户端入库只算 tf 饱和+长度归一，avgdl 冻结为常量。
-                                   # 取值=2026-09-20 实测全库 n_docs=40609 时的
-                                   # avgdl 248.5376（源 data/bm25_stats/bm25_stats.json）。
-                                   # 语料规模/长度分布大变时重算此值并 --recreate 重建
-                                   # （npz 缓存，不动 GPU），非日常步骤。
+                                   # 取值=2026-11-04 表格解析升级（lines 策略）后
+                                   # 全库 56,338 块实测 avgdl 328.09（此前 40,609 块
+                                   # 时为 248.54）。语料规模/长度分布大变时重算此值
+                                   # 并 --recreate 重建（npz 缓存，不动 GPU），非日常步骤。
 
 retrieval:
   top_k_per_route: 50              # 两路各召回
